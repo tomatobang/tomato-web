@@ -13,9 +13,8 @@ angular.module('pomodoroApp.controllers', []).
 
     $scope.allTasks = { finished: [],
                         unfinished: [
-                          {title: "吃饭", description: "使用 CoffeeScript 和 Sass 来写 Javascript 和 Css 提高开发效率", today: false, used_pomodoro: 0},
-                          {title: "睡觉", description: "一切都需要从先上传一个头像开始", today: false, used_pomodoro: 0},
-                          {title: "打豆豆", description: "Matz 曾说过“你应该升级到 Ruby 2.0 了”", today: false, used_pomodoro: 0}
+                          {title: "整懂一个知识点", description: "https://github.com/pengkobe/reading-notes/issues", today: false, used_pomodoro: 0},
+                          {title: "锻炼30分钟", description: "KEEP HEALTHY", today: false, used_pomodoro: 0},
                         ]};
 
     $scope.timerStatus = {
