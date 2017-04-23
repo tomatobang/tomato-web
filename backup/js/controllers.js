@@ -29,9 +29,9 @@ angular.module('pomodoroApp.controllers', []).
       }
     };
 
-    $scope.config = {
-      desktopNotification: false
-    };
+    // $scope.config = {
+    //   desktopNotification: false
+    // };
 
     $scope.getTimes = function(n) {
       return new Array(n);
@@ -57,29 +57,29 @@ angular.module('pomodoroApp.controllers', []).
       });
     };
 
-    $scope.requestNotificationPermission = function() {
-      $scope.config.desktopNotification = ! $scope.config.desktopNotification;
-      if ($window.Notification.permission !== 'denied' || $window.Notification.permission !== 'granted') {
-        $window.Notification.requestPermission(function (permission) {
-          if(!(permission in $window.Notification)) {
-            $window.Notification.permission = permission;
-          }
-        });
-      }
-    }
+    // $scope.requestNotificationPermission = function() {
+    //   $scope.config.desktopNotification = ! $scope.config.desktopNotification;
+    //   if ($window.Notification.permission !== 'denied' || $window.Notification.permission !== 'granted') {
+    //     $window.Notification.requestPermission(function (permission) {
+    //       if(!(permission in $window.Notification)) {
+    //         $window.Notification.permission = permission;
+    //       }
+    //     });
+    //   }
+    // }
 
-    $scope.showDesktopNotification = function() {
-      if(window.chrome) {
-        new $window.Notification("恭喜你,又完成了一个番茄钟!", {icon: "./image/notification-icon.jpg"});
-      }
-      else {
-        $window.Notification.requestPermission(function (permission){
-          if(permission == 'granted') {
-            new $window.Notification("恭喜你,又完成了一个番茄钟!", {icon: "./image/notification-icon.jpg"});
-          }
-        });
-      }
-    };
+    // $scope.showDesktopNotification = function() {
+    //   if(window.chrome) {
+    //     new $window.Notification("恭喜你,又完成了一个番茄钟!", {icon: "./image/notification-icon.jpg"});
+    //   }
+    //   else {
+    //     $window.Notification.requestPermission(function (permission){
+    //       if(permission == 'granted') {
+    //         new $window.Notification("恭喜你,又完成了一个番茄钟!", {icon: "./image/notification-icon.jpg"});
+    //       }
+    //     });
+    //   }
+    // };
 
     $scope.onTimeout = function(){
         $scope.timerStatus.count++;

@@ -10,12 +10,27 @@ var AppComponent = (function () {
     function AppComponent() {
         this.name = 'Angular';
     }
+    AppComponent.prototype.showDesktopNotification = function () {
+        if (chrome) {
+            new Notification("恭喜你,又完成了一个番茄钟!", { icon: "./assets/image/notification-icon.jpg" });
+        }
+        else {
+            Notification.requestPermission(function (permission) {
+                if (permission == 'granted') {
+                    new Notification("恭喜你,又完成了一个番茄钟!", { icon: "./assets/image/notification-icon.jpg" });
+                }
+            });
+        }
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "<h1>Hello {{name}}</h1>",
+        template: "<tomato-nav></tomato-nav>",
+        styleUrls: [
+            './app.component.css'
+        ]
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;
