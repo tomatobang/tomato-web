@@ -1,0 +1,97 @@
+<div class="stage col-md-6 col-xs-12">
+  <div class="timer-container">
+    <div ang:round:progress data-round-progress-model="timerStatus" data-round-progress-width="450" data-round-progress-height="450"
+      data-round-progress-outer-circle-width="30" data-round-progress-inner-circle-width="5" data-round-progress-outer-circle-radius="180"
+      data-round-progress-inner-circle-radius="140" data-round-progress-label-font="60pt Arial" data-round-progress-outer-circle-background-color="#505769"
+      data-round-progress-outer-circle-foreground-color="#12eeb9" data-round-progress-inner-circle-color="#505769" data-round-progress-label-color="#fff">
+    </div>
+  </div>
+  <div class="active-task">
+    <div class="bs-callout bs-callout-info" *ngIf="activeTask">
+      <h4>{{ activeTask.title }}</h4>
+      <p>{{ activeTask.description }}</p>
+    </div>
+    <button class="btn btn-danger" *ngIf="activeTask" 
+    (click)="breakActiveTask()">中断当前番茄钟</button>
+  </div>
+</div>
+
+<div class="col-md-3 col-xs-12">
+  <div class="well well-sm">今日任务列表</div>
+  <ul class="list-unstyled task-list today-task-list">
+    <li class="task panel panel-success" *ngFor="let task of allTasks.unfinished">
+      <div class="task-heading panel-heading">
+        <div class="task-title panel-title">
+          {{ task.title }}
+        </div>
+        <div class="task-operation-container">
+          <button type="button" class="btn btn-success btn-xs" (click)="startTask(task)"><i class="fa fa-play"></i></button>
+          <button type="button" class="btn btn-warning btn-xs" (click)="task.today=false"><i class="fa fa-share"></i></button>
+          <button type="button" class="btn btn-danger btn-xs" (click)="removeTask(task)"><i class="fa fa-trash-o"></i></button>
+        </div>
+      </div>
+      <div class="task-details panel-body">
+        <div class="task-description">
+          {{ task.description }}
+        </div>
+      </div>
+      <div class="task-pomodoros panel-footer">
+        <img src="/assets/image/tomato.png" *ngFor="let t of getTimes(task.used_pomodoro)">
+      </div>
+    </li>
+  </ul>
+  <div *ngIf="openNewTaskForm" class="new-task-form">
+    <!--<div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="newTask.title" placeholder="任务名称">
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" rows="3" [(ngModel)]="newTask.description" placeholder="描述/备注"></textarea>
+    </div>-->
+    <div class="form-group">
+      <button class="btn btn-sm btn-success" (click)="addTask(true)">添加</button>
+      <button class="btn btn-sm btn-danger" (click)="openNewTaskForm=false;newTask.title=''">取消</button>
+    </div>
+  </div>
+  <h4 ng-hide="openNewTaskForm">
+    <small class="open-new-task-form" (click)="openNewTaskForm=true">添加新任务...</small>
+  </h4>
+</div>
+<!--<div class="col-md-3 col-xs-12" ng-controller="pomodoroTasksController">
+  <div class="well well-sm">候选任务列表</div>
+  <ul class="list-unstyled task-list">
+    <li class="task panel panel-primary" *ngFor="let task of allTasks.unfinished">
+      <div class="task-heading panel-heading">
+        <div class="task-title panel-title">
+          {{ task.title }}
+        </div>
+        <div class="task-operation-container">
+          <button type="button" class="btn btn-warning btn-xs" (click)="task.today=true"><i class="fa fa-reply"></i></button>
+          <button type="button" class="btn btn-danger btn-xs" (click)="removeTask(task)"><i class="fa fa-trash-o"></i></button>
+        </div>
+      </div>
+      <div class="task-details panel-body">
+        <div class="task-description">
+          {{ task.description }}
+        </div>
+      </div>
+      <div class="task-pomodoros panel-footer">
+        <img src="/assets/image/tomato.png" *ngFor="let t of getTimes(task.used_pomodoro)">
+      </div>
+    </li>
+  </ul>
+  <div *ngIf="openNewTaskForm" class="new-task-form">
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="newTask.title" placeholder="任务名称">
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" rows="3" [(ngModel)]="newTask.description" placeholder="描述/备注"></textarea>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-sm btn-success" (click)="addTask(false)">添加</button>
+      <button class="btn btn-sm btn-danger" (click)="openNewTaskForm=false;newTask.title=''">取消</button>
+    </div>
+  </div>
+  <h4 ng-hide="openNewTaskForm" class="new-task-link">
+    <small class="open-new-task-form" (click)="openNewTaskForm=true">添加新任务...</small>
+  </h4>
+</div>-->

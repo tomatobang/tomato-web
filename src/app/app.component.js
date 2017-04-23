@@ -8,26 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var AppComponent = (function () {
     function AppComponent() {
-        this.name = 'Angular';
+        this.name = 'TOMATOBANG';
     }
-    AppComponent.prototype.showDesktopNotification = function () {
-        if (chrome) {
-            new Notification("恭喜你,又完成了一个番茄钟!", { icon: "./assets/image/notification-icon.jpg" });
-        }
-        else {
-            Notification.requestPermission(function (permission) {
-                if (permission == 'granted') {
-                    new Notification("恭喜你,又完成了一个番茄钟!", { icon: "./assets/image/notification-icon.jpg" });
-                }
-            });
-        }
-    };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "<tomato-nav></tomato-nav>",
+        template: "<tomato-nav></tomato-nav><tomato-dash></tomato-dash>",
         styleUrls: [
             './app.component.css'
         ]

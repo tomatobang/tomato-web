@@ -1,0 +1,75 @@
+.task-list > * {
+  clear: both;
+}
+
+.task {
+  position: relative;
+  margin-bottom: 1px;
+}
+
+.task .task-operation-container {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+
+.task:hover .task-operation-container {
+  display: block;
+}
+
+.timer-container {
+  background-color: #3c3b49;
+  display: inline-block;
+  border-radius: 90px;
+}
+
+.open-new-task-form:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.task .task-details {
+  clear: both;
+  display: none;
+}
+
+.task:hover .task-details {
+  display: block;
+}
+
+.today-task-list .task {
+  margin-bottom: 5px;
+}
+
+.today-task-list .task .task-details {
+  display: block;
+}
+
+.task .task-description {
+  word-wrap: break-word;
+}
+
+.task .task-pomodoros {
+  padding: 0px;
+}
+
+.task .task-pomodoros img {
+  height: 20px;
+}
+
+.new-task-form .form-group {
+  margin-bottom: 5px;
+}
+
+.new-task-form, .new-task-link {
+  clear: both;
+}
+
+.task-title {
+  width: 100%;
+}
+
+.task-operation-container {
+  margin-left: -100%;
+}
