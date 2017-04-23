@@ -5,6 +5,9 @@ declare var Notification: any;
 @Component({
     selector: 'tomato-nav',
     templateUrl: `./nav.component.html`,
+    styleUrls: [
+        './nav.component.css'
+    ]
 })
 export class NavComponent {
     config = {

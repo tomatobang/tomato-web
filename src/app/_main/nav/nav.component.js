@@ -28,6 +28,9 @@ NavComponent = __decorate([
     core_1.Component({
         selector: 'tomato-nav',
         templateUrl: "./nav.component.html",
+        styleUrls: [
+            './nav.component.css'
+        ]
     })
 ], NavComponent);
 exports.NavComponent = NavComponent;
