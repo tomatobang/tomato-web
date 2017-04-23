@@ -3,7 +3,7 @@ declare var Notification: any;
 
 @Component({
   selector: 'my-app',
-  template: `<tomato-nav></tomato-nav><tomato-dash></tomato-dash>`,
+  templateUrl: "./app.component.html",
   styleUrls: [
     './app.component.css'
   ]

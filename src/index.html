@@ -22,6 +22,15 @@
     System.import('main.js').catch(function (err) {
       console.error(err);
     });
+    (function () {
+      Piecon.setOptions({
+        fallback: 'force',
+        color: '#12eeb9',
+        background: '#505769'
+      });
+
+      Piecon.reset();
+    })();
 
   </script>
 </head>
