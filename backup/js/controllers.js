@@ -155,9 +155,9 @@ angular.module('pomodoroApp.controllers', []).
       $scope.openNewTaskForm = false;
     };
   }]).
-  controller('askForFinishStatusController', ["$scope", "$modalInstance", "$window", function($scope, $modalInstance, $window) {
-    $scope.close = function(status) {
-      $modalInstance.close(status);
-      $window.Piecon.reset();
-    };
-  }]);
+  // controller('askForFinishStatusController', ["$scope", "$modalInstance", "$window", function($scope, $modalInstance, $window) {
+  //   $scope.close = function(status) {
+  //     $modalInstance.close(status);
+  //     $window.Piecon.reset();
+  //   };
+  // }]);

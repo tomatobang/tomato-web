@@ -95,3 +95,20 @@
     <small class="open-new-task-form" (click)="openNewTaskForm=true">添加新任务...</small>
   </h4>
 </div>-->
+
+<modal #myModal>
+  <modal-header>
+    <h4 class="modal-title">恭喜你，成功完成了一个番茄钟!</h4>
+  </modal-header>
+
+  <modal-body>
+    休息一下吧 ^_^
+    <h3 class="pull-right">已经完成该任务？</h3>
+  </modal-body>
+  <modal-footer>
+    <button class="btn btn-success" (click)="close(true)">是的，我已完成</button>
+    <button class="btn btn-warning" (click)="close(false)">没有，我还需要更多番茄钟</button>
+  </modal-footer>
+</modal>
+
+

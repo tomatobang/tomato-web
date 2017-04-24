@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var ng2_bs3_modal_1 = require("ng2-bs3-modal/ng2-bs3-modal");
 var DashComponent = (function () {
     function DashComponent() {
         this.mp3Source = document.createElement('source');
@@ -19,7 +20,7 @@ var DashComponent = (function () {
             desktopNotification: false
         };
         this.allTasks = {
-            finished: Array,
+            finished: new Array,
             unfinished: [
                 { title: "吃饭", description: "使用 CoffeeScript 和 Sass 来写 Javascript 和 Css 提高开发效率", today: false, used_pomodoro: 2 },
                 { title: "睡觉", description: "一切都需要从先上传一个头像开始", today: false, used_pomodoro: 1 },
@@ -28,7 +29,8 @@ var DashComponent = (function () {
         };
         this.activeTask = {
             title: '学习新知识点',
-            description: '无'
+            description: '无',
+            used_pomodoro: 0
         };
         this.timerStatus = {
             label: '25:00',
@@ -115,20 +117,7 @@ var DashComponent = (function () {
     };
     ;
     DashComponent.prototype.askForFinishStatus = function () {
-        // var modalInstance = $modal.open({
-        //     templateUrl: 'askForFinishStatus.html',
-        //     keyboard: false,
-        //     controller: 'askForFinishStatusController'
-        // });
-        // modalInstance.result.then(function (status:boolean) {
-        //     this.activeTask.used_pomodoro += 1;
-        //     if (status === true) {
-        //         this.allTasks.finished.push(this.activeTask);
-        //         this.removeTask(this.activeTask);
-        //     }
-        //     this.timerStatus.reset();
-        //     this.activeTask = null;
-        // });
+        this.modal.open();
     };
     ;
     DashComponent.prototype.showDesktopNotification = function () {
@@ -143,8 +132,24 @@ var DashComponent = (function () {
             });
         }
     };
+    DashComponent.prototype.close = function (status) {
+        this.activeTask.used_pomodoro += 1;
+        if (status === true) {
+            this.allTasks.finished.push(this.activeTask);
+            this.removeTask(this.activeTask);
+        }
+        this.timerStatus.reset();
+        this.activeTask = null;
+        this.modal.close();
+        Piecon.reset();
+    };
+    ;
     return DashComponent;
 }());
+__decorate([
+    core_1.ViewChild('myModal'),
+    __metadata("design:type", ng2_bs3_modal_1.ModalComponent)
+], DashComponent.prototype, "modal", void 0);
 DashComponent = __decorate([
     core_1.Component({
         selector: 'tomato-dash',

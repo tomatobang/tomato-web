@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 declare var Piecon: any;
 declare var chrome: any;
+declare var Notification: any;
+
 
 @Component({
     selector: 'tomato-dash',
@@ -11,6 +14,9 @@ declare var chrome: any;
     ]
 })
 export class DashComponent {
+    @ViewChild('myModal')
+    modal: ModalComponent;
+
     mp3Source: HTMLSourceElement = document.createElement('source');
     oggSource: HTMLSourceElement = document.createElement('source');
     alertAudio: HTMLAudioElement = document.createElement('audio');
@@ -21,7 +27,7 @@ export class DashComponent {
     };
 
     allTasks = {
-        finished: Array,
+        finished: new Array,
         unfinished: [
             { title: "吃饭", description: "使用 CoffeeScript 和 Sass 来写 Javascript 和 Css 提高开发效率", today: false, used_pomodoro: 2 },
             { title: "睡觉", description: "一切都需要从先上传一个头像开始", today: false, used_pomodoro: 1 },
@@ -48,7 +54,8 @@ export class DashComponent {
 
     activeTask = {
         title: '学习新知识点',
-        description: '无'
+        description: '无',
+        used_pomodoro: 0
     };
 
     timerStatus = {
@@ -126,22 +133,7 @@ export class DashComponent {
     };
 
     askForFinishStatus() {
-        // var modalInstance = $modal.open({
-        //     templateUrl: 'askForFinishStatus.html',
-        //     keyboard: false,
-        //     controller: 'askForFinishStatusController'
-        // });
-
-        // modalInstance.result.then(function (status:boolean) {
-        //     this.activeTask.used_pomodoro += 1;
-        //     if (status === true) {
-        //         this.allTasks.finished.push(this.activeTask);
-        //         this.removeTask(this.activeTask);
-        //     }
-
-        //     this.timerStatus.reset();
-        //     this.activeTask = null;
-        // });
+        this.modal.open();
     };
 
     showDesktopNotification() {
@@ -156,4 +148,16 @@ export class DashComponent {
             });
         }
     }
+
+    close(status: any) {
+        this.activeTask.used_pomodoro += 1;
+        if (status === true) {
+            this.allTasks.finished.push(this.activeTask);
+            this.removeTask(this.activeTask);
+        }
+        this.timerStatus.reset();
+        this.activeTask = null;
+        this.modal.close();
+        Piecon.reset();
+    };
 }
