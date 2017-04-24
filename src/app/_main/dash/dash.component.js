@@ -42,6 +42,17 @@ var DashComponent = (function () {
                 this.label = "25:00";
             }
         };
+        this.addTask = function (today) {
+            if (typeof this.newTask === "undefined") {
+                return false;
+            }
+            var task = this.newTask;
+            task.used_pomodoro = 0;
+            task.today = today;
+            this.allTasks.unfinished.push(task);
+            this.newTask = {};
+            this.openNewTaskForm = false;
+        };
     }
     DashComponent.prototype.ngOnInit = function () {
         this.mp3Source.setAttribute('src', '/assets/audios/alert.mp3');
@@ -143,7 +154,6 @@ var DashComponent = (function () {
         this.modal.close();
         Piecon.reset();
     };
-    ;
     return DashComponent;
 }());
 __decorate([

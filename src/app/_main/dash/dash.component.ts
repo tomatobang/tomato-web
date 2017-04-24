@@ -159,5 +159,17 @@ export class DashComponent {
         this.activeTask = null;
         this.modal.close();
         Piecon.reset();
+    }
+
+    addTask = function(today:any) {
+      if (typeof this.newTask === "undefined") {
+        return false;
+      }
+      let task = this.newTask;
+      task.used_pomodoro = 0;
+      task.today = today;
+      this.allTasks.unfinished.push(task);
+      this.newTask = {};
+      this.openNewTaskForm = false;
     };
 }

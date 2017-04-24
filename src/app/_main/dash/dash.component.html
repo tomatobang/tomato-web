@@ -41,22 +41,22 @@
     </li>
   </ul>
   <div *ngIf="openNewTaskForm" class="new-task-form">
-    <!--<div class="form-group">
+    <div class="form-group">
       <input type="text" class="form-control" [(ngModel)]="newTask.title" placeholder="任务名称">
     </div>
     <div class="form-group">
       <textarea class="form-control" rows="3" [(ngModel)]="newTask.description" placeholder="描述/备注"></textarea>
-    </div>-->
+    </div>
     <div class="form-group">
       <button class="btn btn-sm btn-success" (click)="addTask(true)">添加</button>
       <button class="btn btn-sm btn-danger" (click)="openNewTaskForm=false;newTask.title=''">取消</button>
     </div>
   </div>
-  <h4 ng-hide="openNewTaskForm">
+  <h4 *ngIf="openNewTaskForm">
     <small class="open-new-task-form" (click)="openNewTaskForm=true">添加新任务...</small>
   </h4>
 </div>
-<!--<div class="col-md-3 col-xs-12" ng-controller="pomodoroTasksController">
+<div class="col-md-3 col-xs-12" >
   <div class="well well-sm">候选任务列表</div>
   <ul class="list-unstyled task-list">
     <li class="task panel panel-primary" *ngFor="let task of allTasks.unfinished">
@@ -79,7 +79,7 @@
       </div>
     </li>
   </ul>
-  <div *ngIf="openNewTaskForm" class="new-task-form">
+  <div *ngIf="!openNewTaskForm" class="new-task-form">
     <div class="form-group">
       <input type="text" class="form-control" [(ngModel)]="newTask.title" placeholder="任务名称">
     </div>
@@ -91,10 +91,10 @@
       <button class="btn btn-sm btn-danger" (click)="openNewTaskForm=false;newTask.title=''">取消</button>
     </div>
   </div>
-  <h4 ng-hide="openNewTaskForm" class="new-task-link">
+  <h4 *ngIf="!openNewTaskForm" class="new-task-link">
     <small class="open-new-task-form" (click)="openNewTaskForm=true">添加新任务...</small>
   </h4>
-</div>-->
+</div>
 
 <modal #myModal>
   <modal-header>

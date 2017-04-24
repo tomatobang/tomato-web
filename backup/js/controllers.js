@@ -142,19 +142,19 @@ angular.module('pomodoroApp.controllers', []).
     //   return minutes + ":" + seconds;
     // };
   }]).
-  controller('pomodoroTasksController', ["$scope", function($scope) {
-    $scope.addTask = function(today) {
-      if (typeof $scope.newTask === "undefined") {
-        return false;
-      }
-      task = $scope.newTask;
-      task.used_pomodoro = 0;
-      task.today = today;
-      $scope.allTasks.unfinished.push(task);
-      $scope.newTask = {};
-      $scope.openNewTaskForm = false;
-    };
-  }]).
+  // controller('pomodoroTasksController', ["$scope", function($scope) {
+  //   $scope.addTask = function(today) {
+  //     if (typeof $scope.newTask === "undefined") {
+  //       return false;
+  //     }
+  //     task = $scope.newTask;
+  //     task.used_pomodoro = 0;
+  //     task.today = today;
+  //     $scope.allTasks.unfinished.push(task);
+  //     $scope.newTask = {};
+  //     $scope.openNewTaskForm = false;
+  //   };
+  // }]).
   // controller('askForFinishStatusController', ["$scope", "$modalInstance", "$window", function($scope, $modalInstance, $window) {
   //   $scope.close = function(status) {
   //     $modalInstance.close(status);

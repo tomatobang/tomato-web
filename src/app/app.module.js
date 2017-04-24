@@ -7,6 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
+var forms_1 = require("@angular/forms");
+// https://github.com/dougludlow/ng2-bs3-modal
 var ng2_bs3_modal_1 = require("ng2-bs3-modal/ng2-bs3-modal");
 var app_component_1 = require("./app.component");
 var nav_component_1 = require("./_main/nav/nav.component");
@@ -18,7 +20,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, ng2_bs3_modal_1.Ng2Bs3ModalModule],
+        imports: [platform_browser_1.BrowserModule, ng2_bs3_modal_1.Ng2Bs3ModalModule, forms_1.FormsModule],
         declarations: [app_component_1.AppComponent, nav_component_1.NavComponent, dash_component_1.DashComponent],
         bootstrap: [app_component_1.AppComponent]
     })
