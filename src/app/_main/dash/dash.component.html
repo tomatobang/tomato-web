@@ -52,7 +52,7 @@
       <button class="btn btn-sm btn-danger" (click)="openNewTaskForm=false;newTask.title=''">取消</button>
     </div>
   </div>
-  <h4 *ngIf="openNewTaskForm">
+  <h4 *ngIf="!openNewTaskForm">
     <small class="open-new-task-form" (click)="openNewTaskForm=true">添加新任务...</small>
   </h4>
 </div>
@@ -79,21 +79,7 @@
       </div>
     </li>
   </ul>
-  <div *ngIf="!openNewTaskForm" class="new-task-form">
-    <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="newTask.title" placeholder="任务名称">
-    </div>
-    <div class="form-group">
-      <textarea class="form-control" rows="3" [(ngModel)]="newTask.description" placeholder="描述/备注"></textarea>
-    </div>
-    <div class="form-group">
-      <button class="btn btn-sm btn-success" (click)="addTask(false)">添加</button>
-      <button class="btn btn-sm btn-danger" (click)="openNewTaskForm=false;newTask.title=''">取消</button>
-    </div>
-  </div>
-  <h4 *ngIf="!openNewTaskForm" class="new-task-link">
-    <small class="open-new-task-form" (click)="openNewTaskForm=true">添加新任务...</small>
-  </h4>
+
 </div>
 
 <modal #myModal>

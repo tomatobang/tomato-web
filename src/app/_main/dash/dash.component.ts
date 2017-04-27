@@ -51,7 +51,11 @@ export class DashComponent {
         return new Array(n);
     };
 
-
+    newTask = {
+        title: '',
+        description: '',
+        used_pomodoro: 0
+    };
     activeTask = {
         title: '学习新知识点',
         description: '无',
@@ -161,15 +165,12 @@ export class DashComponent {
         Piecon.reset();
     }
 
-    addTask = function(today:any) {
-      if (typeof this.newTask === "undefined") {
-        return false;
-      }
-      let task = this.newTask;
-      task.used_pomodoro = 0;
-      task.today = today;
-      this.allTasks.unfinished.push(task);
-      this.newTask = {};
-      this.openNewTaskForm = false;
+    addTask = function (today: any) {
+        let task = this.newTask;
+        task.used_pomodoro = 0;
+        task.today = today;
+        this.allTasks.unfinished.push(task);
+        this.newTask = {};
+        this.openNewTaskForm = false;
     };
 }

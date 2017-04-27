@@ -27,6 +27,11 @@ var DashComponent = (function () {
                 { title: "打豆豆", description: "Matz 曾说过“你应该升级到 Ruby 2.0 了”", today: false, used_pomodoro: 2 }
             ]
         };
+        this.newTask = {
+            title: '',
+            description: '',
+            used_pomodoro: 0
+        };
         this.activeTask = {
             title: '学习新知识点',
             description: '无',
@@ -43,9 +48,6 @@ var DashComponent = (function () {
             }
         };
         this.addTask = function (today) {
-            if (typeof this.newTask === "undefined") {
-                return false;
-            }
             var task = this.newTask;
             task.used_pomodoro = 0;
             task.today = today;
