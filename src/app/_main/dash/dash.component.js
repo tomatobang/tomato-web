@@ -50,7 +50,7 @@ var DashComponent = (function () {
         };
         this.addTask = function (today) {
             var task = this.newTask;
-            task.used_pomodoro = 0;
+            task.used_pomodoro = 1;
             task.today = today;
             this.allTasks.unfinished.push(task);
             this.newTask = {};

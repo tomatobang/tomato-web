@@ -63,7 +63,7 @@
 <div class="col-md-3 col-xs-12">
   <div class="well well-sm">候选任务列表</div>
   <ul class="list-unstyled task-list">
-    <li class="task panel panel-primary" *ngFor="let task of allTasks.unfinished">
+    <li class="task panel panel-primary" *ngFor="let task of allTasks.unfinished | TaskPipe:false">
       <div class="task-heading panel-heading">
         <div class="task-title panel-title">
           {{ task.title }}

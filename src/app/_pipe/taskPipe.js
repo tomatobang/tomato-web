@@ -12,6 +12,7 @@ var TaskPipe = (function () {
     TaskPipe.prototype.transform = function (value, args) {
         var flag = args;
         var ret = [];
+        debugger;
         for (var index = 0; index < value.length; index++) {
             var element = value[index];
             if (element.today == flag) {

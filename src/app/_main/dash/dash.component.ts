@@ -179,7 +179,7 @@ export class DashComponent {
 
     addTask = function (today: any) {
         let task = this.newTask;
-        task.used_pomodoro = 0;
+        task.used_pomodoro = 1;
         task.today = today;
         this.allTasks.unfinished.push(task);
         this.newTask = {};
