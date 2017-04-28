@@ -1,6 +1,7 @@
 <div class="stage col-md-6 col-xs-12">
   <div class="timer-container">
-    <angular-round-progress [timerStatus]="timerStatus"></angular-round-progress>
+    {{timerStatus.label}}
+    <angular-round-progress [(timerStatus)]="timerStatus"></angular-round-progress>
   </div>
    
 </div>

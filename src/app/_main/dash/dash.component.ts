@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { AngularRoundProgressComponent }  from '../../_directives/angular-round-progress-directive';
 
 declare var Piecon: any;
 declare var chrome: any;
 declare var Notification: any;
+
 
 
 @Component({
@@ -16,6 +18,14 @@ declare var Notification: any;
 export class DashComponent {
     @ViewChild('myModal')
     modal: ModalComponent;
+
+    @ViewChild(AngularRoundProgressComponent) child:AngularRoundProgressComponent;
+    ngAfterViewInit() {
+        setInterval(()=> {
+            this.child.timerStatusValue == this.timerStatus;
+            this.child.render();
+        }, 1000)
+    }
 
     mp3Source: HTMLSourceElement = document.createElement('source');
     oggSource: HTMLSourceElement = document.createElement('source');
@@ -91,7 +101,7 @@ export class DashComponent {
             }
         }
         else {
-            this.mytimeout = setTimeout(this.onTimeout, 1000);
+            this.mytimeout = setTimeout(this.onTimeout.bind(this), 1000);
         }
         Piecon.setProgress(Math.floor(this.timerStatus.percentage * 100));
     };
@@ -101,7 +111,7 @@ export class DashComponent {
             clearTimeout(this.mytimeout);
             this.timerStatus.reset();
         }
-        this.mytimeout = setTimeout(this.onTimeout, 1000);
+        this.mytimeout = setTimeout(this.onTimeout.bind(this), 1000);
     };
 
     stopTimer() {
@@ -129,9 +139,14 @@ export class DashComponent {
         let retStr: string = ''
         if (minutes < 10) {
             retStr += "0" + minutes;
+        }else{
+            retStr+=  minutes;
         }
+         retStr+=":";
         if (seconds < 10) {
             retStr += "0" + seconds
+        }else{
+             retStr += seconds
         }
         return retStr;
     };

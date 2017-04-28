@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var ng2_bs3_modal_1 = require("ng2-bs3-modal/ng2-bs3-modal");
+var angular_round_progress_directive_1 = require("../../_directives/angular-round-progress-directive");
 var DashComponent = (function () {
     function DashComponent() {
         this.mp3Source = document.createElement('source');
@@ -56,6 +57,13 @@ var DashComponent = (function () {
             this.openNewTaskForm = false;
         };
     }
+    DashComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        setInterval(function () {
+            _this.child.timerStatusValue == _this.timerStatus;
+            _this.child.render();
+        }, 1000);
+    };
     DashComponent.prototype.ngOnInit = function () {
         this.mp3Source.setAttribute('src', '/assets/audios/alert.mp3');
         this.oggSource.setAttribute('src', '/assets/audios/alert.ogg');
@@ -84,7 +92,7 @@ var DashComponent = (function () {
             }
         }
         else {
-            this.mytimeout = setTimeout(this.onTimeout, 1000);
+            this.mytimeout = setTimeout(this.onTimeout.bind(this), 1000);
         }
         Piecon.setProgress(Math.floor(this.timerStatus.percentage * 100));
     };
@@ -94,7 +102,7 @@ var DashComponent = (function () {
             clearTimeout(this.mytimeout);
             this.timerStatus.reset();
         }
-        this.mytimeout = setTimeout(this.onTimeout, 1000);
+        this.mytimeout = setTimeout(this.onTimeout.bind(this), 1000);
     };
     ;
     DashComponent.prototype.stopTimer = function () {
@@ -123,8 +131,15 @@ var DashComponent = (function () {
         if (minutes < 10) {
             retStr += "0" + minutes;
         }
+        else {
+            retStr += minutes;
+        }
+        retStr += ":";
         if (seconds < 10) {
             retStr += "0" + seconds;
+        }
+        else {
+            retStr += seconds;
         }
         return retStr;
     };
@@ -162,6 +177,10 @@ __decorate([
     core_1.ViewChild('myModal'),
     __metadata("design:type", ng2_bs3_modal_1.ModalComponent)
 ], DashComponent.prototype, "modal", void 0);
+__decorate([
+    core_1.ViewChild(angular_round_progress_directive_1.AngularRoundProgressComponent),
+    __metadata("design:type", angular_round_progress_directive_1.AngularRoundProgressComponent)
+], DashComponent.prototype, "child", void 0);
 DashComponent = __decorate([
     core_1.Component({
         selector: 'tomato-dash',
