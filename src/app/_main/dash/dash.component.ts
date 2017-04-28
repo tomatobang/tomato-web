@@ -1,12 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
-import { AngularRoundProgressComponent }  from '../../_directives/angular-round-progress-directive';
+import { AngularRoundProgressComponent } from '../../_directives/angular-round-progress-directive';
 
 declare var Piecon: any;
 declare var chrome: any;
 declare var Notification: any;
-
-
 
 @Component({
     selector: 'tomato-dash',
@@ -19,9 +17,9 @@ export class DashComponent {
     @ViewChild('myModal')
     modal: ModalComponent;
 
-    @ViewChild(AngularRoundProgressComponent) child:AngularRoundProgressComponent;
+    @ViewChild(AngularRoundProgressComponent) child: AngularRoundProgressComponent;
     ngAfterViewInit() {
-        setInterval(()=> {
+        setInterval(() => {
             this.child.timerStatusValue == this.timerStatus;
             this.child.render();
         }, 1000)
@@ -46,7 +44,6 @@ export class DashComponent {
     };
 
     constructor() {
-
     }
 
     ngOnInit() {
@@ -139,14 +136,14 @@ export class DashComponent {
         let retStr: string = ''
         if (minutes < 10) {
             retStr += "0" + minutes;
-        }else{
-            retStr+=  minutes;
+        } else {
+            retStr += minutes;
         }
-         retStr+=":";
+        retStr += ":";
         if (seconds < 10) {
             retStr += "0" + seconds
-        }else{
-             retStr += seconds
+        } else {
+            retStr += seconds
         }
         return retStr;
     };

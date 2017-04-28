@@ -8,10 +8,11 @@ import { AppComponent }  from './app.component';
 import { NavComponent }  from './_main/nav/nav.component';
 import { DashComponent }  from './_main/dash/dash.component';
 import { AngularRoundProgressComponent }  from './_directives/angular-round-progress-directive';
+import { TaskPipe } from './_pipe/taskPipe';
 
 @NgModule({
   imports:      [ BrowserModule,Ng2Bs3ModalModule,FormsModule ],
-  declarations: [ AppComponent,NavComponent,DashComponent,AngularRoundProgressComponent ],
+  declarations: [ AppComponent,NavComponent,DashComponent,AngularRoundProgressComponent,TaskPipe ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

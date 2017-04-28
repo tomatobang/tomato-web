@@ -1,4 +1,6 @@
 <div class="stage col-md-6 col-xs-12">
+
+  <!-- 时间仪表盘 -->
   <div class="timer-container">
     <angular-round-progress [(timerStatus)]="timerStatus"></angular-round-progress>
   </div>
@@ -11,10 +13,12 @@
   </div>
 </div>
 
+
+<!-- 今日任务列表 -->
 <div class="col-md-3 col-xs-12">
   <div class="well well-sm">今日任务列表</div>
   <ul class="list-unstyled task-list today-task-list">
-    <li class="task panel panel-success" *ngFor="let task of allTasks.unfinished">
+    <li class="task panel panel-success" *ngFor="let task of allTasks.unfinished | TaskPipe:true">
       <div class="task-heading panel-heading">
         <div class="task-title panel-title">
           {{ task.title }}
@@ -47,10 +51,15 @@
       <button class="btn btn-sm btn-danger" (click)="openNewTaskForm=false;newTask.title=''">取消</button>
     </div>
   </div>
+
+
+  <!-- 添加新任务 -->
   <h4 *ngIf="!openNewTaskForm">
     <small class="open-new-task-form" (click)="openNewTaskForm=true">添加新任务...</small>
   </h4>
 </div>
+
+<!-- 候选任务列表 -->
 <div class="col-md-3 col-xs-12">
   <div class="well well-sm">候选任务列表</div>
   <ul class="list-unstyled task-list">
@@ -77,11 +86,12 @@
 
 </div>
 
+
+<!-- 任务完成后模态框 -->
 <modal #myModal>
   <modal-header>
     <h4 class="modal-title">恭喜你，成功完成了一个番茄钟!</h4>
   </modal-header>
-
   <modal-body>
     休息一下吧 ^_^
     <h3 class="pull-right">已经完成该任务？</h3>
