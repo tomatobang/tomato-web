@@ -8,7 +8,7 @@ declare var Notification: any;
 
 @Component({
     selector: 'tomato-dash',
-    templateUrl: `./dash.component.html`,
+    templateUrl: './dash.component.html',
     styleUrls: [
         './dash.component.css'
     ]
@@ -181,6 +181,7 @@ export class DashComponent {
         let task = this.newTask;
         task.used_pomodoro = 1;
         task.today = today;
+        this.allTasks.unfinished = [];
         this.allTasks.unfinished.push(task);
         this.newTask = {};
         this.openNewTaskForm = false;

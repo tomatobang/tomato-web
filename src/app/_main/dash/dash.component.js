@@ -52,6 +52,7 @@ var DashComponent = (function () {
             var task = this.newTask;
             task.used_pomodoro = 1;
             task.today = today;
+            this.allTasks.unfinished = [];
             this.allTasks.unfinished.push(task);
             this.newTask = {};
             this.openNewTaskForm = false;
@@ -184,7 +185,7 @@ __decorate([
 DashComponent = __decorate([
     core_1.Component({
         selector: 'tomato-dash',
-        templateUrl: "./dash.component.html",
+        templateUrl: './dash.component.html',
         styleUrls: [
             './dash.component.css'
         ]
