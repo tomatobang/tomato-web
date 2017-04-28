@@ -7,10 +7,11 @@ import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AppComponent }  from './app.component';
 import { NavComponent }  from './_main/nav/nav.component';
 import { DashComponent }  from './_main/dash/dash.component';
+import { AngularRoundProgressComponent }  from './_directives/angular-round-progress-directive';
 
 @NgModule({
   imports:      [ BrowserModule,Ng2Bs3ModalModule,FormsModule ],
-  declarations: [ AppComponent,NavComponent,DashComponent ],
+  declarations: [ AppComponent,NavComponent,DashComponent,AngularRoundProgressComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

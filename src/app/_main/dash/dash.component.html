@@ -1,19 +1,15 @@
 <div class="stage col-md-6 col-xs-12">
   <div class="timer-container">
-    <div ang:round:progress data-round-progress-model="timerStatus" data-round-progress-width="450" data-round-progress-height="450"
-      data-round-progress-outer-circle-width="30" data-round-progress-inner-circle-width="5" data-round-progress-outer-circle-radius="180"
-      data-round-progress-inner-circle-radius="140" data-round-progress-label-font="60pt Arial" data-round-progress-outer-circle-background-color="#505769"
-      data-round-progress-outer-circle-foreground-color="#12eeb9" data-round-progress-inner-circle-color="#505769" data-round-progress-label-color="#fff">
-    </div>
+    <angular-round-progress [timerStatus]="timerStatus"></angular-round-progress>
   </div>
-  <div class="active-task">
-    <div class="bs-callout bs-callout-info" *ngIf="activeTask">
-      <h4>{{ activeTask.title }}</h4>
-      <p>{{ activeTask.description }}</p>
-    </div>
-    <button class="btn btn-danger" *ngIf="activeTask" 
-    (click)="breakActiveTask()">中断当前番茄钟</button>
+   
+</div>
+<div class="active-task">
+  <div class="bs-callout bs-callout-info" *ngIf="activeTask">
+    <h4>{{ activeTask.title }}</h4>
+    <p>{{ activeTask.description }}</p>
   </div>
+  <button class="btn btn-danger" *ngIf="activeTask" (click)="breakActiveTask()">中断当前番茄钟</button>
 </div>
 
 <div class="col-md-3 col-xs-12">
@@ -56,7 +52,7 @@
     <small class="open-new-task-form" (click)="openNewTaskForm=true">添加新任务...</small>
   </h4>
 </div>
-<div class="col-md-3 col-xs-12" >
+<div class="col-md-3 col-xs-12">
   <div class="well well-sm">候选任务列表</div>
   <ul class="list-unstyled task-list">
     <li class="task panel panel-primary" *ngFor="let task of allTasks.unfinished">
@@ -96,5 +92,3 @@
     <button class="btn btn-warning" (click)="close(false)">没有，我还需要更多番茄钟</button>
   </modal-footer>
 </modal>
-
-
