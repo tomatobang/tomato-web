@@ -52,8 +52,9 @@ var DashComponent = (function () {
             var task = this.newTask;
             task.used_pomodoro = 1;
             task.today = today;
-            this.allTasks.unfinished = [];
-            this.allTasks.unfinished.push(task);
+            var tt = this.allTasks.unfinished;
+            // replace push to trigger the event
+            this.allTasks.unfinished = [task].concat(tt);
             this.newTask = {};
             this.openNewTaskForm = false;
         };
