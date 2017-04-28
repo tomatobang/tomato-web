@@ -1,16 +1,14 @@
 <div class="stage col-md-6 col-xs-12">
   <div class="timer-container">
-    {{timerStatus.label}}
     <angular-round-progress [(timerStatus)]="timerStatus"></angular-round-progress>
   </div>
-   
-</div>
-<div class="active-task">
-  <div class="bs-callout bs-callout-info" *ngIf="activeTask">
-    <h4>{{ activeTask.title }}</h4>
-    <p>{{ activeTask.description }}</p>
+  <div class="active-task">
+    <div class="bs-callout bs-callout-info" *ngIf="activeTask">
+      <h4>{{ activeTask.title }}</h4>
+      <p>{{ activeTask.description }}</p>
+    </div>
+    <button class="btn btn-danger" *ngIf="activeTask" (click)="breakActiveTask()">中断当前番茄钟</button>
   </div>
-  <button class="btn btn-danger" *ngIf="activeTask" (click)="breakActiveTask()">中断当前番茄钟</button>
 </div>
 
 <div class="col-md-3 col-xs-12">

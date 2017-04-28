@@ -39,9 +39,9 @@ export class DashComponent {
     allTasks = {
         finished: new Array,
         unfinished: [
-            { title: "吃饭", description: "使用 CoffeeScript 和 Sass 来写 Javascript 和 Css 提高开发效率", today: false, used_pomodoro: 2 },
-            { title: "睡觉", description: "一切都需要从先上传一个头像开始", today: false, used_pomodoro: 1 },
-            { title: "打豆豆", description: "Matz 曾说过“你应该升级到 Ruby 2.0 了”", today: false, used_pomodoro: 2 }
+            { title: "每天一个知识点", description: "学一个未知或者不懂得概念", today: false, used_pomodoro: 2 },
+            { title: "锻炼", description: "为未来储蓄能量", today: false, used_pomodoro: 1 },
+            { title: "代码1小时", description: "every hour lead to a change", today: false, used_pomodoro: 2 }
         ]
     };
 
@@ -73,13 +73,13 @@ export class DashComponent {
     };
 
     timerStatus = {
-        label: '25:00',
+        label: '1:00',
         percentage: 0,
         count: 0,
         reset: function () {
             this.count = 0;
             this.percentage = 0;
-            this.label = "25:00";
+            this.label = "1:00";
         }
     };
 
@@ -91,8 +91,8 @@ export class DashComponent {
 
     onTimeout() {
         this.timerStatus.count++;
-        this.timerStatus.percentage = this.timerStatus.count / (25 * 60);
-        this.timerStatus.label = this.secondsToMMSS(25 * 60 - this.timerStatus.count);
+        this.timerStatus.percentage = this.timerStatus.count / (1 * 60);
+        this.timerStatus.label = this.secondsToMMSS(1 * 60 - this.timerStatus.count);
         if (this.timerStatus.percentage >= 1) {
             this.askForFinishStatus();
             this.alertAudio.play();
