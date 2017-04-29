@@ -121,6 +121,7 @@ export class DashComponent {
             if (this.allTasks.unfinished[index] === task) {
                 let ind = new Number(index);
                 this.allTasks.unfinished.splice(ind.valueOf(), 1);
+                this.allTasks.unfinished = this.allTasks.unfinished.slice();
             }
         }
     };
@@ -186,5 +187,17 @@ export class DashComponent {
         this.allTasks.unfinished = [task].concat(tt);
         this.newTask = {};
         this.openNewTaskForm = false;
-    };
+    }
+
+    removeTaskFromToday(task: any) {
+        task.today = false;
+        debugger;
+        this.allTasks.unfinished = this.allTasks.unfinished.slice();
+    }
+
+    addTaskToToday(task: any) {
+        task.today = true;
+        debugger;
+        this.allTasks.unfinished = this.allTasks.unfinished.slice();
+    }
 }

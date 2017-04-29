@@ -117,6 +117,7 @@ var DashComponent = (function () {
             if (this.allTasks.unfinished[index] === task) {
                 var ind = new Number(index);
                 this.allTasks.unfinished.splice(ind.valueOf(), 1);
+                this.allTasks.unfinished = this.allTasks.unfinished.slice();
             }
         }
     };
@@ -172,6 +173,16 @@ var DashComponent = (function () {
         this.activeTask = null;
         this.modal.close();
         Piecon.reset();
+    };
+    DashComponent.prototype.removeTaskFromToday = function (task) {
+        task.today = false;
+        debugger;
+        this.allTasks.unfinished = this.allTasks.unfinished.slice();
+    };
+    DashComponent.prototype.addTaskToToday = function (task) {
+        task.today = true;
+        debugger;
+        this.allTasks.unfinished = this.allTasks.unfinished.slice();
     };
     return DashComponent;
 }());
