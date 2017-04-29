@@ -176,12 +176,10 @@ var DashComponent = (function () {
     };
     DashComponent.prototype.removeTaskFromToday = function (task) {
         task.today = false;
-        debugger;
         this.allTasks.unfinished = this.allTasks.unfinished.slice();
     };
     DashComponent.prototype.addTaskToToday = function (task) {
         task.today = true;
-        debugger;
         this.allTasks.unfinished = this.allTasks.unfinished.slice();
     };
     return DashComponent;

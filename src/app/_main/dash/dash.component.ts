@@ -191,13 +191,11 @@ export class DashComponent {
 
     removeTaskFromToday(task: any) {
         task.today = false;
-        debugger;
         this.allTasks.unfinished = this.allTasks.unfinished.slice();
     }
 
     addTaskToToday(task: any) {
         task.today = true;
-        debugger;
         this.allTasks.unfinished = this.allTasks.unfinished.slice();
     }
 }

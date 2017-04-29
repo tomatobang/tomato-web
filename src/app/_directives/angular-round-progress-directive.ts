@@ -21,8 +21,8 @@ export class AngularRoundProgressComponent {
 
     labelFont: string = "60pt Arial";
     outerCircleBackgroundColor: string = "#505769";
-    outerCircleForegroundColor: string = "12eeb9";
-    innerCircleColor: string = "12eeb9";
+    outerCircleForegroundColor: string = "#12eeb9";
+    innerCircleColor: string = "#12eeb9";
 
     labelColor: string = "#fff";
 
@@ -81,6 +81,7 @@ export class AngularRoundProgressComponent {
 
         // The "foreground" circle
         var startAngle = - (Math.PI / 2);
+
         var endAngle = ((Math.PI * 2) * this.timerStatusValue.percentage) - (Math.PI / 2);
         var anticlockwise = false;
         ctx.beginPath();

@@ -1,3 +1,10 @@
+.active-task-title{
+font-size: 35px;
+}
+.stage{
+  text-align: center;
+}
+
 .task-list > * {
   clear: both;
 }
