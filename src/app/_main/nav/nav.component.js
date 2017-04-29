@@ -12,13 +12,18 @@ var NavComponent = (function () {
             desktopNotification: false
         };
     }
+    NavComponent.prototype.ngOnInit = function () {
+        if (Notification.permission !== 'denied' || Notification.permission !== 'granted') {
+            this.config.desktopNotification = false;
+        }
+    };
     NavComponent.prototype.requestNotificationPermission = function () {
         this.config.desktopNotification = !this.config.desktopNotification;
         if (Notification.permission !== 'denied' || Notification.permission !== 'granted') {
             Notification.requestPermission(function (permission) {
-                if (!(permission in Notification)) {
-                    Notification.permission = permission;
-                }
+                // if (!(permission in Notification)) {
+                //     Notification.permission = permission;
+                // }
             });
         }
     };

@@ -14,13 +14,20 @@ export class NavComponent {
         desktopNotification: false
     };
 
+
+    ngOnInit() {
+        if (Notification.permission !== 'denied' || Notification.permission !== 'granted') {
+            this.config.desktopNotification = false;
+        }
+    }
+
     requestNotificationPermission() {
         this.config.desktopNotification = !this.config.desktopNotification;
         if (Notification.permission !== 'denied' || Notification.permission !== 'granted') {
             Notification.requestPermission(function (permission: any) {
-                if (!(permission in Notification)) {
-                    Notification.permission = permission;
-                }
+                // if (!(permission in Notification)) {
+                //     Notification.permission = permission;
+                // }
             });
         }
     }

@@ -18,7 +18,7 @@ var DashComponent = (function () {
         this.alertAudio = document.createElement('audio');
         this.mytimeout = null;
         this.config = {
-            desktopNotification: false
+            desktopNotification: true
         };
         this.allTasks = {
             finished: new Array,
@@ -87,7 +87,7 @@ var DashComponent = (function () {
         this.timerStatus.percentage = this.timerStatus.count / (1 * 60);
         this.timerStatus.label = this.secondsToMMSS(1 * 60 - this.timerStatus.count);
         if (this.timerStatus.percentage >= 1) {
-            this.askForFinishStatus();
+            // this.askForFinishStatus();
             this.alertAudio.play();
             if (this.config.desktopNotification) {
                 this.showDesktopNotification();
