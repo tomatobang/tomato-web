@@ -63,11 +63,7 @@ export class DashComponent {
         description: '',
         used_pomodoro: 0
     };
-    activeTask = {
-        title: '学习新知识点',
-        description: '无',
-        used_pomodoro: 0
-    };
+    activeTask:any = null;
 
     timerStatus = {
         label: '1:00',

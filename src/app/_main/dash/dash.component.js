@@ -33,11 +33,7 @@ var DashComponent = (function () {
             description: '',
             used_pomodoro: 0
         };
-        this.activeTask = {
-            title: '学习新知识点',
-            description: '无',
-            used_pomodoro: 0
-        };
+        this.activeTask = null;
         this.timerStatus = {
             label: '1:00',
             percentage: 0,
