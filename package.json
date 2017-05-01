@@ -35,6 +35,8 @@
     "angular-in-memory-web-api": "~0.3.0",
     "core-js": "^2.4.1",
     "ng2-bs3-modal": "^0.10.4",
+    "rebirth-http": "0.0.12",
+    "rebirth-storage": "0.0.7",
     "rxjs": "5.0.1",
     "systemjs": "0.19.40",
     "zone.js": "^0.8.4"
