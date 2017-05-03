@@ -97,7 +97,7 @@ export class GithubTomatoService extends TomatoService {
 
 }
 
-export const REBIRTH_ARTICLE_SERVICE_PROVIDERS: Array<any> = [
+export const TOMATO_SERVICE_PROVIDERS: Array<any> = [
   {
     provide: TomatoService,
     // environment.deploy === 'github' ? GithubTomatoService : OnlineTomatoService
