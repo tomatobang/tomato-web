@@ -9,9 +9,11 @@ import { NavComponent }  from './_main/nav/nav.component';
 import { DashComponent }  from './_main/dash/dash.component';
 import { AngularRoundProgressComponent }  from './_directives/angular-round-progress-directive';
 import { TaskPipe } from './_pipe/taskPipe';
+import { RebirthHttpModule } from 'rebirth-http';
+import { RebirthStorageModule } from 'rebirth-storage';
 
 @NgModule({
-  imports:      [ BrowserModule,Ng2Bs3ModalModule,FormsModule ],
+  imports:      [ BrowserModule,Ng2Bs3ModalModule,FormsModule,RebirthHttpModule,RebirthStorageModule],
   declarations: [ AppComponent,NavComponent,DashComponent,AngularRoundProgressComponent,TaskPipe ],
   bootstrap:    [ AppComponent ]
 })

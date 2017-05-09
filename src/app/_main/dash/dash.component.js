@@ -11,8 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var ng2_bs3_modal_1 = require("ng2-bs3-modal/ng2-bs3-modal");
 var angular_round_progress_directive_1 = require("../../_directives/angular-round-progress-directive");
+var index_1 = require("../../_core/task/index");
 var DashComponent = (function () {
-    function DashComponent() {
+    function DashComponent(service) {
+        this.service = service;
         this.mp3Source = document.createElement('source');
         this.oggSource = document.createElement('source');
         this.alertAudio = document.createElement('audio');
@@ -68,6 +70,9 @@ var DashComponent = (function () {
         this.alertAudio.appendChild(this.mp3Source);
         this.alertAudio.appendChild(this.oggSource);
         this.alertAudio.load();
+        this.service.getTasks().subscribe(function (data) {
+            debugger;
+        });
     };
     DashComponent.prototype.getTimes = function (n) {
         return new Array(n);
@@ -196,7 +201,7 @@ DashComponent = __decorate([
             './dash.component.css'
         ]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [index_1.OnlineTaskService])
 ], DashComponent);
 exports.DashComponent = DashComponent;
 //# sourceMappingURL=dash.component.js.map

@@ -51,52 +51,6 @@ export class OnlineTaskService extends TaskService {
 
 }
 
-@Injectable()
-export class GithubTaskService extends TaskService {
-
-  constructor(protected http: Http, protected rebirthHttpProvider: RebirthHttpProvider) {
-    super();
-  }
-
-  getTasks(pageIndex = 1, pageSize = 10, keyword?: string): Observable<SearchResult<Task>> {
-    return this.innerGetTasks()
-      .map(res => {
-        const result = res.result || [];
-        const startIndex = (pageIndex - 1 ) * pageSize;
-        return {
-          pageSize,
-          pageIndex,
-          total: result.length,
-          result: result.slice(startIndex, startIndex + pageSize)
-        };
-      });
-  }
-
-  getTaskByTitle(taskTitle: string): Observable<Task> {
-    return this.innerGetTasks()
-      .map(res => {
-        const result = res.result || [];
-        return result.find(item => item.title === taskTitle);
-      });
-  }
-
-  updateMarkdown(taskUrl: string, task: Task): Observable<any> {
-    return null;
-  }
-
-  deleteTask(taskUrl: string): Observable<any> {
-    return null;
-  }
-
-  @Cacheable({ pool: 'tasks' })
-  @GET('tasks.json')
-  private  innerGetTasks(): Observable<SearchResult<Task>> {
-    return null;
-  }
-
-
-}
-
 export const TASK_SERVICE_PROVIDERS: Array<any> = [
   {
     provide: TaskService,

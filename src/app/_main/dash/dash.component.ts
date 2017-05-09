@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AngularRoundProgressComponent } from '../../_directives/angular-round-progress-directive';
 
+import { OnlineTaskService } from '../../_core/task/index';
+
 declare var Piecon: any;
 declare var chrome: any;
 declare var Notification: any;
@@ -43,7 +45,7 @@ export class DashComponent {
         ]
     };
 
-    constructor() {
+    constructor( public service: OnlineTaskService) {
     }
 
     ngOnInit() {
@@ -52,6 +54,10 @@ export class DashComponent {
         this.alertAudio.appendChild(this.mp3Source);
         this.alertAudio.appendChild(this.oggSource);
         this.alertAudio.load();
+        
+        this.service.getTasks().subscribe(data =>{
+            debugger;
+        })
     }
 
     getTimes(n: any) {

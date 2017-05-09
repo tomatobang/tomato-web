@@ -18,90 +18,90 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var tomato_model_1 = require("./tomato.model");
+var user_model_1 = require("./user.model");
 var Observable_1 = require("rxjs/Observable");
 var rebirth_storage_1 = require("rebirth-storage");
 var rebirth_http_1 = require("rebirth-http");
-var TomatoService = (function (_super) {
-    __extends(TomatoService, _super);
-    function TomatoService() {
+var UserService = (function (_super) {
+    __extends(UserService, _super);
+    function UserService() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    return TomatoService;
+    return UserService;
 }(rebirth_http_1.RebirthHttp));
-exports.TomatoService = TomatoService;
-var OnlineTomatoService = (function (_super) {
-    __extends(OnlineTomatoService, _super);
-    function OnlineTomatoService(http, rebirthHttpProvider) {
+exports.UserService = UserService;
+var OnlineUserService = (function (_super) {
+    __extends(OnlineUserService, _super);
+    function OnlineUserService(http, rebirthHttpProvider) {
         var _this = _super.call(this) || this;
         _this.http = http;
         _this.rebirthHttpProvider = rebirthHttpProvider;
         return _this;
     }
-    OnlineTomatoService.prototype.getTomatos = function (pageIndex, pageSize, keyword) {
+    OnlineUserService.prototype.getUsers = function (pageIndex, pageSize, keyword) {
         if (pageIndex === void 0) { pageIndex = 1; }
         if (pageSize === void 0) { pageSize = 10; }
         return null;
     };
-    OnlineTomatoService.prototype.getTomatoByTitle = function (tomatoTitle) {
+    OnlineUserService.prototype.getUserByTitle = function (userName) {
         return null;
     };
-    OnlineTomatoService.prototype.updateMarkdown = function (tomatoUrl, tomato) {
+    OnlineUserService.prototype.updateMarkdown = function (userUrl, user) {
         return null;
     };
-    OnlineTomatoService.prototype.deleteTomato = function (tomatoUrl) {
+    OnlineUserService.prototype.deleteUser = function (userUrl) {
         return null;
     };
-    return OnlineTomatoService;
-}(TomatoService));
+    return OnlineUserService;
+}(UserService));
 __decorate([
-    rebirth_storage_1.Cacheable({ pool: 'tomatos' }),
-    rebirth_http_1.GET('tomato'),
+    rebirth_storage_1.Cacheable({ pool: 'users' }),
+    rebirth_http_1.GET('user'),
     __param(0, rebirth_http_1.Query('pageIndex')),
     __param(1, rebirth_http_1.Query('pageSize')),
     __param(2, rebirth_http_1.Query('keyword')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object, String]),
     __metadata("design:returntype", Observable_1.Observable)
-], OnlineTomatoService.prototype, "getTomatos", null);
+], OnlineUserService.prototype, "getUsers", null);
 __decorate([
-    rebirth_http_1.GET('tomato/:id'),
+    rebirth_http_1.GET('user/:id'),
     __param(0, rebirth_http_1.Path('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Observable_1.Observable)
-], OnlineTomatoService.prototype, "getTomatoByTitle", null);
+], OnlineUserService.prototype, "getUserByTitle", null);
 __decorate([
-    rebirth_http_1.POST('tomato/:id'),
+    rebirth_http_1.POST('user/:id'),
     __param(0, rebirth_http_1.Path('id')), __param(1, rebirth_http_1.Body),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, tomato_model_1.Tomato]),
+    __metadata("design:paramtypes", [String, user_model_1.User]),
     __metadata("design:returntype", Observable_1.Observable)
-], OnlineTomatoService.prototype, "updateMarkdown", null);
+], OnlineUserService.prototype, "updateMarkdown", null);
 __decorate([
-    rebirth_http_1.DELETE('tomato/:id'),
+    rebirth_http_1.DELETE('user/:id'),
     __param(0, rebirth_http_1.Path('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Observable_1.Observable)
-], OnlineTomatoService.prototype, "deleteTomato", null);
-OnlineTomatoService = __decorate([
+], OnlineUserService.prototype, "deleteUser", null);
+OnlineUserService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http, rebirth_http_1.RebirthHttpProvider])
-], OnlineTomatoService);
-exports.OnlineTomatoService = OnlineTomatoService;
-var GithubTomatoService = (function (_super) {
-    __extends(GithubTomatoService, _super);
-    function GithubTomatoService(http, rebirthHttpProvider) {
+], OnlineUserService);
+exports.OnlineUserService = OnlineUserService;
+var GithubUserService = (function (_super) {
+    __extends(GithubUserService, _super);
+    function GithubUserService(http, rebirthHttpProvider) {
         var _this = _super.call(this) || this;
         _this.http = http;
         _this.rebirthHttpProvider = rebirthHttpProvider;
         return _this;
     }
-    GithubTomatoService.prototype.getTomatos = function (pageIndex, pageSize, keyword) {
+    GithubUserService.prototype.getUsers = function (pageIndex, pageSize, keyword) {
         if (pageIndex === void 0) { pageIndex = 1; }
         if (pageSize === void 0) { pageSize = 10; }
-        return this.innerGetTomatos()
+        return this.innerGetUsers()
             .map(function (res) {
             var result = res.result || [];
             var startIndex = (pageIndex - 1) * pageSize;
@@ -113,41 +113,41 @@ var GithubTomatoService = (function (_super) {
             };
         });
     };
-    GithubTomatoService.prototype.getTomatoByTitle = function (tomatoTitle) {
-        return this.innerGetTomatos()
+    GithubUserService.prototype.getUserByTitle = function (userName) {
+        return this.innerGetUsers()
             .map(function (res) {
             var result = res.result || [];
-            return result.find(function (item) { return item.title === tomatoTitle; });
+            return result.find(function (item) { return item.username === userName; });
         });
     };
-    GithubTomatoService.prototype.updateMarkdown = function (tomatoUrl, tomato) {
+    GithubUserService.prototype.updateMarkdown = function (userUrl, user) {
         return null;
     };
-    GithubTomatoService.prototype.deleteTomato = function (tomatoUrl) {
+    GithubUserService.prototype.deleteUser = function (userUrl) {
         return null;
     };
-    GithubTomatoService.prototype.innerGetTomatos = function () {
+    GithubUserService.prototype.innerGetUsers = function () {
         return null;
     };
-    return GithubTomatoService;
-}(TomatoService));
+    return GithubUserService;
+}(UserService));
 __decorate([
-    rebirth_storage_1.Cacheable({ pool: 'tomatos' }),
-    rebirth_http_1.GET('tomatos.json'),
+    rebirth_storage_1.Cacheable({ pool: 'users' }),
+    rebirth_http_1.GET('users.json'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable_1.Observable)
-], GithubTomatoService.prototype, "innerGetTomatos", null);
-GithubTomatoService = __decorate([
+], GithubUserService.prototype, "innerGetUsers", null);
+GithubUserService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http, rebirth_http_1.RebirthHttpProvider])
-], GithubTomatoService);
-exports.GithubTomatoService = GithubTomatoService;
-exports.TOMATO_SERVICE_PROVIDERS = [
+], GithubUserService);
+exports.GithubUserService = GithubUserService;
+exports.USER_SERVICE_PROVIDERS = [
     {
-        provide: TomatoService,
-        // environment.deploy === 'github' ? GithubTomatoService : OnlineTomatoService
-        useClass: OnlineTomatoService
+        provide: UserService,
+        // environment.deploy === 'github' ? GithubUserService : OnlineUserService
+        useClass: OnlineUserService
     }
 ];
-//# sourceMappingURL=tomato.service.js.map
+//# sourceMappingURL=user.service.js.map

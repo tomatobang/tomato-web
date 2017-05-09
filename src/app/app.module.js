@@ -15,6 +15,8 @@ var nav_component_1 = require("./_main/nav/nav.component");
 var dash_component_1 = require("./_main/dash/dash.component");
 var angular_round_progress_directive_1 = require("./_directives/angular-round-progress-directive");
 var taskPipe_1 = require("./_pipe/taskPipe");
+var rebirth_http_1 = require("rebirth-http");
+var rebirth_storage_1 = require("rebirth-storage");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -22,7 +24,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, ng2_bs3_modal_1.Ng2Bs3ModalModule, forms_1.FormsModule],
+        imports: [platform_browser_1.BrowserModule, ng2_bs3_modal_1.Ng2Bs3ModalModule, forms_1.FormsModule, rebirth_http_1.RebirthHttpModule, rebirth_storage_1.RebirthStorageModule],
         declarations: [app_component_1.AppComponent, nav_component_1.NavComponent, dash_component_1.DashComponent, angular_round_progress_directive_1.AngularRoundProgressComponent, taskPipe_1.TaskPipe],
         bootstrap: [app_component_1.AppComponent]
     })
