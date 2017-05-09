@@ -196,6 +196,7 @@ __decorate([
 DashComponent = __decorate([
     core_1.Component({
         selector: 'tomato-dash',
+        providers: [index_1.OnlineTaskService],
         templateUrl: './dash.component.html',
         styleUrls: [
             './dash.component.css'

@@ -23,8 +23,8 @@
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       // other libraries
-      'rebirth-storage': 'npm:rebirth-storage',//
-      'rebirth-http': 'npm:rebirth-http',///index.js
+      'rebirth-storage': 'npm:rebirth-storage',
+      'rebirth-http': 'npm:rebirth-http',
       'ng2-bs3-modal': 'npm:ng2-bs3-modal',
       'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'

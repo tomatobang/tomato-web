@@ -1,6 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 // https://github.com/dougludlow/ng2-bs3-modal
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 
@@ -9,11 +10,11 @@ import { NavComponent }  from './_main/nav/nav.component';
 import { DashComponent }  from './_main/dash/dash.component';
 import { AngularRoundProgressComponent }  from './_directives/angular-round-progress-directive';
 import { TaskPipe } from './_pipe/taskPipe';
-import { RebirthHttpModule } from 'rebirth-http';
-import { RebirthStorageModule } from 'rebirth-storage';
+import { RebirthHttpModule } from 'rebirth-http/index';//
+import { RebirthStorageModule } from 'rebirth-storage/dist/index';///dist/rebirth-storage.module
 
 @NgModule({
-  imports:      [ BrowserModule,Ng2Bs3ModalModule,FormsModule,RebirthHttpModule,RebirthStorageModule],
+  imports:      [ BrowserModule,Ng2Bs3ModalModule,FormsModule,HttpModule,RebirthHttpModule,RebirthStorageModule],
   declarations: [ AppComponent,NavComponent,DashComponent,AngularRoundProgressComponent,TaskPipe ],
   bootstrap:    [ AppComponent ]
 })

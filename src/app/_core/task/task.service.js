@@ -20,8 +20,8 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var task_model_1 = require("./task.model");
 var Observable_1 = require("rxjs/Observable");
-var rebirth_storage_1 = require("rebirth-storage");
-var rebirth_http_1 = require("rebirth-http");
+var rebirth_storage_1 = require("rebirth-storage/dist/rebirth-storage");
+var rebirth_http_1 = require("rebirth-http/rebirth-http");
 var TaskService = (function (_super) {
     __extends(TaskService, _super);
     function TaskService() {

@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
+var http_1 = require("@angular/http");
 // https://github.com/dougludlow/ng2-bs3-modal
 var ng2_bs3_modal_1 = require("ng2-bs3-modal/ng2-bs3-modal");
 var app_component_1 = require("./app.component");
@@ -15,8 +16,8 @@ var nav_component_1 = require("./_main/nav/nav.component");
 var dash_component_1 = require("./_main/dash/dash.component");
 var angular_round_progress_directive_1 = require("./_directives/angular-round-progress-directive");
 var taskPipe_1 = require("./_pipe/taskPipe");
-var rebirth_http_1 = require("rebirth-http");
-var rebirth_storage_1 = require("rebirth-storage");
+var index_1 = require("rebirth-http/index"); //
+var index_2 = require("rebirth-storage/dist/index"); ///dist/rebirth-storage.module
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,7 +25,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, ng2_bs3_modal_1.Ng2Bs3ModalModule, forms_1.FormsModule, rebirth_http_1.RebirthHttpModule, rebirth_storage_1.RebirthStorageModule],
+        imports: [platform_browser_1.BrowserModule, ng2_bs3_modal_1.Ng2Bs3ModalModule, forms_1.FormsModule, http_1.HttpModule, index_1.RebirthHttpModule, index_2.RebirthStorageModule],
         declarations: [app_component_1.AppComponent, nav_component_1.NavComponent, dash_component_1.DashComponent, angular_round_progress_directive_1.AngularRoundProgressComponent, taskPipe_1.TaskPipe],
         bootstrap: [app_component_1.AppComponent]
     })
