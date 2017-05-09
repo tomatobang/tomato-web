@@ -27,7 +27,7 @@ export class OnlineTaskService extends TaskService {
   }
 
   @Cacheable({ pool: 'tasks' })
-  @GET('task')
+  @GET('http://localhost:3000/api/task')
   getTasks(@Query('pageIndex') pageIndex = 1,
               @Query('pageSize') pageSize = 10,
               @Query('keyword') keyword?: string): Observable<SearchResult<Task>> {

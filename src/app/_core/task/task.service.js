@@ -56,7 +56,7 @@ var OnlineTaskService = (function (_super) {
 }(TaskService));
 __decorate([
     rebirth_storage_1.Cacheable({ pool: 'tasks' }),
-    rebirth_http_1.GET('task'),
+    rebirth_http_1.GET('http://localhost:3000/api/task'),
     __param(0, rebirth_http_1.Query('pageIndex')),
     __param(1, rebirth_http_1.Query('pageSize')),
     __param(2, rebirth_http_1.Query('keyword')),

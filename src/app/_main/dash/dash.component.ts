@@ -10,7 +10,7 @@ declare var Notification: any;
 
 @Component({
     selector: 'tomato-dash',
-    providers:[OnlineTaskService]
+    providers:[OnlineTaskService],
     templateUrl: './dash.component.html',
     styleUrls: [
         './dash.component.css'
