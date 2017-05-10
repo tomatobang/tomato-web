@@ -3,6 +3,8 @@ import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AngularRoundProgressComponent } from '../../_directives/angular-round-progress-directive';
 
 import { OnlineTaskService } from '../../_core/task/index';
+import { OnlineTomatoService } from '../../_core/tomato/index';
+// import { OnlineUserService } from '../../_core/user/index';
 
 declare var Piecon: any;
 declare var chrome: any;
@@ -10,7 +12,7 @@ declare var Notification: any;
 
 @Component({
     selector: 'tomato-dash',
-    providers:[OnlineTaskService],
+    providers: [OnlineTaskService,OnlineTomatoService],
     templateUrl: './dash.component.html',
     styleUrls: [
         './dash.component.css'
@@ -46,7 +48,7 @@ export class DashComponent {
         ]
     };
 
-    constructor( public service: OnlineTaskService) {
+    constructor(public taskservice: OnlineTaskService, public tomatoservice: OnlineTomatoService) {//, public userservice: OnlineUserService
     }
 
     ngOnInit() {
@@ -55,12 +57,13 @@ export class DashComponent {
         this.alertAudio.appendChild(this.mp3Source);
         this.alertAudio.appendChild(this.oggSource);
         this.alertAudio.load();
-        
-        this.service.getTasks().subscribe(data =>{
+
+        this.taskservice.getTasks().subscribe(data => {
             debugger;
-        },err => {
+            //this.allTasks.unfinished = data;
+        }, err => {
             alert(JSON.stringify(err));
-            console.log('getTasks err',err);
+            console.log('getTasks err', err);
         })
     }
 
@@ -73,7 +76,7 @@ export class DashComponent {
         description: '',
         num: 0
     };
-    activeTask:any = null;
+    activeTask: any = null;
 
     timerStatus = {
         label: '1:00',
@@ -175,6 +178,8 @@ export class DashComponent {
     close(status: any) {
         this.activeTask.num += 1;
         if (status === true) {
+            // 创建tomato
+            this.tomatoservice.CreateTomato(this.activeTask);
             this.allTasks.finished.push(this.activeTask);
             this.removeTask(this.activeTask);
         }

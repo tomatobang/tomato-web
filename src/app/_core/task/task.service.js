@@ -46,7 +46,7 @@ var OnlineTaskService = (function (_super) {
     OnlineTaskService.prototype.getTaskByTitle = function (taskTitle) {
         return null;
     };
-    OnlineTaskService.prototype.updateMarkdown = function (taskUrl, task) {
+    OnlineTaskService.prototype.updateTask = function (taskUrl, task) {
         return null;
     };
     OnlineTaskService.prototype.deleteTask = function (taskUrl) {
@@ -65,21 +65,21 @@ __decorate([
     __metadata("design:returntype", Observable_1.Observable)
 ], OnlineTaskService.prototype, "getTasks", null);
 __decorate([
-    rebirth_http_1.GET('task/:id'),
+    rebirth_http_1.GET('http://localhost:3000/api/task/:id'),
     __param(0, rebirth_http_1.Path('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Observable_1.Observable)
 ], OnlineTaskService.prototype, "getTaskByTitle", null);
 __decorate([
-    rebirth_http_1.POST('task/:id'),
+    rebirth_http_1.POST('http://localhost:3000/api/task/:id'),
     __param(0, rebirth_http_1.Path('id')), __param(1, rebirth_http_1.Body),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, task_model_1.Task]),
     __metadata("design:returntype", Observable_1.Observable)
-], OnlineTaskService.prototype, "updateMarkdown", null);
+], OnlineTaskService.prototype, "updateTask", null);
 __decorate([
-    rebirth_http_1.DELETE('task/:id'),
+    rebirth_http_1.DELETE('http://localhost:3000/api/task/:id'),
     __param(0, rebirth_http_1.Path('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

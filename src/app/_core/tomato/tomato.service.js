@@ -19,9 +19,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var tomato_model_1 = require("./tomato.model");
-var Observable_1 = require("rxjs/Observable");
-var rebirth_storage_1 = require("rebirth-storage");
-var rebirth_http_1 = require("rebirth-http");
+var rebirth_storage_1 = require("rebirth-storage/dist/rebirth-storage");
+var rebirth_http_1 = require("rebirth-http/rebirth-http");
 var TomatoService = (function (_super) {
     __extends(TomatoService, _super);
     function TomatoService() {
@@ -38,6 +37,9 @@ var OnlineTomatoService = (function (_super) {
         _this.rebirthHttpProvider = rebirthHttpProvider;
         return _this;
     }
+    OnlineTomatoService.prototype.CreateTomato = function (tomato) {
+        return null;
+    };
     OnlineTomatoService.prototype.getTomatos = function (pageIndex, pageSize, keyword) {
         if (pageIndex === void 0) { pageIndex = 1; }
         if (pageSize === void 0) { pageSize = 10; }
@@ -46,7 +48,7 @@ var OnlineTomatoService = (function (_super) {
     OnlineTomatoService.prototype.getTomatoByTitle = function (tomatoTitle) {
         return null;
     };
-    OnlineTomatoService.prototype.updateMarkdown = function (tomatoUrl, tomato) {
+    OnlineTomatoService.prototype.updateTomato = function (tomatoUrl, tomato) {
         return null;
     };
     OnlineTomatoService.prototype.deleteTomato = function (tomatoUrl) {
@@ -55,35 +57,42 @@ var OnlineTomatoService = (function (_super) {
     return OnlineTomatoService;
 }(TomatoService));
 __decorate([
+    rebirth_http_1.POST('http://localhost:3000/api/tomato'),
+    __param(0, rebirth_http_1.Body),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [tomato_model_1.Tomato]),
+    __metadata("design:returntype", Object)
+], OnlineTomatoService.prototype, "CreateTomato", null);
+__decorate([
     rebirth_storage_1.Cacheable({ pool: 'tomatos' }),
-    rebirth_http_1.GET('tomato'),
+    rebirth_http_1.GET('http://localhost:3000/api/tomato'),
     __param(0, rebirth_http_1.Query('pageIndex')),
     __param(1, rebirth_http_1.Query('pageSize')),
     __param(2, rebirth_http_1.Query('keyword')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object, String]),
-    __metadata("design:returntype", Observable_1.Observable)
+    __metadata("design:returntype", Object)
 ], OnlineTomatoService.prototype, "getTomatos", null);
 __decorate([
-    rebirth_http_1.GET('tomato/:id'),
+    rebirth_http_1.GET('http://localhost:3000/api/tomato/:id'),
     __param(0, rebirth_http_1.Path('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Observable_1.Observable)
+    __metadata("design:returntype", Object)
 ], OnlineTomatoService.prototype, "getTomatoByTitle", null);
 __decorate([
-    rebirth_http_1.POST('tomato/:id'),
+    rebirth_http_1.POST('http://localhost:3000/api/tomato/:id'),
     __param(0, rebirth_http_1.Path('id')), __param(1, rebirth_http_1.Body),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, tomato_model_1.Tomato]),
-    __metadata("design:returntype", Observable_1.Observable)
-], OnlineTomatoService.prototype, "updateMarkdown", null);
+    __metadata("design:returntype", Object)
+], OnlineTomatoService.prototype, "updateTomato", null);
 __decorate([
-    rebirth_http_1.DELETE('tomato/:id'),
+    rebirth_http_1.DELETE('http://localhost:3000/api/tomato/:id'),
     __param(0, rebirth_http_1.Path('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Observable_1.Observable)
+    __metadata("design:returntype", Object)
 ], OnlineTomatoService.prototype, "deleteTomato", null);
 OnlineTomatoService = __decorate([
     core_1.Injectable(),
@@ -98,6 +107,9 @@ var GithubTomatoService = (function (_super) {
         _this.rebirthHttpProvider = rebirthHttpProvider;
         return _this;
     }
+    GithubTomatoService.prototype.CreateTomato = function (tomato) {
+        return null;
+    };
     GithubTomatoService.prototype.getTomatos = function (pageIndex, pageSize, keyword) {
         if (pageIndex === void 0) { pageIndex = 1; }
         if (pageSize === void 0) { pageSize = 10; }
@@ -120,7 +132,7 @@ var GithubTomatoService = (function (_super) {
             return result.find(function (item) { return item.title === tomatoTitle; });
         });
     };
-    GithubTomatoService.prototype.updateMarkdown = function (tomatoUrl, tomato) {
+    GithubTomatoService.prototype.updateTomato = function (tomatoUrl, tomato) {
         return null;
     };
     GithubTomatoService.prototype.deleteTomato = function (tomatoUrl) {
@@ -136,7 +148,7 @@ __decorate([
     rebirth_http_1.GET('tomatos.json'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Observable_1.Observable)
+    __metadata("design:returntype", Object)
 ], GithubTomatoService.prototype, "innerGetTomatos", null);
 GithubTomatoService = __decorate([
     core_1.Injectable(),

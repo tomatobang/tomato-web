@@ -13,7 +13,7 @@ export abstract class TaskService extends RebirthHttp {
 
   abstract getTaskByTitle(taskTitle: string): Observable<Task>;
 
-  abstract updateMarkdown(taskUrl: string, task: Task): Observable<any> ;
+  abstract updateTask(taskUrl: string, task: Task): Observable<any> ;
 
   abstract  deleteTask(taskUrl: string): Observable<any> ;
 }
@@ -34,17 +34,17 @@ export class OnlineTaskService extends TaskService {
     return null;
   }
 
-  @GET('task/:id')
+  @GET('http://localhost:3000/api/task/:id')
   getTaskByTitle(@Path('id') taskTitle: string): Observable<Task> {
     return null;
   }
 
-  @POST('task/:id')
-  updateMarkdown(@Path('id') taskUrl: string, @Body task: Task): Observable<any> {
+  @POST('http://localhost:3000/api/task/:id')
+  updateTask(@Path('id') taskUrl: string, @Body task: Task): Observable<any> {
     return null;
   }
 
-  @DELETE('task/:id')
+  @DELETE('http://localhost:3000/api/task/:id')
   deleteTask(@Path('id') taskUrl: string): Observable<any> {
     return null;
   }

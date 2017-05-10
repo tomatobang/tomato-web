@@ -3,8 +3,8 @@ import { Http } from '@angular/http';
 import { User } from './user.model';
 import { SearchResult } from './search-result.model';
 import { Observable } from 'rxjs/Observable';
-import { Cacheable } from 'rebirth-storage';
-import { RebirthHttp, RebirthHttpProvider, GET, POST, DELETE, Query, Path, Body } from 'rebirth-http';
+import { Cacheable } from 'rebirth-storage/dist/rebirth-storage';
+import { RebirthHttp, RebirthHttpProvider, GET, POST, DELETE, Query, Path, Body } from 'rebirth-http/rebirth-http';
 
 
 export abstract class UserService extends RebirthHttp {
@@ -13,7 +13,7 @@ export abstract class UserService extends RebirthHttp {
 
   abstract getUserByTitle(userName: string): Observable<User>;
 
-  abstract updateMarkdown(userUrl: string, user: User): Observable<any> ;
+  abstract updateUser(userUrl: string, user: User): Observable<any> ;
 
   abstract  deleteUser(userUrl: string): Observable<any> ;
 }
@@ -27,24 +27,24 @@ export class OnlineUserService extends UserService {
   }
 
   @Cacheable({ pool: 'users' })
-  @GET('user')
+  @GET('http://localhost:3000/api/user')
   getUsers(@Query('pageIndex') pageIndex = 1,
               @Query('pageSize') pageSize = 10,
               @Query('keyword') keyword?: string): Observable<SearchResult<User>> {
     return null;
   }
 
-  @GET('user/:id')
+  @GET('http://localhost:3000/api/user/:id')
   getUserByTitle(@Path('id') userName: string): Observable<User> {
     return null;
   }
 
-  @POST('user/:id')
-  updateMarkdown(@Path('id') userUrl: string, @Body user: User): Observable<any> {
+  @POST('http://localhost:3000/api/user/:id')
+  updateUser(@Path('id') userUrl: string, @Body user: User): Observable<any> {
     return null;
   }
 
-  @DELETE('user/:id')
+  @DELETE('http://localhost:3000/api/user/:id')
   deleteUser(@Path('id') userUrl: string): Observable<any> {
     return null;
   }
@@ -80,7 +80,7 @@ export class GithubUserService extends UserService {
       });
   }
 
-  updateMarkdown(userUrl: string, user: User): Observable<any> {
+  updateUser(userUrl: string, user: User): Observable<any> {
     return null;
   }
 

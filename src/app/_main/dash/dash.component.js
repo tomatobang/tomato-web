@@ -12,9 +12,11 @@ var core_1 = require("@angular/core");
 var ng2_bs3_modal_1 = require("ng2-bs3-modal/ng2-bs3-modal");
 var angular_round_progress_directive_1 = require("../../_directives/angular-round-progress-directive");
 var index_1 = require("../../_core/task/index");
+var index_2 = require("../../_core/tomato/index");
 var DashComponent = (function () {
-    function DashComponent(service) {
-        this.service = service;
+    function DashComponent(taskservice, tomatoservice) {
+        this.taskservice = taskservice;
+        this.tomatoservice = tomatoservice;
         this.mp3Source = document.createElement('source');
         this.oggSource = document.createElement('source');
         this.alertAudio = document.createElement('audio');
@@ -70,8 +72,9 @@ var DashComponent = (function () {
         this.alertAudio.appendChild(this.mp3Source);
         this.alertAudio.appendChild(this.oggSource);
         this.alertAudio.load();
-        this.service.getTasks().subscribe(function (data) {
+        this.taskservice.getTasks().subscribe(function (data) {
             debugger;
+            //this.allTasks.unfinished = data;
         }, function (err) {
             alert(JSON.stringify(err));
             console.log('getTasks err', err);
@@ -170,6 +173,8 @@ var DashComponent = (function () {
     DashComponent.prototype.close = function (status) {
         this.activeTask.num += 1;
         if (status === true) {
+            // 创建tomato
+            this.tomatoservice.CreateTomato(this.activeTask);
             this.allTasks.finished.push(this.activeTask);
             this.removeTask(this.activeTask);
         }
@@ -199,13 +204,13 @@ __decorate([
 DashComponent = __decorate([
     core_1.Component({
         selector: 'tomato-dash',
-        providers: [index_1.OnlineTaskService],
+        providers: [index_1.OnlineTaskService, index_2.OnlineTomatoService],
         templateUrl: './dash.component.html',
         styleUrls: [
             './dash.component.css'
         ]
     }),
-    __metadata("design:paramtypes", [index_1.OnlineTaskService])
+    __metadata("design:paramtypes", [index_1.OnlineTaskService, index_2.OnlineTomatoService])
 ], DashComponent);
 exports.DashComponent = DashComponent;
 //# sourceMappingURL=dash.component.js.map
