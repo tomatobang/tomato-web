@@ -10,7 +10,7 @@ export class TaskPipe implements PipeTransform {
     let ret = [];
     for (var index = 0; index < value.length; index++) {
       var element = value[index];
-      if (element.today == flag) {
+      if (element.isActive == flag) {
         ret.push(element);
       }
     }

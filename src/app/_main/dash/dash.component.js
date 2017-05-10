@@ -25,15 +25,15 @@ var DashComponent = (function () {
         this.allTasks = {
             finished: new Array,
             unfinished: [
-                { title: "每天一个知识点", description: "学一个未知或者不懂得概念", today: false, used_pomodoro: 2 },
-                { title: "锻炼", description: "为未来储蓄能量", today: false, used_pomodoro: 1 },
-                { title: "代码1小时", description: "every hour lead to a change", today: false, used_pomodoro: 2 }
+                { title: "每天一个知识点", description: "学一个未知或者不懂得概念", isActive: false, num: 2 },
+                { title: "锻炼", description: "为未来储蓄能量", isActive: false, num: 1 },
+                { title: "代码1小时", description: "every hour lead to a change", isActive: false, num: 2 }
             ]
         };
         this.newTask = {
             title: '',
             description: '',
-            used_pomodoro: 0
+            num: 0
         };
         this.activeTask = null;
         this.timerStatus = {
@@ -46,10 +46,10 @@ var DashComponent = (function () {
                 this.label = "1:00";
             }
         };
-        this.addTask = function (today) {
+        this.addTask = function (isActive) {
             var task = this.newTask;
-            task.used_pomodoro = 1;
-            task.today = today;
+            task.num = 1;
+            task.isActive = isActive;
             var tt = this.allTasks.unfinished;
             // replace push to trigger the event
             this.allTasks.unfinished = [task].concat(tt);
@@ -72,6 +72,9 @@ var DashComponent = (function () {
         this.alertAudio.load();
         this.service.getTasks().subscribe(function (data) {
             debugger;
+        }, function (err) {
+            alert(JSON.stringify(err));
+            console.log('getTasks err', err);
         });
     };
     DashComponent.prototype.getTimes = function (n) {
@@ -165,7 +168,7 @@ var DashComponent = (function () {
         }
     };
     DashComponent.prototype.close = function (status) {
-        this.activeTask.used_pomodoro += 1;
+        this.activeTask.num += 1;
         if (status === true) {
             this.allTasks.finished.push(this.activeTask);
             this.removeTask(this.activeTask);
@@ -175,12 +178,12 @@ var DashComponent = (function () {
         this.modal.close();
         Piecon.reset();
     };
-    DashComponent.prototype.removeTaskFromToday = function (task) {
-        task.today = false;
+    DashComponent.prototype.removeTaskFromActiveList = function (task) {
+        task.isActive = false;
         this.allTasks.unfinished = this.allTasks.unfinished.slice();
     };
-    DashComponent.prototype.addTaskToToday = function (task) {
-        task.today = true;
+    DashComponent.prototype.addTaskToActiveList = function (task) {
+        task.isActive = true;
         this.allTasks.unfinished = this.allTasks.unfinished.slice();
     };
     return DashComponent;

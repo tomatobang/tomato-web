@@ -40,9 +40,9 @@ export class DashComponent {
     allTasks = {
         finished: new Array,
         unfinished: [
-            { title: "每天一个知识点", description: "学一个未知或者不懂得概念", today: false, used_pomodoro: 2 },
-            { title: "锻炼", description: "为未来储蓄能量", today: false, used_pomodoro: 1 },
-            { title: "代码1小时", description: "every hour lead to a change", today: false, used_pomodoro: 2 }
+            { title: "每天一个知识点", description: "学一个未知或者不懂得概念", isActive: false, num: 2 },
+            { title: "锻炼", description: "为未来储蓄能量", isActive: false, num: 1 },
+            { title: "代码1小时", description: "every hour lead to a change", isActive: false, num: 2 }
         ]
     };
 
@@ -58,6 +58,9 @@ export class DashComponent {
         
         this.service.getTasks().subscribe(data =>{
             debugger;
+        },err => {
+            alert(JSON.stringify(err));
+            console.log('getTasks err',err);
         })
     }
 
@@ -68,7 +71,7 @@ export class DashComponent {
     newTask = {
         title: '',
         description: '',
-        used_pomodoro: 0
+        num: 0
     };
     activeTask:any = null;
 
@@ -170,7 +173,7 @@ export class DashComponent {
     }
 
     close(status: any) {
-        this.activeTask.used_pomodoro += 1;
+        this.activeTask.num += 1;
         if (status === true) {
             this.allTasks.finished.push(this.activeTask);
             this.removeTask(this.activeTask);
@@ -181,10 +184,10 @@ export class DashComponent {
         Piecon.reset();
     }
 
-    addTask = function (today: any) {
+    addTask = function (isActive: any) {
         let task = this.newTask;
-        task.used_pomodoro = 1;
-        task.today = today;
+        task.num = 1;
+        task.isActive = isActive;
         var tt = this.allTasks.unfinished;
         // replace push to trigger the event
         this.allTasks.unfinished = [task].concat(tt);
@@ -192,13 +195,13 @@ export class DashComponent {
         this.openNewTaskForm = false;
     }
 
-    removeTaskFromToday(task: any) {
-        task.today = false;
+    removeTaskFromActiveList(task: any) {
+        task.isActive = false;
         this.allTasks.unfinished = this.allTasks.unfinished.slice();
     }
 
-    addTaskToToday(task: any) {
-        task.today = true;
+    addTaskToActiveList(task: any) {
+        task.isActive = true;
         this.allTasks.unfinished = this.allTasks.unfinished.slice();
     }
 }
