@@ -67,14 +67,17 @@ var DashComponent = (function () {
         }, 1000);
     };
     DashComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.mp3Source.setAttribute('src', '/assets/audios/alert.mp3');
         this.oggSource.setAttribute('src', '/assets/audios/alert.ogg');
         this.alertAudio.appendChild(this.mp3Source);
         this.alertAudio.appendChild(this.oggSource);
         this.alertAudio.load();
         this.taskservice.getTasks().subscribe(function (data) {
-            debugger;
-            //this.allTasks.unfinished = data;
+            var retStr = data && data._body;
+            var dataArr = JSON.parse(retStr);
+            _this.allTasks.unfinished = dataArr;
+            _this.allTasks.unfinished = _this.allTasks.unfinished.slice();
         }, function (err) {
             alert(JSON.stringify(err));
             console.log('getTasks err', err);

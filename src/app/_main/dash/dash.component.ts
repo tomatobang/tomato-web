@@ -59,8 +59,10 @@ export class DashComponent {
         this.alertAudio.load();
 
         this.taskservice.getTasks().subscribe(data => {
-            debugger;
-            //this.allTasks.unfinished = data;
+            const retStr = data &&　data._body;
+            const dataArr = JSON.parse(retStr);
+            this.allTasks.unfinished = dataArr;
+            this.allTasks.unfinished = this.allTasks.unfinished.slice();
         }, err => {
             alert(JSON.stringify(err));
             console.log('getTasks err', err);

@@ -18,6 +18,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var Observable_1 = require("rxjs/Observable");
 var tomato_model_1 = require("./tomato.model");
 var rebirth_storage_1 = require("rebirth-storage/dist/rebirth-storage");
 var rebirth_http_1 = require("rebirth-http/rebirth-http");
@@ -61,7 +62,7 @@ __decorate([
     __param(0, rebirth_http_1.Body),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [tomato_model_1.Tomato]),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", Observable_1.Observable)
 ], OnlineTomatoService.prototype, "CreateTomato", null);
 __decorate([
     rebirth_storage_1.Cacheable({ pool: 'tomatos' }),
@@ -71,28 +72,28 @@ __decorate([
     __param(2, rebirth_http_1.Query('keyword')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object, String]),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", Observable_1.Observable)
 ], OnlineTomatoService.prototype, "getTomatos", null);
 __decorate([
     rebirth_http_1.GET('http://localhost:3000/api/tomato/:id'),
     __param(0, rebirth_http_1.Path('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", Observable_1.Observable)
 ], OnlineTomatoService.prototype, "getTomatoByTitle", null);
 __decorate([
     rebirth_http_1.POST('http://localhost:3000/api/tomato/:id'),
     __param(0, rebirth_http_1.Path('id')), __param(1, rebirth_http_1.Body),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, tomato_model_1.Tomato]),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", Observable_1.Observable)
 ], OnlineTomatoService.prototype, "updateTomato", null);
 __decorate([
     rebirth_http_1.DELETE('http://localhost:3000/api/tomato/:id'),
     __param(0, rebirth_http_1.Path('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", Observable_1.Observable)
 ], OnlineTomatoService.prototype, "deleteTomato", null);
 OnlineTomatoService = __decorate([
     core_1.Injectable(),
@@ -148,7 +149,7 @@ __decorate([
     rebirth_http_1.GET('tomatos.json'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", Observable_1.Observable)
 ], GithubTomatoService.prototype, "innerGetTomatos", null);
 GithubTomatoService = __decorate([
     core_1.Injectable(),

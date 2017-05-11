@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import { SearchResult } from './search-result.model';
 import { Tomato } from './tomato.model';
 import { Cacheable } from 'rebirth-storage/dist/rebirth-storage';
