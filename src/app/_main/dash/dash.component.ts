@@ -211,7 +211,9 @@ export class DashComponent {
         let task = this.newTask;
         task.num = 1;
         task.isActive = isActive;
-
+        // 创建任务
+        this.taskservice.createTask(task).subscribe(data => {
+        });
         var tt = this.allTasks.unfinished;
         // replace push to trigger the event
         this.allTasks.unfinished = [task].concat(tt);

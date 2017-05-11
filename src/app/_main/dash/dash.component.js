@@ -52,6 +52,9 @@ var DashComponent = (function () {
             var task = this.newTask;
             task.num = 1;
             task.isActive = isActive;
+            // 创建任务
+            this.taskservice.createTask(task).subscribe(function (data) {
+            });
             var tt = this.allTasks.unfinished;
             // replace push to trigger the event
             this.allTasks.unfinished = [task].concat(tt);

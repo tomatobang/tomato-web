@@ -38,6 +38,9 @@ var OnlineTaskService = (function (_super) {
         _this.rebirthHttpProvider = rebirthHttpProvider;
         return _this;
     }
+    OnlineTaskService.prototype.createTask = function (task) {
+        return null;
+    };
     OnlineTaskService.prototype.getTasks = function (pageIndex, pageSize, keyword) {
         if (pageIndex === void 0) { pageIndex = 1; }
         if (pageSize === void 0) { pageSize = 10; }
@@ -54,6 +57,13 @@ var OnlineTaskService = (function (_super) {
     };
     return OnlineTaskService;
 }(TaskService));
+__decorate([
+    rebirth_http_1.POST('http://localhost:3000/api/task/'),
+    __param(0, rebirth_http_1.Body),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [task_model_1.Task]),
+    __metadata("design:returntype", Observable_1.Observable)
+], OnlineTaskService.prototype, "createTask", null);
 __decorate([
     rebirth_storage_1.Cacheable({ pool: 'tasks' }),
     rebirth_http_1.GET('http://localhost:3000/api/task'),
