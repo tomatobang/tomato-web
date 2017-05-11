@@ -10,6 +10,8 @@ import { RebirthHttp, RebirthHttpProvider, GET, POST, DELETE, Query, Path, Body 
 
 export abstract class TomatoService extends RebirthHttp {
 
+  abstract CreateTomato(tomato: Tomato): Observable<any>;
+
   abstract getTomatos(pageIndex: any, pageSize: any, keyword?: string): Observable<SearchResult<Tomato>>;
 
   abstract getTomatoByTitle(tomatoTitle: string): Observable<Tomato>;
@@ -28,7 +30,7 @@ export class OnlineTomatoService extends TomatoService {
   }
 
   @POST('http://localhost:3000/api/tomato')
-  CreateTomato( @Body tomato: Tomato): Observable<Tomato> {
+  CreateTomato( @Body tomato: Tomato): Observable<any> {
     return null;
   }
 

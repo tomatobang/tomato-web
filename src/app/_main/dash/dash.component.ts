@@ -12,7 +12,7 @@ declare var Notification: any;
 
 @Component({
     selector: 'tomato-dash',
-    providers: [OnlineTaskService,OnlineTomatoService],
+    providers: [OnlineTaskService, OnlineTomatoService],
     templateUrl: './dash.component.html',
     styleUrls: [
         './dash.component.css'
@@ -59,7 +59,7 @@ export class DashComponent {
         this.alertAudio.load();
 
         this.taskservice.getTasks().subscribe(data => {
-            const retStr = data &&　data._body;
+            const retStr = data && data._body;
             const dataArr = JSON.parse(retStr);
             this.allTasks.unfinished = dataArr;
             this.allTasks.unfinished = this.allTasks.unfinished.slice();
@@ -78,7 +78,7 @@ export class DashComponent {
         description: '',
         num: 0
     };
-    activeTask: any = null;
+    activeTomato: any = null;
 
     timerStatus = {
         label: '1:00',
@@ -92,7 +92,7 @@ export class DashComponent {
     };
 
     breakActiveTask() {
-        this.activeTask = null;
+        this.activeTomato = null;
         this.stopTimer();
         Piecon.reset();
     }
@@ -138,7 +138,8 @@ export class DashComponent {
     };
 
     startTask(task: any) {
-        this.activeTask = task;
+        this.activeTomato = task;
+        this.activeTomato.startTime = new Date();
         this.startTimer();
     };
 
@@ -178,15 +179,30 @@ export class DashComponent {
     }
 
     close(status: any) {
-        this.activeTask.num += 1;
+        this.activeTomato.num += 1;
         if (status === true) {
             // 创建tomato
-            this.tomatoservice.CreateTomato(this.activeTask);
-            this.allTasks.finished.push(this.activeTask);
-            this.removeTask(this.activeTask);
+            this.activeTomato.endTime = new Date();
+            let tomato: any = {
+                userid: 'test',
+                taskid: this.activeTomato._id,
+                title: this.activeTomato.title,
+                description: this.activeTomato.description,
+                startTime: this.activeTomato.startTime,
+                endTime: this.activeTomato.endTime,
+                num: this.activeTomato.num,
+                breakTime: 0
+            }
+            this.tomatoservice.CreateTomato(tomato).subscribe(data => {
+            }, err => {
+                alert(JSON.stringify(err));
+                console.log('CreateTomato err', err);
+            });
+            this.allTasks.finished.push(this.activeTomato);
+            this.removeTask(this.activeTomato);
         }
         this.timerStatus.reset();
-        this.activeTask = null;
+        this.activeTomato = null;
         this.modal.close();
         Piecon.reset();
     }
@@ -195,6 +211,7 @@ export class DashComponent {
         let task = this.newTask;
         task.num = 1;
         task.isActive = isActive;
+
         var tt = this.allTasks.unfinished;
         // replace push to trigger the event
         this.allTasks.unfinished = [task].concat(tt);

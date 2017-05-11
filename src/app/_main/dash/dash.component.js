@@ -37,7 +37,7 @@ var DashComponent = (function () {
             description: '',
             num: 0
         };
-        this.activeTask = null;
+        this.activeTomato = null;
         this.timerStatus = {
             label: '1:00',
             percentage: 0,
@@ -88,7 +88,7 @@ var DashComponent = (function () {
     };
     ;
     DashComponent.prototype.breakActiveTask = function () {
-        this.activeTask = null;
+        this.activeTomato = null;
         this.stopTimer();
         Piecon.reset();
     };
@@ -133,7 +133,8 @@ var DashComponent = (function () {
     };
     ;
     DashComponent.prototype.startTask = function (task) {
-        this.activeTask = task;
+        this.activeTomato = task;
+        this.activeTomato.startTime = new Date();
         this.startTimer();
     };
     ;
@@ -174,15 +175,30 @@ var DashComponent = (function () {
         }
     };
     DashComponent.prototype.close = function (status) {
-        this.activeTask.num += 1;
+        this.activeTomato.num += 1;
         if (status === true) {
             // 创建tomato
-            this.tomatoservice.CreateTomato(this.activeTask);
-            this.allTasks.finished.push(this.activeTask);
-            this.removeTask(this.activeTask);
+            this.activeTomato.endTime = new Date();
+            var tomato = {
+                userid: 'test',
+                taskid: this.activeTomato._id,
+                title: this.activeTomato.title,
+                description: this.activeTomato.description,
+                startTime: this.activeTomato.startTime,
+                endTime: this.activeTomato.endTime,
+                num: this.activeTomato.num,
+                breakTime: 0
+            };
+            this.tomatoservice.CreateTomato(tomato).subscribe(function (data) {
+            }, function (err) {
+                alert(JSON.stringify(err));
+                console.log('CreateTomato err', err);
+            });
+            this.allTasks.finished.push(this.activeTomato);
+            this.removeTask(this.activeTomato);
         }
         this.timerStatus.reset();
-        this.activeTask = null;
+        this.activeTomato = null;
         this.modal.close();
         Piecon.reset();
     };

@@ -4,7 +4,8 @@ export class Tomato {
   taskid:string;
   title: string;
   description: string;
-  startTime: string;
+  startTime: Date;
   endTime: Date;
+  num:Number;
   breakTime:number
 }
