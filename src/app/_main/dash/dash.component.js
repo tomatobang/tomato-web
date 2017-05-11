@@ -129,6 +129,9 @@ var DashComponent = (function () {
         for (var index in this.allTasks.unfinished) {
             if (this.allTasks.unfinished[index] === task) {
                 var ind = new Number(index);
+                // 删除任务
+                this.taskservice.deleteTask(task._id).subscribe(function (data) {
+                });
                 this.allTasks.unfinished.splice(ind.valueOf(), 1);
                 this.allTasks.unfinished = this.allTasks.unfinished.slice();
             }

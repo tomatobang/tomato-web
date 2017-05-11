@@ -18,6 +18,7 @@ declare var Notification: any;
         './dash.component.css'
     ]
 })
+
 export class DashComponent {
     @ViewChild('myModal')
     modal: ModalComponent;
@@ -131,6 +132,9 @@ export class DashComponent {
         for (let index in this.allTasks.unfinished) {
             if (this.allTasks.unfinished[index] === task) {
                 let ind = new Number(index);
+                // 删除任务
+                this.taskservice.deleteTask(task._id).subscribe(data => {
+                });
                 this.allTasks.unfinished.splice(ind.valueOf(), 1);
                 this.allTasks.unfinished = this.allTasks.unfinished.slice();
             }
