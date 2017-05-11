@@ -204,11 +204,20 @@ var DashComponent = (function () {
     };
     DashComponent.prototype.removeTaskFromActiveList = function (task) {
         task.isActive = false;
+        this.updateTask(task);
         this.allTasks.unfinished = this.allTasks.unfinished.slice();
     };
     DashComponent.prototype.addTaskToActiveList = function (task) {
         task.isActive = true;
+        this.updateTask(task);
         this.allTasks.unfinished = this.allTasks.unfinished.slice();
+    };
+    DashComponent.prototype.updateTask = function (task) {
+        this.taskservice.updateTask(task._id, task).subscribe(function (data) {
+        }, function (err) {
+            alert(JSON.stringify(err));
+            console.log('updateTask err', err);
+        });
     };
     return DashComponent;
 }());

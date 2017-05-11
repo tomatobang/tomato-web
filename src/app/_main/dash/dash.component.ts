@@ -221,11 +221,21 @@ export class DashComponent {
 
     removeTaskFromActiveList(task: any) {
         task.isActive = false;
+        this.updateTask(task);
         this.allTasks.unfinished = this.allTasks.unfinished.slice();
     }
 
     addTaskToActiveList(task: any) {
         task.isActive = true;
+        this.updateTask(task);
         this.allTasks.unfinished = this.allTasks.unfinished.slice();
+    }
+
+    updateTask(task: any) {
+        this.taskservice.updateTask(task._id, task).subscribe(data => {
+        }, err => {
+            alert(JSON.stringify(err));
+            console.log('updateTask err', err);
+        });
     }
 }
