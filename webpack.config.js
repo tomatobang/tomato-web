@@ -1,13 +1,10 @@
-/**
- * @author: @AngularClass
- */
-
-// Look in ./config folder for webpack.dev.js
 switch (process.env.NODE_ENV) {
-  case 'prod':
-  case 'production':
-    module.exports = require('./config/webpack.prod')({env: 'production'});
-    break;
-  default:
-    module.exports = require('./config/webpack.prod')({env: 'production'});
+    //生产模式（aot）
+    case 'prod':
+        module.exports = require('./config/webpack.prod.js');
+        break;
+    //开发模式
+    case 'dev':
+    default:
+        module.exports = require('./config/webpack.dev.js');
 }

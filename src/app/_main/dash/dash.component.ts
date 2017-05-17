@@ -39,7 +39,7 @@ export class DashComponent {
     config = {
         desktopNotification: true
     };
-
+    openNewTaskForm = false;
     allTasks = {
         finished: new Array,
         unfinished: [
@@ -216,9 +216,9 @@ export class DashComponent {
         task.num = 1;
         task.isActive = isActive;
         // 创建任务
-        this.taskservice.createTask(task).subscribe(data => {
+        this.taskservice.createTask(task).subscribe((data:any) => {
         });
-        var tt = this.allTasks.unfinished;
+        let tt = this.allTasks.unfinished;
         // replace push to trigger the event
         this.allTasks.unfinished = [task].concat(tt);
         this.newTask = {};

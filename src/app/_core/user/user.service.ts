@@ -76,7 +76,7 @@ export class GithubUserService extends UserService {
     return this.innerGetUsers()
       .map(res => {
         const result = res.result || [];
-        return result.find(item => item.username === userName);
+        return result.find((item:User) => item.username === userName);
       });
   }
 

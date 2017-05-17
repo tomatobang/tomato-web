@@ -1,5 +1,7 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+//主入口文件
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
+import { enableProdMode } from '@angular/core'
 
-import { AppModule } from './app/app.module';
+import { AppModule } from './app/app.module'
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule)

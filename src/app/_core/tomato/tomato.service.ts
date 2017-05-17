@@ -86,9 +86,9 @@ export class GithubTomatoService extends TomatoService {
 
   getTomatoByTitle(tomatoTitle: string): Observable<Tomato> {
     return this.innerGetTomatos()
-      .map(res => {
-        const result = res.result || [];
-        return result.find(item => item.title === tomatoTitle);
+      .map((res:any) => {
+        const result:any = res.result || [];
+        return result.find((item:Tomato) => item.title === tomatoTitle);
       });
   }
 

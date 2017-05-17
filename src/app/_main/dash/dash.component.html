@@ -5,11 +5,11 @@
     <angular-round-progress [(timerStatus)]="timerStatus"></angular-round-progress>
   </div>
   <div class="active-task">
-    <div class="bs-callout bs-callout-info" *ngIf="activeTask">
+    <div class="bs-callout bs-callout-info" *ngIf="activeTomato">
       <h4 class="active-task-title">{{ activeTask.title }}</h4>
       <p class="active-task-desc">{{ activeTask.description }}</p>
     </div>
-    <button class="btn btn-danger" *ngIf="activeTask" (click)="breakActiveTask()">中断当前番茄钟</button>
+    <button class="btn btn-danger" *ngIf="activeTomato" (click)="breakActiveTask()">中断当前番茄钟</button>
   </div>
 </div>
 
