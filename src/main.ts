@@ -2,6 +2,10 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
 import { enableProdMode } from '@angular/core'
 
+
+import './assets/lib/css/bootstrap.min.css'
+import './assets/lib/css/font-awesome.min.css'
+
 import { AppModule } from './app/app.module'
 
 platformBrowserDynamic().bootstrapModule(AppModule)
