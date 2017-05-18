@@ -27,24 +27,24 @@ export class OnlineUserService extends UserService {
   }
 
   @Cacheable({ pool: 'users' })
-  @GET('http://localhost:3000/api/user')
+  @GET('http://115.29.51.196:5555/api/user')
   getUsers(@Query('pageIndex') pageIndex = 1,
               @Query('pageSize') pageSize = 10,
               @Query('keyword') keyword?: string): Observable<SearchResult<User>> {
     return null;
   }
 
-  @GET('http://localhost:3000/api/user/:id')
+  @GET('http://115.29.51.196:5555/api/user/:id')
   getUserByTitle(@Path('id') userName: string): Observable<User> {
     return null;
   }
 
-  @POST('http://localhost:3000/api/user/:id')
+  @POST('http://115.29.51.196:5555/api/user/:id')
   updateUser(@Path('id') userUrl: string, @Body user: User): Observable<any> {
     return null;
   }
 
-  @DELETE('http://localhost:3000/api/user/:id')
+  @DELETE('http://115.29.51.196:5555/api/user/:id')
   deleteUser(@Path('id') userUrl: string): Observable<any> {
     return null;
   }

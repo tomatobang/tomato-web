@@ -29,30 +29,30 @@ export class OnlineTaskService extends TaskService {
   }
 
 
-  @POST('http://localhost:3000/api/task/')
+  @POST('http://115.29.51.196:5555/api/task/')
   createTask( @Body task: Task): Observable<any> {
     return null;
   }
 
   @Cacheable({ pool: 'tasks' })
-  @GET('http://localhost:3000/api/task')
+  @GET('http://115.29.51.196:5555/api/task')
   getTasks( @Query('pageIndex') pageIndex = 1,
     @Query('pageSize') pageSize = 10,
     @Query('keyword') keyword?: string): Observable<SearchResult<Task>> {
     return null;
   }
 
-  @GET('http://localhost:3000/api/task/:id')
+  @GET('http://115.29.51.196:5555/api/task/:id')
   getTaskByTitle( @Path('id') taskTitle: string): Observable<Task> {
     return null;
   }
 
-  @POST('http://localhost:3000/api/task/:id')
+  @POST('http://115.29.51.196:5555/api/task/:id')
   updateTask( @Path('id') taskUrl: string, @Body task: Task): Observable<any> {
     return null;
   }
 
-  @DELETE('http://localhost:3000/api/task/:id')
+  @DELETE('http://115.29.51.196:5555/api/task/:id')
   deleteTask( @Path('id') taskUrl: string): Observable<any> {
     return null;
   }

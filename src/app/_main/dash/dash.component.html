@@ -6,8 +6,8 @@
   </div>
   <div class="active-task">
     <div class="bs-callout bs-callout-info" *ngIf="activeTomato">
-      <h4 class="active-task-title">{{ activeTask.title }}</h4>
-      <p class="active-task-desc">{{ activeTask.description }}</p>
+      <h4 class="active-task-title">{{ activeTomato.title }}</h4>
+      <p class="active-task-desc">{{ activeTomato.description }}</p>
     </div>
     <button class="btn btn-danger" *ngIf="activeTomato" (click)="breakActiveTask()">中断当前番茄钟</button>
   </div>
