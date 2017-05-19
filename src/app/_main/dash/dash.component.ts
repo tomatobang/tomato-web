@@ -31,6 +31,9 @@ export class DashComponent {
         }, 1000)
     }
 
+    // 番茄钟长度
+    countdown = 25;
+
     mp3Source: HTMLSourceElement = document.createElement('source');
     oggSource: HTMLSourceElement = document.createElement('source');
     alertAudio: HTMLAudioElement = document.createElement('audio');
@@ -47,6 +50,25 @@ export class DashComponent {
             { title: "锻炼", description: "为未来储蓄能量", isActive: false, num: 1 },
             { title: "代码1小时", description: "every hour lead to a change", isActive: false, num: 2 }
         ]
+    };
+
+    newTask = {
+        title: '',
+        description: '',
+        num: 0
+    };
+    activeTomato: any = null;
+
+    timerStatus = {
+        label: this.countdown+ ':00',
+        countdown: this.countdown,
+        percentage: 0,
+        count: 0,
+        reset: function () {
+            this.count = 0;
+            this.percentage = 0;
+            this.label = this.countdown+ ":00";
+        }
     };
 
     constructor(public taskservice: OnlineTaskService, public tomatoservice: OnlineTomatoService) {//, public userservice: OnlineUserService
@@ -74,23 +96,7 @@ export class DashComponent {
         return new Array(n);
     };
 
-    newTask = {
-        title: '',
-        description: '',
-        num: 0
-    };
-    activeTomato: any = null;
-
-    timerStatus = {
-        label: '1:00',
-        percentage: 0,
-        count: 0,
-        reset: function () {
-            this.count = 0;
-            this.percentage = 0;
-            this.label = "1:00";
-        }
-    };
+    
 
     breakActiveTask() {
         this.activeTomato = null;
@@ -100,8 +106,8 @@ export class DashComponent {
 
     onTimeout() {
         this.timerStatus.count++;
-        this.timerStatus.percentage = this.timerStatus.count / (1 * 60);
-        this.timerStatus.label = this.secondsToMMSS(1 * 60 - this.timerStatus.count);
+        this.timerStatus.percentage = this.timerStatus.count / (this.countdown * 60);
+        this.timerStatus.label = this.secondsToMMSS(this.countdown * 60 - this.timerStatus.count);
         if (this.timerStatus.percentage >= 1) {
             this.askForFinishStatus();
             this.alertAudio.play();
