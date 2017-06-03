@@ -73,7 +73,24 @@ module.exports = {
         })
       },
       {
+        test: /\.sass$/,
+        exclude: [helpers.root("src", "app")],
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [{ loader: "css-loader" }, { loader: "sass-loader" }]
+        })
+      },
+      {
         test: /\.scss$/,
+        include: [helpers.root("src", "app")],
+        use: [
+          { loader: "to-string-loader" },
+          { loader: "css-loader" },
+          { loader: "sass-loader" }
+        ]
+      },
+      {
+        test: /\.sass$/,
         include: [helpers.root("src", "app")],
         use: [
           { loader: "to-string-loader" },
