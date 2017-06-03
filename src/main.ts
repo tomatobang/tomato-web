@@ -9,6 +9,9 @@ import './assets/lib/css/font-awesome.min.css'
 // bulma
 import 'bulma'
 
+
+import './styles.css'
+
 import { AppModule } from './app/app.module'
 
 platformBrowserDynamic().bootstrapModule(AppModule)
