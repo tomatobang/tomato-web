@@ -26,7 +26,7 @@ export class DashComponent {
     @ViewChild('breakModal')
     breakModal: ModalComponent;
 
-    
+
 
     @ViewChild(AngularRoundProgressComponent) child: AngularRoundProgressComponent;
     ngAfterViewInit() {
@@ -51,9 +51,9 @@ export class DashComponent {
     allTasks = {
         finished: new Array,
         unfinished: [
-            { title: "每天一个知识点", description: "学一个未知或者不懂得概念", isActive: false, num: 2 },
-            { title: "锻炼", description: "为未来储蓄能量", isActive: false, num: 1 },
-            { title: "代码1小时", description: "every hour lead to a change", isActive: false, num: 2 }
+            { title: "每天一个知识点", target: "积跬步以至千里", description: "学一个未知或者不懂得概念", isActive: false, num: 2 },
+            { title: "锻炼", target: "积跬步以至千里", description: "为未来储蓄能量", isActive: false, num: 1 },
+            { title: "代码1小时", target: "积跬步以至千里", description: "every hour lead to a change", isActive: false, num: 2 }
         ]
     };
 
@@ -63,16 +63,17 @@ export class DashComponent {
         num: 0
     };
     activeTomato: any = null;
+    breakReason = "";
 
     timerStatus = {
-        label: this.countdown+ ':00',
+        label: this.countdown + ':00',
         countdown: this.countdown,
         percentage: 0,
         count: 0,
         reset: function () {
             this.count = 0;
             this.percentage = 0;
-            this.label = this.countdown+ ":00";
+            this.label = this.countdown + ":00";
         }
     };
 
@@ -101,16 +102,15 @@ export class DashComponent {
         return new Array(n);
     };
 
-    
+
 
     breakActiveTask() {
-        this.activeTomato = null;
         this.stopTimer();
         this.breakModal.open();
-        if(Piecon){
-              Piecon.reset();
+        if (Piecon) {
+            Piecon.reset();
         }
-       
+
     }
 
     onTimeout() {
@@ -198,8 +198,30 @@ export class DashComponent {
         }
     }
 
-    closeBreakModal(){
-         this.breakModal.close();
+    closeBreakModal() {
+        // 创建tomato
+        let tomato: any = {
+            userid: 'test',
+            taskid: this.activeTomato._id,
+            title: this.activeTomato.title,
+            target: this.activeTomato.target,
+            description: this.activeTomato.description,
+            startTime: this.activeTomato.startTime,
+            endTime: new Date(),
+            num: this.activeTomato.num,
+            breakTime: 1,
+            succeed: 0,
+            breakReason: this.breakReason
+        }
+         
+        this.tomatoservice.CreateTomato(tomato).subscribe(data => {
+        }, err => {
+            alert(JSON.stringify(err));
+            console.log('CreateTomato err', err);
+            this.activeTomato = null;
+        });
+        this.allTasks.finished.push(this.activeTomato);
+        this.breakModal.close();
     }
 
     close(status: any) {
@@ -211,11 +233,14 @@ export class DashComponent {
                 userid: 'test',
                 taskid: this.activeTomato._id,
                 title: this.activeTomato.title,
+                target: this.activeTomato.target,
                 description: this.activeTomato.description,
                 startTime: this.activeTomato.startTime,
                 endTime: this.activeTomato.endTime,
                 num: this.activeTomato.num,
-                breakTime: 0
+                breakTime: 0,
+                succeed: 1,
+                breakReason: ''
             }
             this.tomatoservice.CreateTomato(tomato).subscribe(data => {
             }, err => {
@@ -234,10 +259,10 @@ export class DashComponent {
 
     addTask = function (isActive: any) {
         let task = this.newTask;
-        task.num = 1;
+        // task.num = 1;
         task.isActive = isActive;
         // 创建任务
-        this.taskservice.createTask(task).subscribe((data:any) => {
+        this.taskservice.createTask(task).subscribe((data: any) => {
         });
         let tt = this.allTasks.unfinished;
         // replace push to trigger the event

@@ -21,7 +21,8 @@
     <li class="task panel panel-success" *ngFor="let task of allTasks.unfinished | TaskPipe:true">
       <div class="task-heading panel-heading">
         <div class="task-title panel-title">
-          {{ task.title }}
+          <h1 class="title">{{ task.title }}</h1>
+          <h2 class="subtitle">{{ task.target }}</h2>
         </div>
         <div class="task-operation-container">
           <button type="button" class="btn btn-success btn-xs" (click)="startTask(task)"><i class="fa fa-play"></i></button>
@@ -87,7 +88,8 @@
     <li class="task panel panel-primary" *ngFor="let task of allTasks.unfinished | TaskPipe:false">
       <div class="task-heading panel-heading">
         <div class="task-title panel-title">
-          {{ task.title }}
+          <h1 class="title">{{ task.title }}</h1>
+          <h2 class="subtitle">{{ task.target }}</h2>
         </div>
         <div class="task-operation-container">
           <button type="button" class="btn btn-warning btn-xs" (click)="addTaskToActiveList(task)"><i class="fa fa-reply"></i></button>
@@ -127,7 +129,7 @@
 <!-- 任务完成后模态框 -->
 <modal #breakModal id="breakModal">
   <modal-body>
-      <textarea class="textarea" placeholder="请填写中断原因..."></textarea>
+      <textarea class="textarea" [(ngModel)]="breakReason" placeholder="请填写中断原因..."></textarea>
   </modal-body>
   <modal-footer>
     <button class="btn btn-success" (click)="closeBreakModal()">提交</button>

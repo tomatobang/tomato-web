@@ -3,9 +3,11 @@ export class Tomato {
   userid:string
   taskid:string;
   title: string;
+  target: string;
   description: string;
   startTime: Date;
   endTime: Date;
   num:Number;
-  breakTime:number
+  succeed:Number;
+  breakReason: string;
 }
