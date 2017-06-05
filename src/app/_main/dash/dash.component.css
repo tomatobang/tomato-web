@@ -64,13 +64,6 @@ font-size: 35px;
   height: 20px;
 }
 
-.new-task-form .form-group {
-  margin-bottom: 5px;
-}
-
-.new-task-form, .new-task-link {
-  clear: both;
-}
 
 .task-title {
   width: 100%;

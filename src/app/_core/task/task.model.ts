@@ -1,9 +1,9 @@
- export class Task {
-  _id:string;
-  userid:string
-  title:string;
+export class Task {
+  _id: string;
+  userid: string
+  title: string;
+  target: string;
   description: string;
   num: string;
-  isActive:boolean
+  isActive: boolean
 }
- 

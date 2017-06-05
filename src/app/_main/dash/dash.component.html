@@ -39,16 +39,37 @@
       </div>
     </li>
   </ul>
-  <div *ngIf="openNewTaskForm" class="new-task-form">
-    <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="newTask.title" placeholder="任务名称">
+  <div *ngIf="openNewTaskForm" class="box">
+    <div class="field">
+      <p class="control">
+        <input class="input" type="text"  [(ngModel)]="newTask.title" placeholder="任务名称">
+      </p>
+    </div>
+    <div class="field">
+      <p class="control">
+        <input class="input" type="text" [(ngModel)]="newTask.target" placeholder="目标">
+      </p>
+    </div>
+    <div class="field has-addons ">
+      <p class="control">
+        <input class="input" type="text" [(ngModel)]="newTask.num"  placeholder="番茄钟个数(默认1)" disabled>
+      </p>
+      <p class="control">
+        <a class="button is-primary">
+          +
+        </a><a class="button is-Warning">
+          -
+        </a>
+      </p>
+    </div>
+    <div class="field">
+      <p class="control">
+        <textarea class="textarea" [(ngModel)]="newTask.description" placeholder="描述/备注"></textarea>
+      </p>
     </div>
     <div class="form-group">
-      <textarea class="form-control" rows="3" [(ngModel)]="newTask.description" placeholder="描述/备注"></textarea>
-    </div>
-    <div class="form-group">
-      <button class="btn btn-sm btn-success" (click)="addTask(true)">添加</button>
-      <button class="btn btn-sm btn-danger" (click)="openNewTaskForm=false;newTask.title=''">取消</button>
+      <a class="button is-primary" href="javascript:void(0)" (click)="addTask(true)">添加</a>
+      <a class="button is-link" href="javascript:void(0)" (click)="openNewTaskForm=false;newTask.title=''">取消</a>
     </div>
   </div>
 
