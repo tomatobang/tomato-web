@@ -209,7 +209,8 @@ export class DashComponent {
                 console.log('CreateTomato err', err);
             });
             this.allTasks.finished.push(this.activeTomato);
-            this.removeTask(this.activeTomato);
+            // 删除任务
+            // this.removeTask(this.activeTomato);
         }
         this.timerStatus.reset();
         this.activeTomato = null;
