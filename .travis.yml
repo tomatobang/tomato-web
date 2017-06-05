@@ -18,3 +18,5 @@ script:
   - npm run lint
   - npm run test:once
   - npm run e2e
+notifications:
+  webhooks: https://oapi.dingtalk.com/robot/send?access_token=f2918658e5ccd5d4e52b42276864108665140ec98c5c25edaf676464442f52d5
