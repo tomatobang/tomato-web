@@ -122,3 +122,14 @@
     <button class="btn btn-warning" (click)="close(false)">没有，我还需要更多番茄钟</button>
   </modal-footer>
 </modal>
+
+
+<!-- 任务完成后模态框 -->
+<modal #breakModal id="breakModal">
+  <modal-body>
+      <textarea class="textarea" placeholder="请填写中断原因..."></textarea>
+  </modal-body>
+  <modal-footer>
+    <button class="btn btn-success" (click)="closeBreakModal()">提交</button>
+  </modal-footer>
+</modal>

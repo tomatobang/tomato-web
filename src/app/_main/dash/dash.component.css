@@ -72,3 +72,7 @@ font-size: 35px;
 .task-operation-container {
   margin-left: -100%;
 }
+
+#breakModal{
+  z-index: 1040;
+}

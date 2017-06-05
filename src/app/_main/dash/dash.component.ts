@@ -23,6 +23,11 @@ export class DashComponent {
     @ViewChild('myModal')
     modal: ModalComponent;
 
+    @ViewChild('breakModal')
+    breakModal: ModalComponent;
+
+    
+
     @ViewChild(AngularRoundProgressComponent) child: AngularRoundProgressComponent;
     ngAfterViewInit() {
         setInterval(() => {
@@ -101,7 +106,11 @@ export class DashComponent {
     breakActiveTask() {
         this.activeTomato = null;
         this.stopTimer();
-        Piecon.reset();
+        this.breakModal.open();
+        if(Piecon){
+              Piecon.reset();
+        }
+       
     }
 
     onTimeout() {
@@ -171,6 +180,7 @@ export class DashComponent {
         return retStr;
     };
 
+
     askForFinishStatus() {
         this.modal.open();
     };
@@ -186,6 +196,10 @@ export class DashComponent {
                 }
             });
         }
+    }
+
+    closeBreakModal(){
+         this.breakModal.close();
     }
 
     close(status: any) {
