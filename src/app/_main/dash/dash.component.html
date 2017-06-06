@@ -16,7 +16,9 @@
 
 <!-- 今日任务列表 -->
 <div class="col-md-3 col-xs-12">
-  <div class="well well-sm">今日任务列表</div>
+  <p class="panel-heading">
+    今日任务列表
+  </p>
   <ul class="list-unstyled task-list today-task-list">
     <li class="task panel panel-success" *ngFor="let task of allTasks.unfinished | TaskPipe:true">
       <div class="task-heading panel-heading">
@@ -43,7 +45,7 @@
   <div *ngIf="openNewTaskForm" class="box">
     <div class="field">
       <p class="control">
-        <input class="input" type="text"  [(ngModel)]="newTask.title" placeholder="任务名称">
+        <input class="input" type="text" [(ngModel)]="newTask.title" placeholder="任务名称">
       </p>
     </div>
     <div class="field">
@@ -53,14 +55,12 @@
     </div>
     <div class="field has-addons ">
       <p class="control">
-        <input class="input" type="text" [(ngModel)]="newTask.num"  placeholder="番茄钟个数(默认1)" disabled>
+        <input class="input" type="text" [(ngModel)]="newTask.num" value="1" placeholder="" >
       </p>
       <p class="control">
-        <a class="button is-primary">
-          +
-        </a><a class="button is-Warning">
-          -
-        </a>
+        <a class="button is-primary">番茄钟个数</a>
+         
+        <!--</a><a class="button is-Warning">-</a>-->
       </p>
     </div>
     <div class="field">
@@ -83,7 +83,9 @@
 
 <!-- 候选任务列表 -->
 <div class="col-md-3 col-xs-12">
-  <div class="well well-sm">候选任务列表</div>
+  <p class="panel-heading">
+    候选任务列表
+  </p>
   <ul class="list-unstyled task-list">
     <li class="task panel panel-primary" *ngFor="let task of allTasks.unfinished | TaskPipe:false">
       <div class="task-heading panel-heading">

@@ -28,6 +28,7 @@ font-size: 35px;
 .timer-container {
   display: inline-block;
   border-radius: 90px;
+  margin-top:30px;
 }
 
 .open-new-task-form:hover {
@@ -75,4 +76,8 @@ font-size: 35px;
 
 #breakModal{
   z-index: 1040;
+}
+
+.panel-heading{
+  color: #00d1b2;
 }

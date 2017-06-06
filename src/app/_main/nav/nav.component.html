@@ -1,20 +1,45 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="nav has-shadow">
   <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">TomatoBang V1.0</a>
+    <div class="nav-left">
+      <a class="nav-item">
+        <img src="https://avatars0.githubusercontent.com/u/26266894?v=3&s=200" alt="TomatoBang V1.0">
+      </a>
+      <a class="nav-item is-tab is-hidden-mobile is-active">首页</a>
+      <a class="nav-item is-tab is-hidden-mobile">历史</a>
+      <a class="nav-item is-tab is-hidden-mobile">关于</a>
     </div>
-    <form class="navbar-form navbar-right">
-      <span>桌面提醒</span>
-      <div class="form-group">
-        <div class="onoffswitch">
-          <input type="checkbox" name="onoffswitch" 
-          class="onoffswitch-checkbox" id="myonoffswitch" (click)="requestNotificationPermission()">
-          <label class="onoffswitch-label" for="myonoffswitch">
+    <span class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <div class="nav-right nav-menu">
+      <a class="nav-item is-tab is-hidden-tablet is-active">首页</a>
+      <a class="nav-item is-tab is-hidden-tablet">历史</a>
+      <a class="nav-item is-tab is-hidden-tablet">关于</a>
+      <a class="nav-item is-tab">
+        <figure class="image is-16x16" style="margin-right: 8px;">
+          <img src="http://bulma.io/images/jgthms.png">
+        </figure>
+        TEST
+      </a>
+      <a class="nav-item is-tab">退出</a>
+
+      <a class="nav-item">
+        <form class="navbar-form navbar-right">
+          <span>桌面提醒</span>
+          <div class="form-group">
+            <div class="onoffswitch">
+              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" (click)="requestNotificationPermission()">
+              <label class="onoffswitch-label" for="myonoffswitch">
                 <div class="onoffswitch-inner"></div>
                 <div class="onoffswitch-switch"></div>
               </label>
-        </div>
-      </div>
-    </form>
+            </div>
+          </div>
+        </form>
+      </a>
+    </div>
+
   </div>
 </nav>
