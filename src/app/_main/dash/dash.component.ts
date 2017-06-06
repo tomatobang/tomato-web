@@ -60,7 +60,7 @@ export class DashComponent {
     newTask = {
         title: '',
         description: '',
-        num: 0
+        num: 1
     };
     activeTomato: any = null;
     breakReason = "";
@@ -213,7 +213,7 @@ export class DashComponent {
             succeed: 0,
             breakReason: this.breakReason
         }
-         
+
         this.tomatoservice.CreateTomato(tomato).subscribe(data => {
         }, err => {
             alert(JSON.stringify(err));
@@ -267,7 +267,11 @@ export class DashComponent {
         let tt = this.allTasks.unfinished;
         // replace push to trigger the event
         this.allTasks.unfinished = [task].concat(tt);
-        this.newTask = {};
+        this.newTask = {
+            title: '',
+            description: '',
+            num: 1
+        };
         this.openNewTaskForm = false;
     }
 
