@@ -12,6 +12,8 @@ import { AppComponent }  from './app.component';
 import { NavComponent }  from './_main/nav/nav.component';
 import { DashComponent }  from './_main/dash/dash.component';
 import { AboutComponent }  from './_main/about/about.component';
+import { HistoryComponent }  from './_main/history/history.component';
+
 import { AngularRoundProgressComponent }  from './_directives/angular-round-progress-directive';
 import { TaskPipe } from './_pipe/taskPipe';
 import { RebirthHttpModule } from 'rebirth-http/index';//
@@ -20,7 +22,7 @@ import { RebirthStorageModule } from 'rebirth-storage/dist/index';///dist/rebirt
 @NgModule({
   imports:      [ BrowserModule,Ng2Bs3ModalModule,FormsModule,HttpModule,RebirthHttpModule,RebirthStorageModule,
   RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })],
-  declarations: [ AppComponent,NavComponent,DashComponent,AboutComponent,AngularRoundProgressComponent,TaskPipe ],
+  declarations: [ AppComponent,NavComponent,DashComponent,AboutComponent,HistoryComponent,AngularRoundProgressComponent,TaskPipe ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
