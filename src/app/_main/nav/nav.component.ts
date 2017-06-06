@@ -10,15 +10,19 @@ declare var Notification: any;
     ]
 })
 export class NavComponent {
+    selectIndex:number =1;
     config = {
         desktopNotification: false
     };
-
 
     ngOnInit() {
         if (Notification.permission !== 'denied' || Notification.permission !== 'granted') {
             this.config.desktopNotification = false;
         }
+    }
+
+    onSelectIndex(index:number){
+        this.selectIndex  = index;
     }
 
     requestNotificationPermission() {
