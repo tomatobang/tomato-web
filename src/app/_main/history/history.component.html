@@ -1,5 +1,5 @@
 <!--  表格 展示方式 -->
-<table class="table" style="margin-top:2rem">
+<table class="tomato-history-table table ">
     <thead>
         <tr>
             <th><abbr title="title">标题</abbr></th>
@@ -16,8 +16,8 @@
             <td> <span class="tag" [ngClass]="{'is-success':tomato.succeed == 1}">完成</span></td>
             <td>{{tomato.target}}</td>
             <td>{{tomato.description}}</td>
-            <td>{{tomato.startTime}}</td>
-            <td>{{tomato.endTime}}</td>
+            <td>{{tomato.startTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+            <td>{{tomato.endTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
         </tr>
     </tbody>
 </table>

@@ -1,5 +1,4 @@
 <nav class="nav has-shadow">
-  <div class="container">
     <div class="nav-left">
       <a class="nav-item">
         <img src="https://avatars0.githubusercontent.com/u/26266894?v=3&s=200" alt="TomatoBang V1.0">
@@ -14,9 +13,9 @@
       <span></span>
     </span>
     <div class="nav-right nav-menu">
-      <a class="nav-item is-tab is-hidden-tablet is-active" [routerLink]=" ['./dash']" >首页</a>
-      <a class="nav-item is-tab is-hidden-tablet" [routerLink]=" ['./history']" >历史</a>
-      <a class="nav-item is-tab is-hidden-tablet" [routerLink]=" ['./about']" >关于</a>
+      <a class="nav-item is-tab is-hidden-tablet is-active"  [routerLink]=" ['./dash']" (click)="onSelectIndex(1)" >首页</a>
+      <a class="nav-item is-tab is-hidden-tablet" [routerLink]=" ['./history']" (click)="onSelectIndex(2)">历史</a>
+      <a class="nav-item is-tab is-hidden-tablet" [routerLink]=" ['./about']" (click)="onSelectIndex(3)">关于</a>
       <a class="nav-item is-tab">
         <figure class="image is-16x16" style="margin-right: 8px;">
           <img src="http://bulma.io/images/jgthms.png">
@@ -41,5 +40,4 @@
       </a>
     </div>
 
-  </div>
 </nav>

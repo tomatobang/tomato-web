@@ -5,10 +5,11 @@ import { OnlineTomatoService } from '../../_core/tomato/index';
 
 @Component({
   selector: 'history',
-  styles: [``],
+  styleUrls: [`./history.component.css`],
   providers: [OnlineTomatoService],
   templateUrl: './history.component.html',
 })
+
 export class HistoryComponent {
   tomatos:Array<any> = [];
 
