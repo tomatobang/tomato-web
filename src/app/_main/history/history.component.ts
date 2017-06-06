@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { OnlineTomatoService } from '../../_core/tomato/index';
+
 @Component({
   selector: 'history',
   styles: [``],
-  template: `
-    <h1>history</h1>
-  `
+  providers: [OnlineTomatoService],
+  templateUrl: './history.component.html',
 })
 export class HistoryComponent {
-  constructor(public route: ActivatedRoute) {
+  tomatos:Array<any> = [];
+
+  constructor(public route: ActivatedRoute, public servive :OnlineTomatoService) {
   }
 
   ngOnInit() {
@@ -19,6 +22,11 @@ export class HistoryComponent {
         // your resolved data from route
       });
     console.log('hello `history` component');
-  }
 
+
+    this.servive.getTomatos().subscribe((data:any) => {
+      this.tomatos  = JSON.parse(data._body);
+    });
+  }
+  
 }

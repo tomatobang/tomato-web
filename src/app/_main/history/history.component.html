@@ -1,0 +1,49 @@
+<!--  表格 展示方式 -->
+<table class="table" style="margin-top:2rem">
+    <thead>
+        <tr>
+            <th><abbr title="title">标题</abbr></th>
+            <th><abbr title="succeed">完成情况</abbr></th>
+            <th><abbr title="target">目标</abbr></th>
+            <th><abbr title="description">描述</abbr></th>
+            <th><abbr title="startTime">开始时间</abbr></th>
+            <th><abbr title="endTime">结束时间</abbr></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let tomato of tomatos">
+            <th> {{tomato.title}}</th>
+            <td> <span class="tag" [ngClass]="{'is-success':tomato.succeed == 1}">完成</span></td>
+            <td>{{tomato.target}}</td>
+            <td>{{tomato.description}}</td>
+            <td>{{tomato.startTime}}</td>
+            <td>{{tomato.endTime}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<!--  Card 展示方式 -->
+<!--<div class="card" *ngFor="let tomato of tomatos">
+  <header class="card-header">
+    <p class="card-header-title">
+      {{tomato.title}} <span class="tag" [ngClass]="{'is-success':tomato.succeed == 1}">完成</span>
+    </p>
+    <a class="card-header-icon">
+      <span class="icon">
+        <i class="fa fa-angle-down"></i>
+      </span>
+    </a>
+  </header>
+  <div class="card-content">
+    <div class="content">
+        <a> {{tomato.target}}</a> <br>
+        {{tomato.description}}<br>
+      <small>{{tomato.startTime}} - {{tomato.endTime}}</small>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a class="card-footer-item">Save</a>
+    <a class="card-footer-item">Edit</a>
+    <a class="card-footer-item">Delete</a>
+  </footer>
+</div>-->
