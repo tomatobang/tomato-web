@@ -113,21 +113,47 @@ export class DashComponent {
 
     }
 
+    /**
+     * 这种计算方式不对
+     */
     onTimeout() {
-        this.timerStatus.count++;
-        this.timerStatus.percentage = this.timerStatus.count / (this.countdown * 60);
-        this.timerStatus.label = this.secondsToMMSS(this.countdown * 60 - this.timerStatus.count);
-        if (this.timerStatus.percentage >= 1) {
+        // 重构
+        let datenow: number = new Date().getTime();
+        let startTime: number = this.activeTomato.startTime.getTime();
+        let dataspan: number = datenow - startTime;
+
+        let secondspan: number = dataspan / 1000;
+        let percentage = dataspan / (this.countdown * 60 * 1000);
+
+        this.timerStatus.percentage = percentage;
+        this.timerStatus.label = this.secondsToMMSS(this.countdown * 60 - parseInt(secondspan + ''));
+
+        if (dataspan >= this.countdown * 60 * 1000) {
             this.askForFinishStatus();
             this.alertAudio.play();
             if (this.config.desktopNotification) {
                 this.showDesktopNotification();
             }
+        }else{
+             this.mytimeout = setTimeout(this.onTimeout.bind(this), 1000);
         }
-        else {
-            this.mytimeout = setTimeout(this.onTimeout.bind(this), 1000);
-        }
+
         Piecon.setProgress(Math.floor(this.timerStatus.percentage * 100));
+
+        // this.timerStatus.count++;
+        // this.timerStatus.percentage = this.timerStatus.count / (this.countdown * 60);
+        // this.timerStatus.label = this.secondsToMMSS(this.countdown * 60 - this.timerStatus.count);
+        // if (this.timerStatus.percentage >= 1) {
+        //     this.askForFinishStatus();
+        //     this.alertAudio.play();
+        //     if (this.config.desktopNotification) {
+        //         this.showDesktopNotification();
+        //     }
+        // }
+        // else {
+        //     this.mytimeout = setTimeout(this.onTimeout.bind(this), 1000);
+        // }
+        // Piecon.setProgress(Math.floor(this.timerStatus.percentage * 100));
     };
 
     startTimer() {
@@ -163,6 +189,7 @@ export class DashComponent {
     };
 
     secondsToMMSS(timeInSeconds: number) {
+        debugger;
         var minutes = Math.floor(timeInSeconds / 60);
         var seconds = timeInSeconds - minutes * 60;
         let retStr: string = ''
