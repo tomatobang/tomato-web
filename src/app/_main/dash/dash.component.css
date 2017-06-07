@@ -74,7 +74,7 @@ font-size: 35px;
   margin-left: -100%;
 }
 
-#breakModal{
+#breakModal,#myModal{
   z-index: 1040;
 }
 
