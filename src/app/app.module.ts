@@ -1,6 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 // https://github.com/dougludlow/ng2-bs3-modal
@@ -20,7 +20,7 @@ import { RebirthHttpModule } from 'rebirth-http/index';//
 import { RebirthStorageModule } from 'rebirth-storage/dist/index';///dist/rebirth-storage.module
 
 @NgModule({
-  imports:      [ BrowserModule,Ng2Bs3ModalModule,FormsModule,HttpModule,RebirthHttpModule,RebirthStorageModule,
+  imports:      [ BrowserModule,Ng2Bs3ModalModule,FormsModule,HttpModule,RebirthHttpModule,RebirthStorageModule,ReactiveFormsModule,
   RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })],
   declarations: [ AppComponent,NavComponent,DashComponent,AboutComponent,HistoryComponent,AngularRoundProgressComponent,TaskPipe ],
   bootstrap:    [ AppComponent ]
