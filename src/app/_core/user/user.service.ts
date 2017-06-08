@@ -16,6 +16,10 @@ export abstract class UserService extends RebirthHttp {
   abstract updateUser(userUrl: string, user: User): Observable<any> ;
 
   abstract  deleteUser(userUrl: string): Observable<any> ;
+
+  abstract  register(user: User): Observable<any> ;
+
+  abstract  login(user: User): Observable<any> ;
 }
 
 
@@ -49,53 +53,19 @@ export class OnlineUserService extends UserService {
     return null;
   }
 
+  @POST('http://115.29.51.196:5555/api/user/')
+  register( @Body user: User): Observable<any> {
+    return null;
+  }
+
+
+  @POST('http://115.29.51.196:5555/api/login/')
+  login( @Body user: User): Observable<any> {
+    return null;
+  }
+
 }
 
-@Injectable()
-export class GithubUserService extends UserService {
-
-  constructor(protected http: Http, protected rebirthHttpProvider: RebirthHttpProvider) {
-    super();
-  }
-
-  getUsers(pageIndex = 1, pageSize = 10, keyword?: string): Observable<SearchResult<User>> {
-    return this.innerGetUsers()
-      .map(res => {
-        const result = res.result || [];
-        const startIndex = (pageIndex - 1 ) * pageSize;
-        return {
-          pageSize,
-          pageIndex,
-          total: result.length,
-          result: result.slice(startIndex, startIndex + pageSize)
-        };
-      });
-  }
-
-  getUserByTitle(userName: string): Observable<User> {
-    return this.innerGetUsers()
-      .map(res => {
-        const result = res.result || [];
-        return result.find((item:User) => item.username === userName);
-      });
-  }
-
-  updateUser(userUrl: string, user: User): Observable<any> {
-    return null;
-  }
-
-  deleteUser(userUrl: string): Observable<any> {
-    return null;
-  }
-
-  @Cacheable({ pool: 'users' })
-  @GET('users.json')
-  private  innerGetUsers(): Observable<SearchResult<User>> {
-    return null;
-  }
-
-
-}
 
 export const USER_SERVICE_PROVIDERS: Array<any> = [
   {
