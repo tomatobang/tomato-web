@@ -64,6 +64,8 @@ export class DashComponent {
     };
     activeTomato: any = null;
     breakReason = "";
+    showTomatoNoti = false;
+    NotiMessage = "";
 
     timerStatus = {
         label: this.countdown + ':00',
@@ -182,10 +184,19 @@ export class DashComponent {
         }
     };
 
+    notiIntervalID:any = 0;
     startTask(task: any) {
         this.activeTomato = task;
         this.activeTomato.startTime = new Date();
         this.startTimer();
+        this.showTomatoNoti = true;
+        this.NotiMessage= "新的番茄钟开启了，专注专注再专注！！!";
+        let that = this;
+        clearInterval(this.notiIntervalID)
+        this.notiIntervalID = setInterval(function(){
+            that.showTomatoNoti = false;
+            that.NotiMessage = "";
+        },3000);
     };
 
     secondsToMMSS(timeInSeconds: number) {
