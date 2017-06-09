@@ -17,7 +17,10 @@ export const ROUTES: Routes = [
   { path: 'about', component: AboutComponent },
   {
 		path:'user',
+    // JIT 支持的方式，可以用于调试
 		loadChildren:loadUserModule
+    // AOT 支持的方式，用于发布
+    // loadChildren:'./_user/home.user#UserModule'
 	},
   { path: '**',  	loadChildren:loadUserModule}
 ];

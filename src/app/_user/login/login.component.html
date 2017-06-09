@@ -2,7 +2,7 @@
     <form #form="ngForm" (ngSubmit)="form.form.valid && doLogin()" novalidate class="form-horizontal" role="form">
         <div class="field">
             <label class="label">用户名</label>
-            <input required class="input" [ngClass]="{'is-success': form.submitted && !userName.valid }" name="userName" [(ngModel)]="user.userName"
+            <input required class="input" [ngClass]="{'is-success': form.submitted && !userName.valid }" name="userName" [(ngModel)]="user.username"
                 #userName="ngModel" type="text" placeholder="请输入用户名...">
             <div *ngIf="form.submitted && !userName.valid" class="text-danger">
                 用户名必须输入！
@@ -21,7 +21,7 @@
         <div class="field">
             <p class="control">
                 <label class="checkbox">
-                    <input name="remeberMe" type="checkbox" [(ngModel)]="user.remeberMe" #remeberMe="ngModel">记住我
+                    <input name="remeberMe" type="checkbox" [(ngModel)]="remeberMe.selected" #remeberMe="ngModel">记住我
                 </label>
             </p>
         </div>

@@ -23,8 +23,11 @@ import { RebirthHttpProvider } from 'rebirth-http';
 export class LoginComponent {
   user = new User()
   error = "";
+  remeberMe = {
+    selected: false
+  };
 
-  constructor(public service: OnlineUserService, public globalservice:AppState, public rebirthProvider:RebirthHttpProvider) {
+  constructor(public service: OnlineUserService, public globalservice: AppState, public rebirthProvider: RebirthHttpProvider) {
   }
 
   ngOnInit() {
@@ -39,8 +42,8 @@ export class LoginComponent {
       let token = "";
       if (status == "success") {
         token = retOBJ.token;
-      }else{
-        this.error="登陆出错！";
+      } else {
+        this.error = "登陆出错！";
         return;
       }
       console.log(data);
@@ -51,7 +54,7 @@ export class LoginComponent {
   }
 
   public doLogout(): void {
-     this.globalservice.token = "";
+    this.globalservice.token = "";
   }
 
   public forgetPwd(): void {

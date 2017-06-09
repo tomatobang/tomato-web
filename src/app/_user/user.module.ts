@@ -5,11 +5,9 @@ import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 
 import { LoginComponent } from './login/';
 import { RegisterComponent } from './register/';
-
 import { UserComponent } from './user.component';
 
 import { userRoutes } from './user.routes';
-
 import { AppState } from '../app.service';
 
 @NgModule({

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -21,11 +22,12 @@ import { RebirthStorageModule } from 'rebirth-storage/dist/index';///dist/rebirt
 
 import { AppState } from './app.service';
 
+
 @NgModule({
   imports: [BrowserModule, Ng2Bs3ModalModule, FormsModule, HttpModule, RebirthHttpModule, RebirthStorageModule, ReactiveFormsModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })],
   declarations: [AppComponent, NavComponent, DashComponent, AboutComponent, HistoryComponent, AngularRoundProgressComponent, TaskPipe],
   bootstrap: [AppComponent],
-  providers: [AppState]
+  providers: [AppState,COMPILER_PROVIDERS]
 })
 export class AppModule { }
