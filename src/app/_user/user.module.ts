@@ -10,6 +10,8 @@ import { UserComponent } from './user.component';
 
 import { userRoutes } from './user.routes';
 
+import { AppState } from '../app.service';
+
 @NgModule({
   declarations: [
     UserComponent,
@@ -24,6 +26,7 @@ import { userRoutes } from './user.routes';
   ],
   exports: [
     LoginComponent
-  ]
+  ],
+  providers:[AppState]
 })
 export class UserModule { }

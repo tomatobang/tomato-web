@@ -11,7 +11,7 @@
 
         <div class="field">
             <label class="label">密码</label>
-            <input class="input" [ngClass]="{ 'is-success': form.submitted && !userName.valid }" required minlength="8" [(ngModel)]="user.password"
+            <input class="input" [ngClass]="{ 'is-success': form.submitted && !userName.valid }" required minlength="6" [(ngModel)]="user.password"
                 name="password" #password="ngModel" type="password" placeholder="请输入密码...">
             <div *ngIf="form.submitted && !password.valid" class="text-danger">
                 密码必须输入,至少要8位！

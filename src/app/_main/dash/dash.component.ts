@@ -136,8 +136,8 @@ export class DashComponent {
             if (this.config.desktopNotification) {
                 this.showDesktopNotification();
             }
-        }else{
-             this.mytimeout = setTimeout(this.onTimeout.bind(this), 1000);
+        } else {
+            this.mytimeout = setTimeout(this.onTimeout.bind(this), 1000);
         }
 
         Piecon.setProgress(Math.floor(this.timerStatus.percentage * 100));
@@ -176,27 +176,32 @@ export class DashComponent {
             if (this.allTasks.unfinished[index] === task) {
                 let ind = new Number(index);
                 // 删除任务
-                this.taskservice.deleteTask(task._id).subscribe(data => {
+                this.taskservice.deleteTask(task._id).subscribe(response => {
+                    let data: any = JSON.parse(response._body);
+                    if (data && data.status == "fail") {
+                    } else {
+                        this.allTasks.unfinished.splice(ind.valueOf(), 1);
+                        this.allTasks.unfinished = this.allTasks.unfinished.slice();
+                    }
                 });
-                this.allTasks.unfinished.splice(ind.valueOf(), 1);
-                this.allTasks.unfinished = this.allTasks.unfinished.slice();
+
             }
         }
     };
 
-    notiIntervalID:any = 0;
+    notiIntervalID: any = 0;
     startTask(task: any) {
         this.activeTomato = task;
         this.activeTomato.startTime = new Date();
         this.startTimer();
         this.showTomatoNoti = true;
-        this.NotiMessage= "新的番茄钟开启了，专注专注再专注！！!";
+        this.NotiMessage = "新的番茄钟开启了，专注专注再专注！！!";
         let that = this;
         clearInterval(this.notiIntervalID)
-        this.notiIntervalID = setInterval(function(){
+        this.notiIntervalID = setInterval(function () {
             that.showTomatoNoti = false;
             that.NotiMessage = "";
-        },3000);
+        }, 3000);
     };
 
     secondsToMMSS(timeInSeconds: number) {
@@ -250,22 +255,27 @@ export class DashComponent {
             succeed: 0,
             breakReason: this.breakReason
         }
-        this.tomatoservice.CreateTomato(tomato).subscribe(data => {
+        this.tomatoservice.CreateTomato(tomato).subscribe(response => {
+            let data: any = JSON.parse(response._body);
+            if (data && data.status == "fail") {
+            } else {
+                for (var index = 0; index < this.allTasks.unfinished.length; index++) {
+                    var element = this.allTasks.unfinished[index];
+                    if (element.title == this.activeTomato.title && element.isActive == true) {
+                        element.isActive = false;
+                        this.allTasks.unfinished = this.allTasks.unfinished.slice();
+                        break;
+                    }
+                }
+                this.activeTomato = null;
+                this.breakModal.close();
+            }
         }, err => {
             alert(JSON.stringify(err));
             console.log('CreateTomato err', err);
             this.activeTomato = null;
         });
-        for (var index = 0; index < this.allTasks.unfinished.length; index++) {
-            var element = this.allTasks.unfinished[index];
-            if(element.title == this.activeTomato.title && element.isActive == true){
-                 element.isActive = false;
-                 this.allTasks.unfinished = this.allTasks.unfinished.slice();
-                 break;
-            }
-        }
-        this.activeTomato = null;
-        this.breakModal.close();
+
     }
 
     close(status: any) {
@@ -286,12 +296,17 @@ export class DashComponent {
                 succeed: 1,
                 breakReason: ''
             }
-            this.tomatoservice.CreateTomato(tomato).subscribe(data => {
+            this.tomatoservice.CreateTomato(tomato).subscribe(response => {
+                let data: any = JSON.parse(response._body);
+                if (data && data.status == "fail") {
+                } else {
+                    this.allTasks.finished.push(this.activeTomato);
+                }
             }, err => {
                 alert(JSON.stringify(err));
                 console.log('CreateTomato err', err);
             });
-            this.allTasks.finished.push(this.activeTomato);
+
             // 删除任务
             // this.removeTask(this.activeTomato);
         }
@@ -306,36 +321,51 @@ export class DashComponent {
         // task.num = 1;
         task.isActive = isActive;
         // 创建任务
-        this.taskservice.createTask(task).subscribe((data: any) => {
+        this.taskservice.createTask(task).subscribe((response: any) => {
+            let data: any = JSON.parse(response._body);
+            if (data && data.status == "fail") {
+            } else {
+                let tt = this.allTasks.unfinished;
+                // replace push to trigger the event
+                this.allTasks.unfinished = [task].concat(tt);
+                this.newTask = {
+                    title: '',
+                    description: '',
+                    num: 1
+                };
+                this.openNewTaskForm = false;
+            }
         });
-        let tt = this.allTasks.unfinished;
-        // replace push to trigger the event
-        this.allTasks.unfinished = [task].concat(tt);
-        this.newTask = {
-            title: '',
-            description: '',
-            num: 1
-        };
-        this.openNewTaskForm = false;
+
     }
 
     removeTaskFromActiveList(task: any) {
         task.isActive = false;
-        this.updateTask(task);
-        this.allTasks.unfinished = this.allTasks.unfinished.slice();
-    }
-
-    addTaskToActiveList(task: any) {
-        task.isActive = true;
-        this.updateTask(task);
-        this.allTasks.unfinished = this.allTasks.unfinished.slice();
-    }
-
-    updateTask(task: any) {
-        this.taskservice.updateTask(task._id, task).subscribe(data => {
+        this.taskservice.updateTask(task._id, task).subscribe(response => {
+            let data: any = JSON.parse(response._body);
+            if (data && data.status == "fail") {
+            } else {
+                this.allTasks.unfinished = this.allTasks.unfinished.slice();
+            }
         }, err => {
             alert(JSON.stringify(err));
             console.log('updateTask err', err);
         });
+
+    }
+
+    addTaskToActiveList(task: any) {
+        task.isActive = true;
+        this.taskservice.updateTask(task._id, task).subscribe(response => {
+            let data: any = JSON.parse(response._body);
+            if (data && data.status == "fail") {
+            } else {
+                this.allTasks.unfinished = this.allTasks.unfinished.slice();
+            }
+        }, err => {
+            alert(JSON.stringify(err));
+            console.log('updateTask err', err);
+        });
+
     }
 }

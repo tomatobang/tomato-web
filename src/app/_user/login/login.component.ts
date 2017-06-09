@@ -8,8 +8,10 @@
 
 import { Component } from '@angular/core';
 import { OnlineUserService } from '../../_core/user/index';
-
 import { User } from '../../_core/user/user.model';
+
+import { AppState } from '../../app.service';
+import { RebirthHttpProvider } from 'rebirth-http';
 
 @Component({
   selector: 'login',
@@ -22,7 +24,7 @@ export class LoginComponent {
   user = new User()
   error = "";
 
-  constructor(public service: OnlineUserService) {
+  constructor(public service: OnlineUserService, public globalservice:AppState, public rebirthProvider:RebirthHttpProvider) {
   }
 
   ngOnInit() {
@@ -30,16 +32,26 @@ export class LoginComponent {
   }
 
   public doLogin(): void {
-    console.log(this.user);
-    debugger;
-    // this.service.login(this.user).subscribe(data =>{
-    //   console.log(data);
-    //   // 这里需要保存 token
-    // });
+    console.log("doLogin", this.user);
+    this.service.login(this.user).subscribe(data => {
+      let retOBJ = JSON.parse(data._body);
+      let status = retOBJ.status;
+      let token = "";
+      if (status == "success") {
+        token = retOBJ.token;
+      }else{
+        this.error="登陆出错！";
+        return;
+      }
+      console.log(data);
+      // 这里需要保存 token
+      this.globalservice.token = token;
+      this.rebirthProvider.headers({ Authorization: token });
+    });
   }
 
   public doLogout(): void {
-    // this.service.logout();
+     this.globalservice.token = "";
   }
 
   public forgetPwd(): void {
