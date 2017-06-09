@@ -3,6 +3,7 @@ import { RebirthHttpProvider } from 'rebirth-http';
 import { AppState } from './app.service';
 import { Observable } from 'rxjs';
 import { Response } from '@angular/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'my-app',
@@ -13,7 +14,7 @@ import { Response } from '@angular/http';
 })
 export class AppComponent {
   name = 'TOMATOBANG';
-  constructor(rebirthHttpProvider: RebirthHttpProvider, appstate: AppState) {
+  constructor(rebirthHttpProvider: RebirthHttpProvider, appstate: AppState, router:Router) {
     // setup jwt token
     if (appstate.token) {
       rebirthHttpProvider.headers({ Authorization: appstate.token });
@@ -37,6 +38,8 @@ export class AppComponent {
               let data:any = JSON.parse(response._body);
               if(data && data.status == "fail"){
                 alert("请求失败！请先登录");
+                // 跳转至登录页
+                router.navigate(['/user/login',1], { replaceUrl: true }); 
               }
               return response;
             })
