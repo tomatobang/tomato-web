@@ -6,6 +6,7 @@
             <th><abbr title="succeed">完成情况</abbr></th>
             <th><abbr title="target">目标</abbr></th>
             <th><abbr title="description">描述</abbr></th>
+            <th><abbr title="description">中断缘由</abbr></th>
             <th><abbr title="startTime">开始时间</abbr></th>
             <th><abbr title="endTime">结束时间</abbr></th>
         </tr>
@@ -16,6 +17,7 @@
             <td> <span class="tag" [ngClass]="{'is-success':tomato.succeed == 1}">完成</span></td>
             <td>{{tomato.target}}</td>
             <td>{{tomato.description}}</td>
+            <td>{{tomato.breakReason}}</td>
             <td>{{tomato.startTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
             <td>{{tomato.endTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
         </tr>
