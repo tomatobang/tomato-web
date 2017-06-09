@@ -189,7 +189,6 @@ export class DashComponent {
     };
 
     secondsToMMSS(timeInSeconds: number) {
-        debugger;
         var minutes = Math.floor(timeInSeconds / 60);
         var seconds = timeInSeconds - minutes * 60;
         let retStr: string = ''
@@ -240,14 +239,21 @@ export class DashComponent {
             succeed: 0,
             breakReason: this.breakReason
         }
-
         this.tomatoservice.CreateTomato(tomato).subscribe(data => {
         }, err => {
             alert(JSON.stringify(err));
             console.log('CreateTomato err', err);
             this.activeTomato = null;
         });
-        this.allTasks.finished.push(this.activeTomato);
+        for (var index = 0; index < this.allTasks.unfinished.length; index++) {
+            var element = this.allTasks.unfinished[index];
+            if(element.title == this.activeTomato.title && element.isActive == true){
+                 element.isActive = false;
+                 this.allTasks.unfinished = this.allTasks.unfinished.slice();
+                 break;
+            }
+        }
+        this.activeTomato = null;
         this.breakModal.close();
     }
 
