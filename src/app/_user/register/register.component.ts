@@ -113,7 +113,9 @@ export class RegisterComponent {
     }
   }
 
-  navToLogin() {}
+  navToLogin() {
+     this.router.navigate(['/user/login']); 
+  }
 
   
   doRegister() {

@@ -4,7 +4,7 @@ h1 {
   font-size: 250%;
 }
 footer{
-  position: fixed;
+  position: absolute;
   bottom: 0px;
   right: 0px;
   width: 100%;
