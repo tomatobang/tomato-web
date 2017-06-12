@@ -7,13 +7,13 @@
 <div class="tabs is-centered is-boxed">
   <ul>
     <li class="is-active">
-      <a routerLink="login">
+      <a routerLink="login"  [ngClass]="{'is-active':selectIndex == 1}" (click)="onSelectIndex(1)">
         <span class="icon is-small"><i class="fa fa-sign-in"></i></span>
         <span>登陆</span>
       </a>
     </li>
     <li>
-      <a routerLink="register">
+      <a routerLink="register" [ngClass]="{'is-active':selectIndex ==2}" (click)="onSelectIndex(2)">
         <span class="icon is-small"><i class="fa fa-user"></i></span>
         <span>注册</span>
       </a>

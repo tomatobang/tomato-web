@@ -1,15 +1,18 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  selector: "user",
+  templateUrl: "./user.component.html",
+  styleUrls: ["./user.component.css"]
 })
 export class UserComponent {
+  selectIndex: number = 1;
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  onSelectIndex(index: number) {
+    this.selectIndex = index;
   }
 
   // onActivate(component:any) {
@@ -20,4 +23,3 @@ export class UserComponent {
   //   console.log("组件已经移除>"+component);
   // }
 }
-

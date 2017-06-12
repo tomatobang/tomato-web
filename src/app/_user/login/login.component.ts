@@ -13,6 +13,8 @@ import { User } from '../../_core/user/user.model';
 import { AppState } from '../../app.service';
 import { RebirthHttpProvider } from 'rebirth-http';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'login',
   providers: [OnlineUserService],
@@ -27,7 +29,8 @@ export class LoginComponent {
     selected: false
   };
 
-  constructor(public service: OnlineUserService, public globalservice: AppState, public rebirthProvider: RebirthHttpProvider) {
+  constructor(public service: OnlineUserService, public globalservice: AppState, 
+  public rebirthProvider: RebirthHttpProvider,public router:Router) {
   }
 
   ngOnInit() {
@@ -50,6 +53,7 @@ export class LoginComponent {
       // 这里需要保存 token
       this.globalservice.token = token;
       this.rebirthProvider.headers({ Authorization: token });
+      this.router.navigate(['/dash'], { replaceUrl: true }); 
     });
   }
 
