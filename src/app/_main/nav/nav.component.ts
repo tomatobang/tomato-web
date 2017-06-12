@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 declare var Notification: any;
+import { AppState } from '../../app.service';
 
 @Component({
     selector: 'tomato-nav',
@@ -11,11 +12,25 @@ declare var Notification: any;
 })
 export class NavComponent {
     selectIndex:number =1;
+    login:boolean = false;
+    userinfo ={
+        username:""
+    };
     config = {
         desktopNotification: false
     };
 
+    constructor(public globalservice:AppState){
+        
+    }
+
     ngOnInit() {
+        //　这里还得接收事件发布信息，用户有可能进行登录操作
+        var userlogin = this.globalservice.userinfo;
+        if(userlogin){
+            this.login= true;
+            this.userinfo.username = userlogin.username;
+        }
         if (Notification.permission !== 'denied' || Notification.permission !== 'granted') {
             this.config.desktopNotification = false;
         }
@@ -34,5 +49,14 @@ export class NavComponent {
                 // }
             });
         }
+    }
+
+    /**
+     * 退出
+     */
+    logout(){
+        this.globalservice.userinfo="";
+        this.globalservice.token="";
+         this.userinfo.username="";
     }
 }

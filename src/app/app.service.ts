@@ -8,6 +8,7 @@ export type InternalStateType = {
 export class AppState {
   _state: InternalStateType = {};
   _token: string;
+  _userinfo:any;
 
   constructor() {
 
@@ -25,6 +26,26 @@ export class AppState {
   // never allow mutation
   set state(value) {
     throw new Error('do not mutate the `.state` directly');
+  }
+
+  get userinfo(){
+     if (this._userinfo) {
+      return this._userinfo;
+    } else {
+      var userStr = localStorage.getItem("userinfo");
+      if(userStr){
+        this._userinfo = JSON.parse(userStr);
+        return this._userinfo;
+      }else{
+        return null;
+      }
+       
+    }
+  }
+
+  set userinfo(value){
+    this._token = value;
+    localStorage.setItem("userinfo", value);
   }
 
   get token() {

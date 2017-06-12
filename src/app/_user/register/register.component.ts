@@ -3,6 +3,7 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { User } from '../../_core/user/user.model';
 import { OnlineUserService } from '../../_core/user/index';
 import { Router } from '@angular/router';
+import { AppState } from '../../app.service';
 
 @Component({
   selector: "register",
@@ -45,7 +46,7 @@ export class RegisterComponent {
       'validateEqual': "两次输入的密码不一致。"
     },
   };
-  constructor(public fb: FormBuilder, public userService:OnlineUserService, public router:Router) {}
+  constructor(public fb: FormBuilder, public userService:OnlineUserService, public router:Router, public globalservice:AppState) {}
   ngOnInit() {
     console.log("hello `register` component");
     this.buildForm();
@@ -124,7 +125,8 @@ export class RegisterComponent {
       this.userService.register(this.userInfo)
         .subscribe(
           data => {
-            debugger;
+            alert("注册成功！")
+            this.globalservice.userinfo= JSON.stringify(this.userInfo);
             this.router.navigateByUrl("dash");
           },
           error => {

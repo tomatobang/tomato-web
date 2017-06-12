@@ -52,6 +52,7 @@ export class LoginComponent {
       console.log(data);
       // 这里需要保存 token
       this.globalservice.token = token;
+      this.globalservice.userinfo= JSON.stringify(this.user);
       this.rebirthProvider.headers({ Authorization: token });
       this.router.navigate(['/dash'], { replaceUrl: true }); 
     });
