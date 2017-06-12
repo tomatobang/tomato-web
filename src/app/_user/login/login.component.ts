@@ -61,7 +61,8 @@ export class LoginComponent {
     this.globalservice.token = "";
   }
 
-  public forgetPwd(): void {
+  public navToRegister(): void {
+     this.router.navigate(['/user/register']); 
   }
 
 }

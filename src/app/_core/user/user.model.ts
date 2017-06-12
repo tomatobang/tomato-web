@@ -4,4 +4,5 @@ export class User {
   displayName:string;
   password: string;
   email: string;
+  confirmPassword:string;
 }
