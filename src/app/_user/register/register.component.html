@@ -1,72 +1,61 @@
 <div class="register-container">
-
-    <div class="field">
-        <label class="label">用户名</label>
-        <p class="control has-icons-left has-icons-right">
-            <input class="input is-success" type="text" placeholder="Text input" value="">
-            <span class="icon is-small is-left">
-      <i class="fa fa-user"></i>
-    </span>
-            <span class="icon is-small is-right">
-      <i class="fa fa-check"></i>
-    </span>
-        </p>
-        <p class="help is-success">用户名可用</p>
-    </div>
-
-    <div class="field">
-        <label class="label">邮箱</label>
-        <p class="control has-icons-left has-icons-right">
-            <input class="input is-danger" type="text" placeholder="Email input" value="hello@">
-            <span class="icon is-small is-left">
-      <i class="fa fa-envelope"></i>
-    </span>
-            <span class="icon is-small is-right">
-      <i class="fa fa-warning"></i>
-    </span>
-        </p>
-        <p class="help is-danger">邮箱可用</p>
-    </div>
+    <form [formGroup]="userForm" (ngSubmit)="doRegister()" class="form-horizontal" role="form" novalidate>
+        <div class="field">
+            <label class="label register-label">用户名</label>
+            <p class="control has-icons-left has-icons-right">
+                <input  [ngClass]="{' is-danger': formErrors.username }" formControlName="username" type="text" class="input" placeholder="用户名">
+            </p>
+            <p *ngIf="formErrors.username" class="help is-danger"> {{ formErrors.username }}</p>
+        </div>
 
         <div class="field">
-        <label class="label">密码</label>
-        <p class="control has-icons-left has-icons-right">
-            <input class="input is-success" type="text" placeholder="Text input" value="">
-            <span class="icon is-small is-left">
-      <i class="fa fa-user"></i>
-    </span>
-            <span class="icon is-small is-right">
-      <i class="fa fa-check"></i>
-    </span>
-        </p>
-    </div>
+            <label class="label register-label">昵称</label>
+            <p class="control has-icons-left has-icons-right">
+                <input [ngClass]="{' is-danger': formErrors.displayName }" formControlName="displayName" type="text" class="input" placeholder="昵称">
+            </p>
+            <p *ngIf="formErrors.displayName" class="help is-danger"> {{ formErrors.displayName }}</p>
+        </div>
 
         <div class="field">
-        <label class="label">确认密码</label>
-        <p class="control has-icons-left has-icons-right">
-            <input class="input is-success" type="text" placeholder="Text input" value="">
-            <span class="icon is-small is-left">
-      <i class="fa fa-user"></i>
-    </span>
-            <span class="icon is-small is-right">
-      <i class="fa fa-check"></i>
-    </span>
-        </p>
-    </div>
+            <label class="label register-label">邮箱</label>
+            <p class="control has-icons-left has-icons-right">
+                <input formControlName="email" type="email" class="input" [ngClass]="{' is-danger': formErrors.email }" type="text" placeholder="邮箱"
+                    value="hello@">
+            </p>
+            <p class="help is-danger" *ngIf="formErrors.email"> {{ formErrors.email }}</p>
+        </div>
 
-    <div class="field">
-        <p class="control">
-            <label class="checkbox">
-      <input type="checkbox">
-      我同意 tomatobang的 <a href="#">条款与协议</a>
-    </label>
-        </p>
-    </div>
+        <div class="field">
+            <label class="label register-label">密码</label>
+            <input [ngClass]="{' is-danger': formErrors.password }" formControlName="password" validateEqual="confirmPassword" reverse=true type="password" class="input" placeholder="密码">
+            <div *ngIf="formErrors.password" class="text-danger">
+                {{ formErrors.password }}
+            </div>
+        </div>
 
-    <div class="field is-grouped">
-        <p class="control">
-            <button class="button is-primary">注册</button>
-        </p>
-    </div>
+        <div class="field">
+            <label class="label register-label">确认密码</label>
+            <input  class="input"  [ngClass]="{' is-danger': formErrors.confirmPassword }" formControlName="confirmPassword" validateEqual="password" reverse=true type="password"placeholder="确认密码">
+            <div *ngIf="formErrors.password" class="text-danger">
+                {{ formErrors.confirmPassword }}
+            </div>
+        </div>
+
+        <div class="field">
+            <p class="control">
+                <label class="checkbox">
+                    <input type="checkbox">
+                    我同意 tomatobang的 <a href="#">条款与协议</a>
+                </label>
+            </p>
+        </div>
+
+        <div class="field is-grouped">
+            <button type="submit" class="button is-primary">注册</button>
+            <button type="button" class="button is-link" (click)="navToLogin()">登录</button>
+        </div>
+        <!-- 这里用来做服务端验证 -->
+        <div *ngIf="formErrors.formError">{{ formErrors.formError }}</div>
+    </form>
 
 </div>
