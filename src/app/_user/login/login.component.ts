@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'login',
-  providers: [OnlineUserService],
+  providers: [OnlineUserService,AppState],
   styleUrls: ['./login.component.css'],
   templateUrl: './login.component.html'
 })
@@ -54,7 +54,7 @@ export class LoginComponent {
       this.globalservice.token = token;
       this.globalservice.userinfo= JSON.stringify(this.user);
       this.rebirthProvider.headers({ Authorization: token });
-      this.router.navigate(['/dash'], { replaceUrl: true }); 
+      this.router.navigate(['/dash'] , { replaceUrl: true}); // , { replaceUrl: true }
     });
   }
 

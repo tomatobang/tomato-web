@@ -6,6 +6,7 @@ import { AppState } from '../../app.service';
 @Component({
     selector: 'tomato-nav',
     templateUrl: `./nav.component.html`,
+    providers: [AppState],
     styleUrls: [
         './nav.component.css'
     ]
@@ -26,6 +27,16 @@ export class NavComponent {
 
     ngOnInit() {
         //　这里还得接收事件发布信息，用户有可能进行登录操作
+        this.globalservice.userinfostate.subscribe(data =>{
+            if(data){
+                let userinfo = JSON.parse(data);
+                this.login= true;
+                this.userinfo.username = userinfo.username;
+            }else{
+                this.login= false;
+                 this.userinfo.username = "";
+            }
+        });
         var userlogin = this.globalservice.userinfo;
         if(userlogin){
             this.login= true;
@@ -57,6 +68,6 @@ export class NavComponent {
     logout(){
         this.globalservice.userinfo="";
         this.globalservice.token="";
-         this.userinfo.username="";
+        this.userinfo.username="";
     }
 }
