@@ -6,15 +6,16 @@ export type InternalStateType = {
   [key: string]: any;
 };
 
+let subject: Subject<any> = new Subject<any>();
 @Injectable()
 export class AppState {
   _state: InternalStateType = {};
   _token: string;
   _userinfo: any;
 
-  public subject: Subject<any> = new Subject<any>();
+
   public get userinfostate(): Observable<any> {
-    return this.subject.asObservable();
+    return subject.asObservable();
   }
 
   constructor() {}
@@ -54,7 +55,7 @@ export class AppState {
   set userinfo(value) {
     this._token = value;
     localStorage.setItem("userinfo", value);
-    this.subject.next(value)
+    subject.next(value)
   }
 
   get token() {
