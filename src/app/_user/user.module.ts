@@ -8,7 +8,6 @@ import { RegisterComponent } from './register/';
 import { UserComponent } from './user.component';
 
 import { userRoutes } from './user.routes';
-import { AppState } from '../app.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,7 @@ import { AppState } from '../app.service';
   ],
   exports: [
     LoginComponent
-  ],
-  providers:[AppState]
+  ]
+
 })
 export class UserModule { }

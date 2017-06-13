@@ -28,6 +28,7 @@ export class NavComponent {
     ngOnInit() {
         //　这里还得接收事件发布信息，用户有可能进行登录操作
         this.globalservice.userinfostate.subscribe(data =>{
+            debugger
             if(data){
                 let userinfo = JSON.parse(data);
                 this.login= true;

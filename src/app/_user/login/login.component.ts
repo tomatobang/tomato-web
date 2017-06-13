@@ -55,6 +55,7 @@ export class LoginComponent {
       this.globalservice.userinfo= JSON.stringify(this.user);
       this.rebirthProvider.headers({ Authorization: token });
       this.router.navigate(['/dash'] , { replaceUrl: true}); // , { replaceUrl: true }
+      window.location.reload();
     });
   }
 

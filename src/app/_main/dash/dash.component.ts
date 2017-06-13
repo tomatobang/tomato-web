@@ -1,9 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AngularRoundProgressComponent } from '../../_directives/angular-round-progress-directive';
+import { ActivatedRoute} from '@angular/router';
+
 
 import { OnlineTaskService } from '../../_core/task/index';
 import { OnlineTomatoService } from '../../_core/tomato/index';
+// import { AppState } from '../../app.service';
 // import { OnlineUserService } from '../../_core/user/index';
 
 declare var Piecon: any;
@@ -79,10 +82,17 @@ export class DashComponent {
         }
     };
 
-    constructor(public taskservice: OnlineTaskService, public tomatoservice: OnlineTomatoService) {//, public userservice: OnlineUserService
+    constructor(public taskservice: OnlineTaskService, public tomatoservice: OnlineTomatoService,
+    public activeRoute: ActivatedRoute) {//, public userservice: OnlineUserService,public globalservice: AppState
     }
 
     ngOnInit() {
+         this.activeRoute.params.subscribe(
+            params => {
+               //
+            }
+         );
+
         this.mp3Source.setAttribute('src', '/assets/audios/alert.mp3');
         this.oggSource.setAttribute('src', '/assets/audios/alert.ogg');
         this.alertAudio.appendChild(this.mp3Source);

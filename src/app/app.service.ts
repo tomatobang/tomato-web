@@ -39,8 +39,12 @@ export class AppState {
     } else {
       var userStr = localStorage.getItem("userinfo");
       if (userStr) {
-        this._userinfo = JSON.parse(userStr);
-        return this._userinfo;
+        try {
+          this._userinfo = JSON.parse(userStr);
+          return this._userinfo;
+        } catch (error) {
+          return null;
+        }
       } else {
         return null;
       }
