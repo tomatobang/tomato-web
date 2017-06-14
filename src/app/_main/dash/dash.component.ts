@@ -48,6 +48,7 @@ export class DashComponent {
     countdown = 25;
     // 休息时间长度
     resttime = 5;
+    isResting=false;
     mytimeout: any = null;
     resttimeout:any = null;
     resttimestart:any = null;
@@ -132,6 +133,7 @@ export class DashComponent {
     }
 
     startTimer() {
+        this.isResting = false;
         if (typeof this.mytimeout !== "undefined") {
             clearTimeout(this.mytimeout);
             this.timerStatus.reset();
@@ -146,6 +148,7 @@ export class DashComponent {
             clearTimeout(this.resttimeout);
             this.timerStatus.reset();
         }
+        this.isResting = true;
         this.resttimeout = setTimeout(this.onRestTimeout.bind(this), 1000);
     };
 
@@ -205,6 +208,7 @@ export class DashComponent {
             if (this.config.desktopNotification) {
                 this.showDesktopNotification_restend();
             }
+             this.isResting = false;
             this.timerStatus.reset();
             Piecon.reset();
         } else {
