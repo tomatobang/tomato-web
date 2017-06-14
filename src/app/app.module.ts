@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -28,6 +27,6 @@ import { AppState } from './app.service';
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })],
   declarations: [AppComponent, NavComponent, DashComponent, AboutComponent, HistoryComponent, AngularRoundProgressComponent, TaskPipe],
   bootstrap: [AppComponent],
-  providers: [AppState,COMPILER_PROVIDERS]
+  providers: [AppState]
 })
 export class AppModule { }

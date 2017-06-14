@@ -39,14 +39,20 @@ export class DashComponent {
         }, 1000)
     }
 
-    // 番茄钟长度
-    countdown = 25;
 
     mp3Source: HTMLSourceElement = document.createElement('source');
     oggSource: HTMLSourceElement = document.createElement('source');
     alertAudio: HTMLAudioElement = document.createElement('audio');
 
+     // 番茄钟长度
+    countdown = 25;
+    // 休息时间长度
+    resttime = 5;
     mytimeout: any = null;
+    resttimeout:any = null;
+    resttimestart:any = null;
+
+
     config = {
         desktopNotification: true
     };
@@ -125,9 +131,24 @@ export class DashComponent {
 
     }
 
-    /**
-     * 这种计算方式不对
-     */
+    startTimer() {
+        if (typeof this.mytimeout !== "undefined") {
+            clearTimeout(this.mytimeout);
+            this.timerStatus.reset();
+        }
+        this.mytimeout = setTimeout(this.onTimeout.bind(this), 1000);
+    };
+
+
+    startRestTimer() {
+        this.resttimestart = new Date();
+        if (typeof this.resttimeout !== "undefined") {
+            clearTimeout(this.resttimeout);
+            this.timerStatus.reset();
+        }
+        this.resttimeout = setTimeout(this.onRestTimeout.bind(this), 1000);
+    };
+
     onTimeout() {
         // 重构
         let datenow: number = new Date().getTime();
@@ -168,13 +189,32 @@ export class DashComponent {
         // Piecon.setProgress(Math.floor(this.timerStatus.percentage * 100));
     };
 
-    startTimer() {
-        if (typeof this.mytimeout !== "undefined") {
-            clearTimeout(this.mytimeout);
+    onRestTimeout(){
+        let datenow: number = new Date().getTime();
+        let startTime: number = this.resttimestart.getTime();
+        let dataspan: number = datenow - startTime;
+
+        let secondspan: number = dataspan / 1000;
+        let percentage = dataspan / (this.resttime * 60 * 1000);
+
+        this.timerStatus.percentage = percentage;
+        this.timerStatus.label = this.secondsToMMSS(this.resttime * 60 - parseInt(secondspan + ''));
+
+        if (dataspan >= this.resttime * 60 * 1000) {
+            this.alertAudio.play();
+            if (this.config.desktopNotification) {
+                this.showDesktopNotification_restend();
+            }
             this.timerStatus.reset();
+            Piecon.reset();
+        } else {
+            this.resttimeout = setTimeout(this.onRestTimeout.bind(this), 1000);
         }
-        this.mytimeout = setTimeout(this.onTimeout.bind(this), 1000);
-    };
+
+        Piecon.setProgress(Math.floor(this.timerStatus.percentage * 100));
+    }
+
+ 
 
     stopTimer() {
         clearTimeout(this.mytimeout);
@@ -250,6 +290,21 @@ export class DashComponent {
         }
     }
 
+    showDesktopNotification_restend() {
+        if (chrome) {
+            new Notification("休息结束，可以开启另一个番茄钟了!", { icon: "./assets/image/notification-icon.jpg" });
+        }
+        else {
+            Notification.requestPermission(function (permission: any) {
+                if (permission == 'granted') {
+                    new Notification("休息结束，可以开启另一个番茄钟了!", { icon: "./assets/image/notification-icon.jpg" });
+                }
+            });
+        }
+    }
+
+
+
     closeBreakModal() {
         // 创建tomato
         let tomato: any = {
@@ -279,6 +334,7 @@ export class DashComponent {
                 }
                 this.activeTomato = null;
                 this.breakModal.close();
+                this.startRestTimer();
             }
         }, err => {
             alert(JSON.stringify(err));
@@ -311,6 +367,7 @@ export class DashComponent {
                 if (data && data.status == "fail") {
                 } else {
                     this.allTasks.finished.push(this.activeTomato);
+                    this.startRestTimer();
                 }
             }, err => {
                 alert(JSON.stringify(err));
@@ -377,5 +434,10 @@ export class DashComponent {
             console.log('updateTask err', err);
         });
 
+    }
+
+    closeTomatoNoti(){
+        this.showTomatoNoti = false;
+        this.NotiMessage = "";
     }
 }
