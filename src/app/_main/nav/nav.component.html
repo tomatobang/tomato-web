@@ -5,7 +5,8 @@
       </a>
     <a class="nav-item is-tab is-hidden-mobile" [ngClass]="{'is-active':selectIndex == 1}" [routerLink]=" ['./dash']" (click)="onSelectIndex(1)">首页</a>
     <a class="nav-item is-tab is-hidden-mobile" [ngClass]="{'is-active':selectIndex == 2}" [routerLink]=" ['./history']" (click)="onSelectIndex(2)">历史</a>
-    <a class="nav-item is-tab is-hidden-mobile" [ngClass]="{'is-active':selectIndex == 3}" [routerLink]=" ['./about']" (click)="onSelectIndex(3)">关于</a>
+    <a class="nav-item is-tab is-hidden-mobile" [ngClass]="{'is-active':selectIndex == 3}" [routerLink]=" ['./setting']" (click)="onSelectIndex(3)">设置</a>
+    <a class="nav-item is-tab is-hidden-mobile" [ngClass]="{'is-active':selectIndex == 4}" [routerLink]=" ['./about']" (click)="onSelectIndex(4)">关于</a>
    
   </div>
   <span class="nav-toggle">
@@ -16,8 +17,8 @@
   <div class="nav-right nav-menu">
     <a class="nav-item is-tab is-hidden-tablet is-active" [routerLink]=" ['./dash']" (click)="onSelectIndex(1)">首页</a>
     <a class="nav-item is-tab is-hidden-tablet" [routerLink]=" ['./history']" (click)="onSelectIndex(2)">历史</a>
-    <a class="nav-item is-tab is-hidden-tablet" [routerLink]=" ['./about']" (click)="onSelectIndex(3)">关于</a>
-    <a class="nav-item is-tab is-hidden-tablet" [routerLink]=" ['./user']" (click)="onSelectIndex(4)">我</a>
+    <a class="nav-item is-tab is-hidden-tablet" [routerLink]=" ['./setting']" (click)="onSelectIndex(3)">设置</a>
+    <a class="nav-item is-tab is-hidden-tablet" [routerLink]=" ['./about']" (click)="onSelectIndex(4)">关于</a>
 
     <a *ngIf="!login" class="nav-item is-tab is-hidden-mobile" [ngClass]="{'is-active':selectIndex == 4}" [routerLink]=" ['./user']" (click)="onSelectIndex(4)">登录</a>
     <a class="nav-item is-tab">　{{userinfo.username}}　</a>
