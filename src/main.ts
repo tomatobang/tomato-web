@@ -10,7 +10,7 @@ import './assets/lib/css/font-awesome.min.css'
 // import './assets/lib/js/bootstrap_3.3.7.js'
 import './assets/lib/js/piecon.min.js';
 
-declare var  Piecon:any;
+declare var Piecon:any;
 
 (function () {
       Piecon.setOptions({

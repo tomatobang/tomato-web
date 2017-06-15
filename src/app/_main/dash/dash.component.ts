@@ -45,7 +45,7 @@ export class DashComponent {
     alertAudio: HTMLAudioElement = document.createElement('audio');
 
      // 番茄钟长度
-    countdown:number = 1;
+    countdown:number = 25;
     // 休息时间长度
     resttime:number = 5;
     isResting:boolean=false;
@@ -54,7 +54,7 @@ export class DashComponent {
     resttimestart:any = null;
     // 连续任务个数
     tomatoCount:number = 0;
-    historyTomatoes:Array<any> = [{title:'测试',endTime:new Date()}];
+    historyTomatoes:Array<any> = [];//{title:'测试',endTime:new Date()}
 
     config = {
         desktopNotification: true

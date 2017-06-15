@@ -13,7 +13,6 @@ export class AppState {
   _token: string;
   _userinfo: any;
 
-
   public get userinfostate(): Observable<any> {
     return subject.asObservable();
   }

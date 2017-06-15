@@ -20,12 +20,7 @@ module.exports = {
   resolve: {
     //指定后缀 查找文件的时候可以省略后缀
     //can ignore the ext when find the files
-    extensions: [".ts", ".js"],
-    alias: {
-      // bootstrap: "/src/assets/lib/js/bootstrap_3.3.7.js",
-      // jquery: "/src/assets/lib/js/jquery_2.2.0.js",
-      // piecon: "/src/assets/lib/js/piecon.min.js"
-    }
+    extensions: [".ts", ".js"]
   },
 
   //指定各种loader
@@ -37,7 +32,15 @@ module.exports = {
       {
         test: /\.ts$/,
         use: isProd
-          ? ["@ngtools/webpack"]
+          ? [
+              {
+                loader: "babel-loader",
+                options: {
+                  presets: ["env"]
+                }
+              },
+              "@ngtools/webpack"
+            ]
           : [
               "@angularclass/hmr-loader",
               "angular2-template-loader",
@@ -131,10 +134,10 @@ module.exports = {
   },
 
   plugins: [
-   new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-        "window.jQuery": "jquery"
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery"
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: ["main", "vendor", "polyfills"]
@@ -153,6 +156,14 @@ module.exports = {
       {
         from: helpers.root("src", "favicon.ico"),
         to: helpers.root("dist", "favicon.ico")
+      },
+      {
+        from: helpers.root("src/assets", "audios"),
+        to: helpers.root("dist/assets", "audios")
+      },
+      {
+        from: helpers.root("src/assets", "image"),
+        to: helpers.root("dist/assets", "image")
       }
     ]),
 

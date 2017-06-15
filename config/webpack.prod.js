@@ -23,18 +23,18 @@ module.exports = webpackMerge(commonConfig, {
             allChunks: true
         }),
         //最小化 (minify) :不支持 es6
-        // new webpack.optimize.UglifyJsPlugin({
-        //     mangle: true,
-        //     screw_ie8: true,
-        //     beautify: false,
-        //     comments: false,
-        //     compress: {
-        //         warnings: true,
-        //         drop_console: false,
-        //         collapse_vars: true,
-        //         reduce_vars: true
-        //     }
-        // }),
+        new webpack.optimize.UglifyJsPlugin({
+            mangle: true,
+            screw_ie8: true,
+            beautify: false,
+            comments: false,
+            compress: {
+                warnings: true,
+                drop_console: false,
+                collapse_vars: true,
+                reduce_vars: true
+            }
+        }),
         new webpack.LoaderOptionsPlugin({
             options: {
                 htmlLoader: {

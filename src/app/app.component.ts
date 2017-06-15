@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
   ]
 })
 export class AppComponent {
-  name = 'TOMATOBANG';
   constructor(rebirthHttpProvider: RebirthHttpProvider, appstate: AppState, router:Router) {
     // setup jwt token
     if (appstate.token) {
