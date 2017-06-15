@@ -2,6 +2,7 @@ var webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
+var path = require("path");
 
 var helpers = require("./helpers");
 
@@ -19,7 +20,12 @@ module.exports = {
   resolve: {
     //指定后缀 查找文件的时候可以省略后缀
     //can ignore the ext when find the files
-    extensions: [".ts", ".js"]
+    extensions: [".ts", ".js"],
+    alias: {
+      // bootstrap: "/src/assets/lib/js/bootstrap_3.3.7.js",
+      // jquery: "/src/assets/lib/js/jquery_2.2.0.js",
+      // piecon: "/src/assets/lib/js/piecon.min.js"
+    }
   },
 
   //指定各种loader
@@ -125,6 +131,11 @@ module.exports = {
   },
 
   plugins: [
+   new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        "window.jQuery": "jquery"
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: ["main", "vendor", "polyfills"]
     }),

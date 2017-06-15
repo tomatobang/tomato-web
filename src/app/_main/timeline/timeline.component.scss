@@ -24,12 +24,12 @@
     display: block;
     width: 93.9%;
     height: 1px;
-    background: white;
+    background: #00d1b2;
     position: absolute;
     top: 50%;
-    -webkit-box-shadow: 0 0 1px black;
-    -moz-box-shadow: 0 0 1px black;
-    box-shadow: 0 0 1px black;
+    -webkit-box-shadow: 0 0 1px #00d1b2;
+    -moz-box-shadow: 0 0 1px #00d1b2;
+    box-shadow: 0 0 1px #00d1b2;
     left: 3%;
     margin-left: 2.5px;
   }
@@ -59,7 +59,8 @@
       top: 50%;
       margin-top: -.25em;
       width: 100%;
-      text-shadow: 0 0 2px black;
+      color: #00d1b2;
+      text-shadow: 0 0 1px #00d1b2;
       cursor: pointer;
       
       &:before {
@@ -67,7 +68,7 @@
         display: block;
         width: .5em;
         height: .5em;
-        background: white;
+        background: #aaa;
         margin: 0 auto .5em auto;
         -moz-border-radius: 50%;
         -webkit-border-radius: 50%;
@@ -117,10 +118,10 @@
           font-style: italic;
           text-decoration: none;
           white-space: nowrap;
-          color: white;
-          text-shadow: 0 0 2px rgba(0, 0, 0, 0.5), 0 0 1px black;
+          color: #f38763;
+          text-shadow: 0 0 1px rgba(0, 0, 0, 0.5), 0 0 1px #f38763;
           &:after {
-            content: "\203A";
+            content: "";// \203A
             margin-left: .3em;
           }
         }

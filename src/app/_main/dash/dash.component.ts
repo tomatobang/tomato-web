@@ -45,7 +45,7 @@ export class DashComponent {
     alertAudio: HTMLAudioElement = document.createElement('audio');
 
      // 番茄钟长度
-    countdown:number = 25;
+    countdown:number = 1;
     // 休息时间长度
     resttime:number = 5;
     isResting:boolean=false;

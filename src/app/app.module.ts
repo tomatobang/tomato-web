@@ -4,9 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 // https://github.com/dougludlow/ng2-bs3-modal
+import 'bootstrap';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { ROUTES } from './app.routes';
+
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './_main/nav/nav.component';
@@ -22,6 +24,7 @@ import { RebirthHttpModule } from 'rebirth-http/index';//
 import { RebirthStorageModule } from 'rebirth-storage/dist/index';///dist/rebirth-storage.module
 
 import { AppState } from './app.service';
+
 
 
 @NgModule({
