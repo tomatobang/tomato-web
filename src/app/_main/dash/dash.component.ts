@@ -375,7 +375,7 @@ export class DashComponent {
                 } else {
                     this.allTasks.finished.push(this.activeTomato);
                     this.startRestTimer();
-                    this.tomatoCount+1;
+                    this.tomatoCount+=1;
                 }
             }, err => {
                 alert(JSON.stringify(err));
