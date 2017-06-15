@@ -45,14 +45,16 @@ export class DashComponent {
     alertAudio: HTMLAudioElement = document.createElement('audio');
 
      // 番茄钟长度
-    countdown = 25;
+    countdown:number = 25;
     // 休息时间长度
-    resttime = 5;
-    isResting=false;
+    resttime:number = 5;
+    isResting:boolean=false;
     mytimeout: any = null;
     resttimeout:any = null;
     resttimestart:any = null;
-
+    // 连续任务个数
+    tomatoCount:number = 0;
+    historyTomatoes:Array<any> = [];
 
     config = {
         desktopNotification: true
@@ -324,6 +326,7 @@ export class DashComponent {
             succeed: 0,
             breakReason: this.breakReason
         }
+        this.historyTomatoes.push(Object.assign({},tomato));
         this.tomatoservice.CreateTomato(tomato).subscribe(response => {
             let data: any = JSON.parse(response._body);
             if (data && data.status == "fail") {
@@ -349,7 +352,6 @@ export class DashComponent {
     }
 
     close(status: any) {
-        this.activeTomato.num += 1;
         if (status === true) {
             // 创建tomato
             this.activeTomato.endTime = new Date();
@@ -366,12 +368,14 @@ export class DashComponent {
                 succeed: 1,
                 breakReason: ''
             }
+            this.historyTomatoes.push(Object.assign({},tomato));
             this.tomatoservice.CreateTomato(tomato).subscribe(response => {
                 let data: any = JSON.parse(response._body);
                 if (data && data.status == "fail") {
                 } else {
                     this.allTasks.finished.push(this.activeTomato);
                     this.startRestTimer();
+                    this.tomatoCount+1;
                 }
             }, err => {
                 alert(JSON.stringify(err));

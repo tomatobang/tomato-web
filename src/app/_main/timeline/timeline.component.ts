@@ -2,7 +2,7 @@
  * add by yipeng at 2017
  */
 
-import { Component } from "@angular/core";
+import { Component,Input } from "@angular/core";
 
 @Component({
   selector: "tomatobang-timeline",
@@ -10,6 +10,10 @@ import { Component } from "@angular/core";
   styleUrls: ["./timeline.component.scss"]
 })
 export class TimelineComponent {
+  @Input()historyTomatoes: string;
+  @Input()tomatoCount: boolean;
   constructor() {}
-  ngOnInit() {}
+  ngOnInit() {
+    debugger
+  }
 }
