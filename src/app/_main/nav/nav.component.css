@@ -25,12 +25,12 @@
     -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 .onoffswitch-inner:before {
-    content: "开启";
+    content: "";
     padding-left: 12px;
     background-color: #47A447; color: #FFFFFF;
 }
 .onoffswitch-inner:after {
-    content: "关闭";
+    content: "";
     padding-right: 12px;
     background-color: #EEEEEE; color: #999999;
     text-align: right;

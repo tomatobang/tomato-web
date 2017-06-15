@@ -14,6 +14,5 @@ export class TimelineComponent {
   @Input()tomatoCount: boolean;
   constructor() {}
   ngOnInit() {
-    debugger
   }
 }

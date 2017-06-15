@@ -54,7 +54,7 @@ export class DashComponent {
     resttimestart:any = null;
     // 连续任务个数
     tomatoCount:number = 0;
-    historyTomatoes:Array<any> = [];
+    historyTomatoes:Array<any> = [{title:'测试',endTime:new Date()}];
 
     config = {
         desktopNotification: true

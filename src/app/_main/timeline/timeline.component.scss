@@ -1,5 +1,14 @@
-body {
-  background: #ccc;
+.timeline-container{
+  display: flex;
+  flex-direction: row;
+}
+.tomatoCount{
+  width: 5%;
+  align-self: center;
+ 
+  h1{
+     color: #00d1b2;
+  }
 }
   
 .timeline-wrapper {
