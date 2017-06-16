@@ -8,13 +8,13 @@
   <ul>
     <li class="is-active" [ngClass]="{'is-active':selectIndex == 1}" >
       <a routerLink="login"  (click)="onSelectIndex(1)">
-        <span class="icon is-small"><i class="fa fa-sign-in"></i></span>
+        <span class="icon is-small"><i class="fa fa-user"></i></span>
         <span>登陆</span>
       </a>
     </li>
     <li [ngClass]="{'is-active':selectIndex ==2}">
       <a routerLink="register"  (click)="onSelectIndex(2)">
-        <span class="icon is-small"><i class="fa fa-user"></i></span>
+        <span class="icon is-small"><i class="fa fa-users"></i></span>
         <span>注册</span>
       </a>
     </li>

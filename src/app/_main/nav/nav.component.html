@@ -23,7 +23,7 @@
     <a *ngIf="!login" class="nav-item is-tab is-hidden-mobile tomato-nav-item" [ngClass]="{'is-active':selectIndex == 4}" [routerLink]=" ['./user']" (click)="onSelectIndex(4)">登录</a>
     <a *ngIf="login" class="nav-item is-tab  tomato-nav-item">　{{userinfo.username}}　</a>
     <a class="nav-item is-tab tomato-nav-item" (click)="logout()" *ngIf="login">
-      <span class="icon is-medium">
+      <span class="icon">
         <i class="fa fa-sign-out"></i>
       </span>
       退出
