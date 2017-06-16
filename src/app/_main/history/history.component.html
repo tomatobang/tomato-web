@@ -1,3 +1,5 @@
+<div class="history-container">
+
 <!--  表格 展示方式 -->
 <table class="tomato-history-table table ">
     <thead>
@@ -13,17 +15,18 @@
     </thead>
     <tbody>
         <tr *ngFor="let tomato of tomatos">
-            <th> {{tomato.title}}</th>
+            <th> {{tomato.title | StringTruncate: 15}}</th>
             <td> <span class="tag" [ngClass]="{'is-success':tomato.succeed == 1}">完成</span></td>
-            <td>{{tomato.target}}</td>
-            <td>{{tomato.description}}</td>
-            <td>{{tomato.breakReason}}</td>
+            <td>{{tomato.target | StringTruncate: 10}}</td>
+            <td>{{tomato.description | StringTruncate: 10}}</td>
+            <td>{{tomato.breakReason | StringTruncate: 10}}</td>
             <td>{{tomato.startTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
             <td>{{tomato.endTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
         </tr>
     </tbody>
 </table>
 
+</div>
 <!--  Card 展示方式 -->
 <!--<div class="card" *ngFor="let tomato of tomatos">
   <header class="card-header">
