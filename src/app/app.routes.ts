@@ -21,9 +21,9 @@ export const ROUTES: Routes = [
   {
 		path:'user',
     // JIT 支持的方式，可以用于调试
-		//loadChildren:loadUserModule
+		loadChildren:loadUserModule
     // AOT 支持的方式，用于发布
-    loadChildren:'./_user/user.module#UserModule'
+    //loadChildren:'./_user/user.module#UserModule'
 	},
   { path: '**',  	loadChildren:loadUserModule}
 ];

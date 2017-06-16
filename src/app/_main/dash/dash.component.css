@@ -1,8 +1,8 @@
-.rest-title{
+.rest-title {
   color: #00d1b2;
 }
 
-.tomato-open-notification{
+.tomato-open-notification {
   position: fixed;
   top: 0px;
   left: 50%;
@@ -11,10 +11,10 @@
   z-index: 2000;
 }
 
-.active-task-title{
-font-size: 35px;
+.active-task-title {
+  font-size: 35px;
 }
-.stage{
+.stage {
   text-align: center;
 }
 
@@ -41,7 +41,7 @@ font-size: 35px;
 .timer-container {
   display: inline-block;
   border-radius: 90px;
-  margin-top:30px;
+  margin-top: 30px;
 }
 
 .open-new-task-form:hover {
@@ -78,7 +78,6 @@ font-size: 35px;
   height: 20px;
 }
 
-
 .task-title {
   width: 100%;
 }
@@ -87,10 +86,10 @@ font-size: 35px;
   margin-left: -100%;
 }
 
-#breakModal,#myModal{
+#breakModal, #myModal {
   z-index: 1040;
 }
 
-.panel-heading{
+.panel-heading {
   color: #00d1b2;
 }

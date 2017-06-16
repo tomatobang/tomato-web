@@ -1,3 +1,8 @@
 .tomato-history-table{
-    margin:25px;
+    padding: 10px;
+}
+.history-container{
+    max-width: 100%;
+    overflow: scroll;
+    margin:25px 25px;
 }

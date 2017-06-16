@@ -1,3 +1,7 @@
+.tomato-nav-item{
+    text-decoration: none;
+}
+
 .onoffswitch {
     position: relative; width: 75px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
@@ -12,7 +16,7 @@
 }
 .onoffswitch-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px;
+    border: 2px solid #ddd; border-radius: 20px;
 }
 .onoffswitch-inner {
     width: 200%; margin-left: -100%;
@@ -27,12 +31,12 @@
 .onoffswitch-inner:before {
     content: "";
     padding-left: 12px;
-    background-color: #47A447; color: #FFFFFF;
+    background-color: #00d1b2; color: #FFFFFF;
 }
 .onoffswitch-inner:after {
     content: "";
     padding-right: 12px;
-    background-color: #EEEEEE; color: #999999;
+    background-color: #fff; color: #00d1b2;
     text-align: right;
 }
 
@@ -40,7 +44,7 @@
     height: 20px;
     width: 20px; margin: 7px;
     background: #FFFFFF;
-    border: 2px solid #999999; border-radius: 20px;
+    border: 2px solid #ddd; border-radius: 20px;
     position: absolute; top: 0; bottom: 0; right: 41px;
     -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
     -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 

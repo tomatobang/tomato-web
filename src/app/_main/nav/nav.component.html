@@ -3,10 +3,10 @@
     <a class="nav-item">
         <img src="https://avatars0.githubusercontent.com/u/26266894?v=3&s=200" alt="TomatoBang V1.0">
       </a>
-    <a class="nav-item is-tab is-hidden-mobile" [ngClass]="{'is-active':selectIndex == 1}" [routerLink]=" ['./dash']" (click)="onSelectIndex(1)">首页</a>
-    <a class="nav-item is-tab is-hidden-mobile" [ngClass]="{'is-active':selectIndex == 2}" [routerLink]=" ['./history']" (click)="onSelectIndex(2)">历史</a>
-    <a class="nav-item is-tab is-hidden-mobile" [ngClass]="{'is-active':selectIndex == 3}" [routerLink]=" ['./setting']" (click)="onSelectIndex(3)">设置</a>
-    <a class="nav-item is-tab is-hidden-mobile" [ngClass]="{'is-active':selectIndex == 4}" [routerLink]=" ['./about']" (click)="onSelectIndex(4)">关于</a>
+    <a class="nav-item is-tab is-hidden-mobile tomato-nav-item" [ngClass]="{'is-active':selectIndex == 1}" [routerLink]=" ['./dash']" (click)="onSelectIndex(1)">首页</a>
+    <a class="nav-item is-tab is-hidden-mobile tomato-nav-item" [ngClass]="{'is-active':selectIndex == 2}" [routerLink]=" ['./history']" (click)="onSelectIndex(2)">历史</a>
+    <a class="nav-item is-tab is-hidden-mobile tomato-nav-item" [ngClass]="{'is-active':selectIndex == 3}" [routerLink]=" ['./setting']" (click)="onSelectIndex(3)">设置</a>
+    <a class="nav-item is-tab is-hidden-mobile tomato-nav-item" [ngClass]="{'is-active':selectIndex == 4}" [routerLink]=" ['./about']" (click)="onSelectIndex(4)">关于</a>
    
   </div>
   <span class="nav-toggle">
@@ -15,20 +15,20 @@
   <span></span>
   </span>
   <div class="nav-right nav-menu">
-    <a class="nav-item is-tab is-hidden-tablet is-active" [routerLink]=" ['./dash']" (click)="onSelectIndex(1)">首页</a>
-    <a class="nav-item is-tab is-hidden-tablet" [routerLink]=" ['./history']" (click)="onSelectIndex(2)">历史</a>
-    <a class="nav-item is-tab is-hidden-tablet" [routerLink]=" ['./setting']" (click)="onSelectIndex(3)">设置</a>
-    <a class="nav-item is-tab is-hidden-tablet" [routerLink]=" ['./about']" (click)="onSelectIndex(4)">关于</a>
+    <a class="nav-item is-tab is-hidden-tablet is-active tomato-nav-item" [routerLink]=" ['./dash']" (click)="onSelectIndex(1)">首页</a>
+    <a class="nav-item is-tab is-hidden-tablet tomato-nav-item" [routerLink]=" ['./history']" (click)="onSelectIndex(2)">历史</a>
+    <a class="nav-item is-tab is-hidden-tablet tomato-nav-item" [routerLink]=" ['./setting']" (click)="onSelectIndex(3)">设置</a>
+    <a class="nav-item is-tab is-hidden-tablet tomato-nav-item" [routerLink]=" ['./about']" (click)="onSelectIndex(4)">关于</a>
 
-    <a *ngIf="!login" class="nav-item is-tab is-hidden-mobile" [ngClass]="{'is-active':selectIndex == 4}" [routerLink]=" ['./user']" (click)="onSelectIndex(4)">登录</a>
-    <a class="nav-item is-tab">　{{userinfo.username}}　</a>
-    <a class="nav-item is-tab" (click)="logout()" *ngIf="login">
-      <figure class="image is-16x16" style="margin-right: 8px;">
-        <img src="http://bulma.io/images/jgthms.png">
-      </figure>
+    <a *ngIf="!login" class="nav-item is-tab is-hidden-mobile tomato-nav-item" [ngClass]="{'is-active':selectIndex == 4}" [routerLink]=" ['./user']" (click)="onSelectIndex(4)">登录</a>
+    <a *ngIf="login" class="nav-item is-tab  tomato-nav-item">　{{userinfo.username}}　</a>
+    <a class="nav-item is-tab tomato-nav-item" (click)="logout()" *ngIf="login">
+      <span class="icon is-medium">
+        <i class="fa fa-sign-out"></i>
+      </span>
       退出
     </a>
-      <a class="nav-item">
+      <a class="nav-item tomato-nav-item">
         <form class="navbar-form navbar-right">
           <span>桌面提醒</span>
           <div class="form-group">

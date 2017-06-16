@@ -34,13 +34,10 @@ body > .container {
   min-height: 700px;
 }
 
-footer {
-  position: absolute;
-  margin-top: 20px;
-  border-top: 1px solid #e5e5e5;
-  padding-top: 3px;
+.tomato-footer {
+  height: 45px;
 }
 
-footer p {
+.tomato-footer div {
   text-align: center;
 }
