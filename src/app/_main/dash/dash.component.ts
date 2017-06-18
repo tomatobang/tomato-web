@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AngularRoundProgressComponent } from '../../_directives/angular-round-progress-directive';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 
 import { OnlineTaskService } from '../../_core/task/index';
 import { OnlineTomatoService } from '../../_core/tomato/index';
-// import { AppState } from '../../app.service';
+import { AppState } from '../../app.service';
 // import { OnlineUserService } from '../../_core/user/index';
 
 declare var Piecon: any;
@@ -30,7 +30,6 @@ export class DashComponent {
     breakModal: ModalComponent;
 
 
-
     @ViewChild(AngularRoundProgressComponent) child: AngularRoundProgressComponent;
     ngAfterViewInit() {
         setInterval(() => {
@@ -44,17 +43,17 @@ export class DashComponent {
     oggSource: HTMLSourceElement = document.createElement('source');
     alertAudio: HTMLAudioElement = document.createElement('audio');
 
-     // 番茄钟长度
-    countdown:number = 25;
+    // 番茄钟长度
+    countdown: number = 25;
     // 休息时间长度
-    resttime:number = 5;
-    isResting:boolean=false;
+    resttime: number = 5;
+    isResting: boolean = false;
     mytimeout: any = null;
-    resttimeout:any = null;
-    resttimestart:any = null;
+    resttimeout: any = null;
+    resttimestart: any = null;
     // 连续任务个数
-    tomatoCount:number = 0;
-    historyTomatoes:Array<any> = [];//{title:'测试',endTime:new Date()}
+    tomatoCount: number = 0;
+    historyTomatoes: Array<any> = [];//{title:'测试',endTime:new Date()}
 
     config = {
         desktopNotification: true
@@ -92,15 +91,20 @@ export class DashComponent {
     };
 
     constructor(public taskservice: OnlineTaskService, public tomatoservice: OnlineTomatoService,
-    public activeRoute: ActivatedRoute) {//, public userservice: OnlineUserService,public globalservice: AppState
+        public activeRoute: ActivatedRoute, public globalservice: AppState) {//, public userservice: OnlineUserService
     }
 
     ngOnInit() {
-         this.activeRoute.params.subscribe(
+        this.activeRoute.params.subscribe(
             params => {
-               //
+                //
             }
-         );
+        );
+        this.countdown = this.globalservice.countdown;
+        this.resttime = this.globalservice.resttime;
+        this.timerStatus.countdown = this.countdown;
+        this.timerStatus.reset();
+        
 
         this.mp3Source.setAttribute('src', '/assets/audios/alert.mp3');
         this.oggSource.setAttribute('src', '/assets/audios/alert.ogg');
@@ -122,8 +126,6 @@ export class DashComponent {
     getTimes(n: any) {
         return new Array(n);
     };
-
-
 
     breakActiveTask() {
         this.stopTimer();
@@ -194,7 +196,7 @@ export class DashComponent {
         // Piecon.setProgress(Math.floor(this.timerStatus.percentage * 100));
     };
 
-    onRestTimeout(){
+    onRestTimeout() {
         let datenow: number = new Date().getTime();
         let startTime: number = this.resttimestart.getTime();
         let dataspan: number = datenow - startTime;
@@ -210,7 +212,7 @@ export class DashComponent {
             if (this.config.desktopNotification) {
                 this.showDesktopNotification_restend();
             }
-             this.isResting = false;
+            this.isResting = false;
             this.timerStatus.reset();
             Piecon.reset();
         } else {
@@ -220,7 +222,7 @@ export class DashComponent {
         Piecon.setProgress(Math.floor(this.timerStatus.percentage * 100));
     }
 
- 
+
 
     stopTimer() {
         clearTimeout(this.mytimeout);
@@ -326,7 +328,7 @@ export class DashComponent {
             succeed: 0,
             breakReason: this.breakReason
         }
-        this.historyTomatoes.push(Object.assign({},tomato));
+        this.historyTomatoes.push(Object.assign({}, tomato));
         this.tomatoservice.CreateTomato(tomato).subscribe(response => {
             let data: any = JSON.parse(response._body);
             if (data && data.status == "fail") {
@@ -368,14 +370,14 @@ export class DashComponent {
                 succeed: 1,
                 breakReason: ''
             }
-            this.historyTomatoes.push(Object.assign({},tomato));
+            this.historyTomatoes.push(Object.assign({}, tomato));
             this.tomatoservice.CreateTomato(tomato).subscribe(response => {
                 let data: any = JSON.parse(response._body);
                 if (data && data.status == "fail") {
                 } else {
                     this.allTasks.finished.push(this.activeTomato);
                     this.startRestTimer();
-                    this.tomatoCount+=1;
+                    this.tomatoCount += 1;
                 }
             }, err => {
                 alert(JSON.stringify(err));
@@ -444,7 +446,7 @@ export class DashComponent {
 
     }
 
-    closeTomatoNoti(){
+    closeTomatoNoti() {
         this.showTomatoNoti = false;
         this.NotiMessage = "";
     }

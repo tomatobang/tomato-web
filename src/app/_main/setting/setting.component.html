@@ -1,39 +1,39 @@
 <div class="setting-container">
-    <div class="field">
-        <label class="setting-label label">番茄钟时长</label>
-        <p class="control has-icons-left">
-            <span class="select">
-      <select>
+  <div class="field">
+    <label class="setting-label label">番茄钟时长</label>
+    <p class="control has-icons-left">
+      <span class="select">
+      <select [(ngModel)]="countdown" (ngModelChange)="setCountdown($event)">
         <option>20</option>
-     <option selected>25</option>
+        <option selected>25</option>
         <option>30</option>
         <option>35</option>
       </select>
     </span>
-            <span class="icon is-small is-left">
+      <span class="icon is-small is-left">
       <i class="fa fa-globe"></i>
     </span>
-        </p>
-    </div>
+    </p>
+  </div>
 
-    <div class="field">
-        <label class="setting-label label">休息时长</label>
-        <p class="control has-icons-left">
-            <span class="select">
-      <select>
+  <div class="field">
+    <label class="setting-label label">休息时长</label>
+    <p class="control has-icons-left">
+      <span class="select">
+      <select [(ngModel)]="resttime" (ngModelChange)="setResttime($event)">
         <option>3</option>
         <option selected>5</option>
         <option>8</option>
         <option>10</option>
       </select>
     </span>
-            <span class="icon is-small is-left">
+      <span class="icon is-small is-left">
       <i class="fa fa-globe"></i>
     </span>
-        </p>
-    </div>
+    </p>
+  </div>
 
-    <!--<div class="field">
+  <!--<div class="field">
         <div class="control">
             <label class="checkbox">
           <input type="checkbox">

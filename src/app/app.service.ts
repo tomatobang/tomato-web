@@ -7,17 +7,48 @@ export type InternalStateType = {
 };
 
 let subject: Subject<any> = new Subject<any>();
+let settingSubject: Subject<any> = new Subject<any>();
 @Injectable()
 export class AppState {
   _state: InternalStateType = {};
   _token: string;
   _userinfo: any;
+  _countdown: number = 25;
+  _resttime: number = 5;
 
   public get userinfostate(): Observable<any> {
     return subject.asObservable();
   }
 
-  constructor() {}
+  public get settingState(): Observable<any> {
+    return settingSubject.asObservable();
+  }
+
+  constructor() { }
+
+  get countdown() {
+    return this._countdown;
+  }
+
+  set countdown(value: number) {
+    this.countdown = value;
+    settingSubject.next({
+      countdown: this._countdown,
+      resttime: this._resttime
+    })
+  };
+  get resttime() {
+    return this._resttime;
+  }
+
+  set resttime(value: number) {
+    this._resttime = value;
+    settingSubject.next({
+      countdown: this._countdown,
+      resttime: this._resttime
+    })
+  }
+
 
   get backendUrl() {
     // http://localhost:5555/
