@@ -13,8 +13,8 @@ export class AppState {
   _state: InternalStateType = {};
   _token: string;
   _userinfo: any;
-  _countdown: number = 25;
-  _resttime: number = 5;
+  _countdown: number = 0;
+  _resttime: number = 0;
 
   public get userinfostate(): Observable<any> {
     return subject.asObservable();
@@ -27,22 +27,46 @@ export class AppState {
   constructor() { }
 
   get countdown() {
-    return this._countdown;
+
+    if (this._countdown != 0) {
+      return this._countdown;
+    } else {
+      let countdownStr = localStorage.getItem("_countdown");
+      if (countdownStr) {
+        return parseInt(countdownStr);
+      } else {
+        return 25;
+      }
+    }
   }
 
   set countdown(value: number) {
-    this.countdown = value;
+    this._countdown = value;
+      debugger;
+    localStorage.setItem("_countdown", value + "");
     settingSubject.next({
       countdown: this._countdown,
       resttime: this._resttime
     })
-  };
+  }
+
+
   get resttime() {
-    return this._resttime;
+    if (this._resttime != 0) {
+      return this._resttime;
+    } else {
+      let restStr = localStorage.getItem("_resttime");
+      if (restStr) {
+        return parseInt(restStr);
+      } else {
+        return 5;
+      }
+    }
   }
 
   set resttime(value: number) {
     this._resttime = value;
+    localStorage.setItem("_resttime", value + "");
     settingSubject.next({
       countdown: this._countdown,
       resttime: this._resttime

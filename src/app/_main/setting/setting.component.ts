@@ -28,7 +28,7 @@ export class SettingComponent {
   }
 
   setCountdown(value:number){
-    this.globalservice._countdown = value;
+    this.globalservice.countdown = value;
   }
 
   setResttime(value:number){
