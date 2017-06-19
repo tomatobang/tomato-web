@@ -15,13 +15,13 @@
     </thead>
     <tbody>
         <tr *ngFor="let tomato of tomatos">
-            <th> {{tomato.title | StringTruncate: 15}}</th>
+            <th title="{{tomato.title}}"> {{tomato.title | StringTruncate: 15}}</th>
             <td> <span class="tag" [ngClass]="{'is-success':tomato.succeed == 1}">完成</span></td>
-            <td>{{tomato.target | StringTruncate: 10}}</td>
-            <td>{{tomato.description | StringTruncate: 10}}</td>
-            <td>{{tomato.breakReason | StringTruncate: 10}}</td>
-            <td>{{tomato.startTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
-            <td>{{tomato.endTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+            <td title="{{tomato.target}}">{{tomato.target | StringTruncate: 10}}</td>
+            <td title="{{tomato.description}}">{{tomato.description | StringTruncate: 10}}</td>
+            <td title="{{tomato.breakReason}}">{{tomato.breakReason | StringTruncate: 10}}</td>
+            <td title="{{tomato.startTime}}">{{tomato.startTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+            <td title="{{tomato.endTime}}">{{tomato.endTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
         </tr>
     </tbody>
 </table>
