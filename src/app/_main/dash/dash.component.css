@@ -12,7 +12,8 @@
 }
 
 .active-task-title {
-  font-size: 35px;
+  font-size: 38px;
+  color: #23d160;
 }
 .stage {
   text-align: center;
@@ -92,4 +93,11 @@
 
 .panel-heading {
   color: #00d1b2;
+}
+
+.break-tomato{
+  margin-top:10px;
+  margin-bottom:10px;
+  padding: 10px 25px;
+  font-size: 1.2rem;
 }
