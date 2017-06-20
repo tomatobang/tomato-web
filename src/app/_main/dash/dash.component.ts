@@ -1,8 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,OnInit } from '@angular/core';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AngularRoundProgressComponent } from '../../_directives/angular-round-progress-directive';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, RouteReuseStrategy } from '@angular/router';
 
 import { OnlineTaskService } from '../../_core/task/index';
 import { OnlineTomatoService } from '../../_core/tomato/index';
@@ -22,7 +21,7 @@ declare var Notification: any;
     ]
 })
 
-export class DashComponent {
+export class DashComponent{
     @ViewChild('myModal')
     modal: ModalComponent;
 
@@ -121,6 +120,10 @@ export class DashComponent {
             alert(JSON.stringify(err));
             console.log('getTasks err', err);
         })
+    }
+
+    ngOnDestroy(){
+        clearInterval(this.notiIntervalID);
     }
 
     getTimes(n: any) {

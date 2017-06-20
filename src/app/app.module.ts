@@ -8,6 +8,11 @@ import 'bootstrap';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 import { ROUTES } from './app.routes';
+/**
+ * 解决组件每次都 reload
+ */
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomReuseStrategy } from './reuse-strategy';
 
 
 import { AppComponent } from './app.component';
@@ -35,6 +40,6 @@ import { AppState } from './app.service';
   declarations: [AppComponent, NavComponent, DashComponent, AboutComponent, SettingComponent, HistoryComponent,
   AngularRoundProgressComponent, TimelineComponent, TaskPipe,StringTruncate],
   bootstrap: [AppComponent],
-  providers: [AppState]
+  providers: [AppState,{provide: RouteReuseStrategy, useClass: CustomReuseStrategy}]
 })
 export class AppModule { }
