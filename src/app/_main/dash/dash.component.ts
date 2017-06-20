@@ -1,7 +1,7 @@
 import { Component, ViewChild,OnInit } from '@angular/core';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { AngularRoundProgressComponent } from '../../_directives/angular-round-progress-directive';
-import { ActivatedRoute, RouteReuseStrategy } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { OnlineTaskService } from '../../_core/task/index';
 import { OnlineTomatoService } from '../../_core/tomato/index';
