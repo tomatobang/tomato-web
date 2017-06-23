@@ -19,7 +19,7 @@ interface RouteStorageObject {
 }
 
 export class CustomReuseStrategy implements RouteReuseStrategy {
-  private acceptedRoutes: string[] = ["history"];
+  private acceptedRoutes: string[] = ["history","dash","setting"];
 
   /** 
      * Object which will store RouteStorageObjects indexed by keys
