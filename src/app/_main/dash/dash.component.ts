@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { OnlineTaskService } from '../../_core/task/index';
 import { OnlineTomatoService } from '../../_core/tomato/index';
 import { AppState } from '../../app.service';
+import { Subscription } from 'rxjs';
+
 // import { OnlineUserService } from '../../_core/user/index';
 
 declare var Piecon: any;
@@ -58,13 +60,12 @@ export class DashComponent{
         desktopNotification: true
     };
     openNewTaskForm = false;
+    // { title: "每天一个知识点", target: "积跬步以至千里", description: "学一个未知或者不懂得概念", isActive: false, num: 2 },
+    // { title: "锻炼", target: "积跬步以至千里", description: "为未来储蓄能量", isActive: false, num: 1 },
+    // { title: "代码1小时", target: "积跬步以至千里", description: "every hour lead to a change", isActive: false, num: 2 }
     allTasks = {
         finished: new Array,
-        unfinished: [
-            { title: "每天一个知识点", target: "积跬步以至千里", description: "学一个未知或者不懂得概念", isActive: false, num: 2 },
-            { title: "锻炼", target: "积跬步以至千里", description: "为未来储蓄能量", isActive: false, num: 1 },
-            { title: "代码1小时", target: "积跬步以至千里", description: "every hour lead to a change", isActive: false, num: 2 }
-        ]
+        unfinished: new Array
     };
 
     newTask = {
@@ -93,6 +94,7 @@ export class DashComponent{
         public activeRoute: ActivatedRoute, public globalservice: AppState) {//, public userservice: OnlineUserService
     }
 
+    userinfostateSubscription:Subscription;
     ngOnInit() {
         this.activeRoute.params.subscribe(
             params => {
@@ -101,6 +103,13 @@ export class DashComponent{
         );
         this.countdown = this.globalservice.countdown;
         this.resttime = this.globalservice.resttime;
+        if(this.userinfostateSubscription){
+            this.userinfostateSubscription.unsubscribe();
+        }
+        // TODO:修复加载两次的 BUG
+        this.userinfostateSubscription =this.globalservice.userinfostate.subscribe(data => {
+             this.loadTasks();
+        });
         this.timerStatus.countdown = this.countdown;
         this.timerStatus.reset();
         
@@ -111,11 +120,21 @@ export class DashComponent{
         this.alertAudio.appendChild(this.oggSource);
         this.alertAudio.load();
 
+        this.loadTasks();
+        
+    }
+
+    loadTasks(){
         this.taskservice.getTasks().subscribe(data => {
             const retStr = data && data._body;
             const dataArr = JSON.parse(retStr);
             this.allTasks.unfinished = dataArr;
-            this.allTasks.unfinished = this.allTasks.unfinished.slice();
+            if(dataArr.length > 0 && this.allTasks.unfinished){
+                this.allTasks.unfinished = this.allTasks.unfinished.slice();
+            }else{
+                this.allTasks.unfinished = [];
+                this.allTasks.unfinished = this.allTasks.unfinished.slice();
+            } 
         }, err => {
             alert(JSON.stringify(err));
             console.log('getTasks err', err);

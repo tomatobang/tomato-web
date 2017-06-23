@@ -8,6 +8,7 @@ export type InternalStateType = {
 
 let subject: Subject<any> = new Subject<any>();
 let settingSubject: Subject<any> = new Subject<any>();
+let tokenSubject: Subject<any> = new Subject<any>();
 @Injectable()
 export class AppState {
   _state: InternalStateType = {};
@@ -24,10 +25,14 @@ export class AppState {
     return settingSubject.asObservable();
   }
 
-  constructor() { }
+  public get tokenState(): Observable<any> {
+    return tokenSubject.asObservable();
+  }
+
+  constructor() {
+  }
 
   get countdown() {
-
     if (this._countdown != 0) {
       return this._countdown;
     } else {
@@ -42,14 +47,12 @@ export class AppState {
 
   set countdown(value: number) {
     this._countdown = value;
-      debugger;
     localStorage.setItem("_countdown", value + "");
     settingSubject.next({
       countdown: this._countdown,
       resttime: this._resttime
-    })
+    });
   }
-
 
   get resttime() {
     if (this._resttime != 0) {
@@ -70,9 +73,8 @@ export class AppState {
     settingSubject.next({
       countdown: this._countdown,
       resttime: this._resttime
-    })
+    });
   }
-
 
   get backendUrl() {
     // http://localhost:5555/
@@ -109,7 +111,7 @@ export class AppState {
   set userinfo(value) {
     this._token = value;
     localStorage.setItem("userinfo", value);
-    subject.next(value)
+    subject.next(value);
   }
 
   get token() {
@@ -122,6 +124,9 @@ export class AppState {
   set token(value) {
     this._token = value;
     localStorage.setItem("token", value);
+    // this.rebirthHttpProvider.headers({ Authorization: appstate.token });
+    tokenSubject.next(value);
+    
   }
 
   get(prop?: any) {

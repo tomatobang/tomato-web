@@ -34,7 +34,7 @@ export class OnlineTaskService extends TaskService {
     return null;
   }
 
-  @Cacheable({ pool: 'tasks' })
+  // @Cacheable({ pool: 'tasks' })
   @GET('http://115.29.51.196:5555/api/task')
   getTasks( @Query('pageIndex') pageIndex = 1,
     @Query('pageSize') pageSize = 10,

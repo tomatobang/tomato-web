@@ -27,5 +27,8 @@ npm run build
 ```
 if everything goes ok. you could see your prod files in dist/ under tomato-web/
 
+## Support
+chat are welcomed. see:https://tomatobang.slack.com
+
 ## License
 MIT@yipeng.info

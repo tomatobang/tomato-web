@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'my-app',
   templateUrl: "./app.component.html",
@@ -14,6 +15,10 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   constructor(rebirthHttpProvider: RebirthHttpProvider, appstate: AppState, router:Router) {
+    appstate.tokenState.subscribe(data =>{
+      rebirthHttpProvider.headers({ Authorization: data });
+    });
+
     // setup jwt token
     if (appstate.token) {
       rebirthHttpProvider.headers({ Authorization: appstate.token });

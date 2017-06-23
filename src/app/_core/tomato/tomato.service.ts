@@ -34,7 +34,7 @@ export class OnlineTomatoService extends TomatoService {
     return null;
   }
 
-  @Cacheable({ pool: 'tomatos' })
+  // @Cacheable({ pool: 'tomatos' })
   @GET('http://115.29.51.196:5555/api/tomato')
   getTomatos( @Query('pageIndex') pageIndex = 1,
     @Query('pageSize') pageSize = 10,
