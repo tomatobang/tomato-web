@@ -6,3 +6,7 @@ export class User {
   email: string;
   confirmPassword:string;
 }
+
+export class Email {
+  email:string;
+}

@@ -74,6 +74,7 @@ export class RegisterComponent {
         this.userInfo.email,
         [
           Validators.required,
+          //Validators.pattern("^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$")
           Validators.pattern("^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$")
         ]
       ],
@@ -118,26 +119,35 @@ export class RegisterComponent {
      this.router.navigate(['/user/login']); 
   }
 
-  
+
   doRegister() {
     if (this.userForm.valid) {
+      console.log(this.userInfo);
       this.userInfo = this.userForm.value;
-      this.userService.register(this.userInfo)
-        .subscribe(
-          data => {
-            alert("注册成功！")
-            this.globalservice.userinfo= JSON.stringify(this.userInfo);
-            this.router.navigateByUrl("dash");
-          },
-          error => {
-            this.formErrors.formError = error.message;
-            console.error(error);
+      this.userService.verifyEmail({email:this.userInfo.email}).subscribe(data => {
+          let ret:any = JSON.parse(data._body);
+          // 邮箱可用
+          if(ret.success){
+            this.userService.register(this.userInfo)
+            .subscribe(
+              data => {
+                alert("注册成功！即将跳转至登录页...");
+                this.globalservice.userinfo= JSON.stringify(this.userInfo);
+                this.navToLogin();
+              },
+              error => {
+                this.formErrors.formError = error.message;
+                console.error(error);
+              }
+            )
+          }else{
+             this.formErrors["email"] +=ret.msg;
           }
-        );
+         
+      })
     } else {
       this.formErrors.formError = "存在不合法的输入项，请检查。";
     }
-    console.log(this.userInfo);
   }
 
   testEmail() {

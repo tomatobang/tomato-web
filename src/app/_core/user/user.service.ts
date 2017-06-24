@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { User } from './user.model';
+import { User,Email } from './user.model';
 import { SearchResult } from './search-result.model';
 import { Observable } from 'rxjs/Observable';
 import { Cacheable } from 'rebirth-storage/dist/rebirth-storage';
@@ -20,6 +20,8 @@ export abstract class UserService extends RebirthHttp {
   abstract  register(user: User): Observable<any> ;
 
   abstract  login(user: User): Observable<any> ;
+
+  abstract  verifyEmail(email: Email): Observable<any> ;
 }
 
 
@@ -61,6 +63,12 @@ export class OnlineUserService extends UserService {
 
   @POST('http://115.29.51.196:5555/api/login/')
   login( @Body user: User): Observable<any> {
+    return null;
+  }
+
+
+  @POST('http://115.29.51.196:5555/email/verify')
+  verifyEmail(@Body email: Email): Observable<any> {
     return null;
   }
 
