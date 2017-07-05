@@ -5,10 +5,11 @@ import { ActivatedRoute } from '@angular/router';
 
 import { OnlineTaskService } from '../../_core/task/index';
 import { OnlineTomatoService } from '../../_core/tomato/index';
+// import { OnlineUserService } from '../../_core/user/index';
+
 import { AppState } from '../../app.service';
 import { Subscription } from 'rxjs';
 
-// import { OnlineUserService } from '../../_core/user/index';
 
 declare var Piecon: any;
 declare var chrome: any;
@@ -60,9 +61,6 @@ export class DashComponent{
         desktopNotification: true
     };
     openNewTaskForm = false;
-    // { title: "每天一个知识点", target: "积跬步以至千里", description: "学一个未知或者不懂得概念", isActive: false, num: 2 },
-    // { title: "锻炼", target: "积跬步以至千里", description: "为未来储蓄能量", isActive: false, num: 1 },
-    // { title: "代码1小时", target: "积跬步以至千里", description: "every hour lead to a change", isActive: false, num: 2 }
     allTasks = {
         finished: new Array,
         unfinished: new Array
@@ -119,6 +117,12 @@ export class DashComponent{
         this.alertAudio.appendChild(this.mp3Source);
         this.alertAudio.appendChild(this.oggSource);
         this.alertAudio.load();
+
+        this.tomatoservice.getTodayTomatos().subscribe(data =>{
+            let list = JSON.parse(data._body);
+            this.historyTomatoes = list;
+            this.tomatoCount = list.length;
+        })
 
         this.loadTasks();
         
@@ -244,8 +248,6 @@ export class DashComponent{
         Piecon.setProgress(Math.floor(this.timerStatus.percentage * 100));
     }
 
-
-
     stopTimer() {
         clearTimeout(this.mytimeout);
         this.timerStatus.reset();
@@ -332,8 +334,6 @@ export class DashComponent{
             });
         }
     }
-
-
 
     closeBreakModal() {
         // 创建tomato
