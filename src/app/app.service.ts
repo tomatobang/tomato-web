@@ -9,6 +9,7 @@ export type InternalStateType = {
 let subject: Subject<any> = new Subject<any>();
 let settingSubject: Subject<any> = new Subject<any>();
 let tokenSubject: Subject<any> = new Subject<any>();
+let tomatoSubject: Subject<any> = new Subject<any>();
 @Injectable()
 export class AppState {
   _state: InternalStateType = {};
@@ -27,6 +28,10 @@ export class AppState {
 
   public get tokenState(): Observable<any> {
     return tokenSubject.asObservable();
+  }
+
+  public get tomatoState(): Observable<any> {
+    return tomatoSubject.asObservable();
   }
 
   constructor() {
@@ -141,6 +146,10 @@ export class AppState {
     // internally mutate our state
     localStorage.setItem(prop, value);
     return (this._state[prop] = value);
+  }
+
+  editTomato(){
+    tomatoSubject.next(true)
   }
 
   clearLocalStorage() {

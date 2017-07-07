@@ -366,6 +366,7 @@ export class DashComponent{
                 this.activeTomato = null;
                 this.breakModal.close();
                 this.startRestTimer();
+                this.globalservice.editTomato();
             }
         }, err => {
             alert(JSON.stringify(err));
@@ -400,6 +401,7 @@ export class DashComponent{
                     this.allTasks.finished.push(this.activeTomato);
                     this.startRestTimer();
                     this.tomatoCount += 1;
+                    this.globalservice.editTomato();
                 }
             }, err => {
                 alert(JSON.stringify(err));

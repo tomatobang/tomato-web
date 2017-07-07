@@ -32,6 +32,10 @@ export class HistoryComponent {
     this.globalservice.userinfostate.subscribe(data => {
       this.loadTomatos();
     });
+
+    this.globalservice.tomatoState.subscribe(data => {
+      this.loadTomatos();
+    });
     this.loadTomatos();
   }
 
