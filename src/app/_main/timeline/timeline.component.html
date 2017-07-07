@@ -13,7 +13,7 @@
                 <span>{{tomato.endTime | date:'shortTime'}}</span>
                 <div class="timeline-content-item-reveal">
                     <a href="#">
-                    <span>{{tomato.title}}</span>
+                    <span [ngClass]="{'text-breaked':tomato.succeed==0}">{{tomato.title | StringTruncate: 10}}</span>
                 </a>
                 </div>
             </div>
