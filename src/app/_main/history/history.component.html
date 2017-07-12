@@ -34,8 +34,8 @@
       <a [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-previous" (click)="setPage(1)">第一页</a>
     
       <ul class="pagination-list">
-        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-          <a class="pagination-link" (click)="setPage(page)">{{page}}</a>
+        <li *ngFor="let page of pager.pages" >
+          <a [ngClass]="{isCurrent:pager.currentPage === page}" class="pagination-link" (click)="setPage(page)">{{page}}</a>
         </li>
       </ul>
   </nav>

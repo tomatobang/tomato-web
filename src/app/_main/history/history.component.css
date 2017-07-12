@@ -3,6 +3,9 @@
 }
 .history-container{
     max-width: 100%;
-    overflow: scroll;
+    overflow: visible;
     margin:25px 25px;
+}
+.isCurrent{
+    color: grey;
 }

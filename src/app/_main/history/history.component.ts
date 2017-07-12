@@ -57,7 +57,6 @@ export class HistoryComponent {
         if (page < 1 || page > this.pager.totalPages) {
             return;
         }
-        debugger
         // get pager object from service
         this.pager = this.pagerService.getPager(this.tomatos.length, page);
 
