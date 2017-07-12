@@ -1,30 +1,50 @@
 <div class="history-container">
 
-<!--  表格 展示方式 -->
-<table class="tomato-history-table table ">
+  <!--  表格 展示方式 -->
+  <table class="tomato-history-table table ">
     <thead>
-        <tr>
-            <th><abbr title="title">标题</abbr></th>
-            <th><abbr title="succeed">完成情况</abbr></th>
-            <th><abbr title="target">目标</abbr></th>
-            <th><abbr title="description">描述</abbr></th>
-            <th><abbr title="description">中断缘由</abbr></th>
-            <th><abbr title="startTime">开始时间</abbr></th>
-            <th><abbr title="endTime">结束时间</abbr></th>
-        </tr>
+      <tr>
+        <th><abbr title="title">标题</abbr></th>
+        <th><abbr title="succeed">完成情况</abbr></th>
+        <th><abbr title="target">目标</abbr></th>
+        <th><abbr title="description">描述</abbr></th>
+        <th><abbr title="description">中断缘由</abbr></th>
+        <th><abbr title="startTime">开始时间</abbr></th>
+        <th><abbr title="endTime">结束时间</abbr></th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let tomato of tomatos">
-            <th title="{{tomato.title}}"> {{tomato.title | StringTruncate: 15}}</th>
-            <td> <span class="tag" [ngClass]="{'is-success':tomato.succeed == 1}">完成</span></td>
-            <td title="{{tomato.target}}">{{tomato.target | StringTruncate: 10}}</td>
-            <td title="{{tomato.description}}">{{tomato.description | StringTruncate: 10}}</td>
-            <td title="{{tomato.breakReason}}">{{tomato.breakReason | StringTruncate: 10}}</td>
-            <td title="{{tomato.startTime}}">{{tomato.startTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
-            <td title="{{tomato.endTime}}">{{tomato.endTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
-        </tr>
+      <tr *ngFor="let tomato of tomatos">
+        <th title="{{tomato.title}}"> {{tomato.title | StringTruncate: 15}}</th>
+        <td> <span class="tag" [ngClass]="{'is-success':tomato.succeed == 1}">完成</span></td>
+        <td title="{{tomato.target}}">{{tomato.target | StringTruncate: 10}}</td>
+        <td title="{{tomato.description}}">{{tomato.description | StringTruncate: 10}}</td>
+        <td title="{{tomato.breakReason}}">{{tomato.breakReason | StringTruncate: 10}}</td>
+        <td title="{{tomato.startTime}}">{{tomato.startTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+        <td title="{{tomato.endTime}}">{{tomato.endTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+      </tr>
     </tbody>
-</table>
+  </table>
+
+  <!-- pager -->
+  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <a (click)="setPage(1)">第一页</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <a (click)="setPage(pager.currentPage - 1)">前一页</a>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+      <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <a (click)="setPage(pager.currentPage + 1)">下一页</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <a (click)="setPage(pager.totalPages)">最后一页</a>
+    </li>
+  </ul>
+
 
 </div>
 <!--  Card 展示方式 -->

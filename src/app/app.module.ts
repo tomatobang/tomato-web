@@ -32,6 +32,8 @@ import { RebirthStorageModule } from 'rebirth-storage/dist/index';///dist/rebirt
 
 import { AppState } from './app.service';
 
+import { PagerService } from './_main/history/_pager_service';
+
 
 
 @NgModule({
@@ -40,6 +42,6 @@ import { AppState } from './app.service';
   declarations: [AppComponent, NavComponent, DashComponent, AboutComponent, SettingComponent, HistoryComponent,
   AngularRoundProgressComponent, TimelineComponent, TaskPipe,StringTruncate],
   bootstrap: [AppComponent],
-  providers: [AppState,{provide: RouteReuseStrategy, useClass: CustomReuseStrategy}]
+  providers: [AppState,PagerService,{provide: RouteReuseStrategy, useClass: CustomReuseStrategy}]
 })
 export class AppModule { }
