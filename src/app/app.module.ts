@@ -26,6 +26,8 @@ import { AngularRoundProgressComponent } from './_directives/angular-round-progr
 import { TimelineComponent } from './_main/timeline/';
 import { TaskPipe } from './_pipe/taskPipe';
 import { StringTruncate } from './_pipe/stringTruncate';
+import { DateTransform } from './_pipe/dateTransform';
+
 
 import { RebirthHttpModule } from 'rebirth-http/index';//
 import { RebirthStorageModule } from 'rebirth-storage/dist/index';///dist/rebirth-storage.module
@@ -40,7 +42,7 @@ import { PagerService } from './_main/history/_pager_service';
   imports: [BrowserModule, Ng2Bs3ModalModule, FormsModule, HttpModule, RebirthHttpModule, RebirthStorageModule, ReactiveFormsModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })],
   declarations: [AppComponent, NavComponent, DashComponent, AboutComponent, SettingComponent, HistoryComponent,
-  AngularRoundProgressComponent, TimelineComponent, TaskPipe,StringTruncate],
+  AngularRoundProgressComponent, TimelineComponent, TaskPipe,StringTruncate,DateTransform],
   bootstrap: [AppComponent],
   providers: [AppState,PagerService,{provide: RouteReuseStrategy, useClass: CustomReuseStrategy}]
 })

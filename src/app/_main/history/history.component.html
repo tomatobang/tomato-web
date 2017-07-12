@@ -20,8 +20,8 @@
         <td title="{{tomato.target}}">{{tomato.target | StringTruncate: 10}}</td>
         <td title="{{tomato.description}}">{{tomato.description | StringTruncate: 10}}</td>
         <td title="{{tomato.breakReason}}">{{tomato.breakReason | StringTruncate: 10}}</td>
-        <td title="{{tomato.startTime}}">{{tomato.startTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
-        <td title="{{tomato.endTime}}">{{tomato.endTime | date: 'yyyy-MM-dd hh:mm:ss'}}</td>
+        <td title="{{tomato.startTime}}">{{tomato.startTime | date: 'yyyy-MM-dd hh:mm:ss' | DateTransform: 10}}</td>
+        <td title="{{tomato.endTime}}">{{tomato.endTime | date: 'yyyy-MM-dd hh:mm:ss' | DateTransform: 10}}</td>
       </tr>
     </tbody>
   </table>
