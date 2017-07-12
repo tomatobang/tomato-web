@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tomato of tomatos">
+      <tr *ngFor="let tomato of pagedItems">
         <th title="{{tomato.title}}"> {{tomato.title | StringTruncate: 15}}</th>
         <td> <span class="tag" [ngClass]="{'is-success':tomato.succeed == 1}">完成</span></td>
         <td title="{{tomato.target}}">{{tomato.target | StringTruncate: 10}}</td>
@@ -27,26 +27,21 @@
   </table>
 
   <!-- pager -->
-  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-    <li [ngClass]="{disabled:pager.currentPage === 1}">
-      <a (click)="setPage(1)">第一页</a>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === 1}">
-      <a (click)="setPage(pager.currentPage - 1)">前一页</a>
-    </li>
-    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-      <a (click)="setPage(page)">{{page}}</a>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-      <a (click)="setPage(pager.currentPage + 1)">下一页</a>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-      <a (click)="setPage(pager.totalPages)">最后一页</a>
-    </li>
-  </ul>
-
+  <nav *ngIf="pager.pages && pager.pages.length" class="pagination">
+      <a [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-previous" (click)="setPage(pager.currentPage - 1)">前一页</a>
+      <a  [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="pagination-previous" (click)="setPage(pager.currentPage + 1)">下一页</a>
+      <a [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="pagination-previous" (click)="setPage(pager.totalPages)">最后一页</a>
+      <a [ngClass]="{disabled:pager.currentPage === 1}" class="pagination-previous" (click)="setPage(1)">第一页</a>
+    
+      <ul class="pagination-list">
+        <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+          <a class="pagination-link" (click)="setPage(page)">{{page}}</a>
+        </li>
+      </ul>
+  </nav>
 
 </div>
+
 <!--  Card 展示方式 -->
 <!--<div class="card" *ngFor="let tomato of tomatos">
   <header class="card-header">
