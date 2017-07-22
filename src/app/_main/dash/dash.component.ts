@@ -205,21 +205,6 @@ export class DashComponent{
         }
 
         Piecon.setProgress(Math.floor(this.timerStatus.percentage * 100));
-
-        // this.timerStatus.count++;
-        // this.timerStatus.percentage = this.timerStatus.count / (this.countdown * 60);
-        // this.timerStatus.label = this.secondsToMMSS(this.countdown * 60 - this.timerStatus.count);
-        // if (this.timerStatus.percentage >= 1) {
-        //     this.askForFinishStatus();
-        //     this.alertAudio.play();
-        //     if (this.config.desktopNotification) {
-        //         this.showDesktopNotification();
-        //     }
-        // }
-        // else {
-        //     this.mytimeout = setTimeout(this.onTimeout.bind(this), 1000);
-        // }
-        // Piecon.setProgress(Math.floor(this.timerStatus.percentage * 100));
     };
 
     onRestTimeout() {
@@ -399,6 +384,7 @@ export class DashComponent{
                 if (data && data.status == "fail") {
                 } else {
                     this.allTasks.finished.push(this.activeTomato);
+                    this.timerStatus.reset();
                     this.startRestTimer();
                     this.tomatoCount += 1;
                     this.globalservice.editTomato();
@@ -411,7 +397,8 @@ export class DashComponent{
             // 删除任务
             // this.removeTask(this.activeTomato);
         }
-        this.timerStatus.reset();
+        // 放这里会导致出现乱码
+        // this.timerStatus.reset();
         this.activeTomato = null;
         this.modal.close();
         Piecon.reset();
