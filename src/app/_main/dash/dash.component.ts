@@ -265,15 +265,15 @@ export class DashComponent{
         this.NotiMessage = "新的番茄钟开启了，专注专注再专注！！!";
         let that = this;
         clearInterval(this.notiIntervalID)
-        this.notiIntervalID = setInterval(function () {
+        this.notiIntervalID = setInterval( ()=> {
             that.showTomatoNoti = false;
             that.NotiMessage = "";
         }, 3000);
     };
 
     secondsToMMSS(timeInSeconds: number) {
-        var minutes = Math.floor(timeInSeconds / 60);
-        var seconds = timeInSeconds - minutes * 60;
+        let minutes = Math.floor(timeInSeconds / 60);
+        let seconds = timeInSeconds - minutes * 60;
         let retStr: string = ''
         if (minutes < 10) {
             retStr += "0" + minutes;
@@ -299,7 +299,7 @@ export class DashComponent{
             new Notification("恭喜你,又完成了一个番茄钟!", { icon: "./assets/image/notification-icon.jpg" });
         }
         else {
-            Notification.requestPermission(function (permission: any) {
+            Notification.requestPermission( (permission: any) =>{
                 if (permission == 'granted') {
                     new Notification("恭喜你,又完成了一个番茄钟!", { icon: "./assets/image/notification-icon.jpg" });
                 }
@@ -312,7 +312,7 @@ export class DashComponent{
             new Notification("休息结束，可以开启另一个番茄钟了!", { icon: "./assets/image/notification-icon.jpg" });
         }
         else {
-            Notification.requestPermission(function (permission: any) {
+            Notification.requestPermission( (permission: any)=> {
                 if (permission == 'granted') {
                     new Notification("休息结束，可以开启另一个番茄钟了!", { icon: "./assets/image/notification-icon.jpg" });
                 }
@@ -340,8 +340,8 @@ export class DashComponent{
             let data: any = JSON.parse(response._body);
             if (data && data.status == "fail") {
             } else {
-                for (var index = 0; index < this.allTasks.unfinished.length; index++) {
-                    var element = this.allTasks.unfinished[index];
+                for (let index = 0; index < this.allTasks.unfinished.length; index++) {
+                    let element = this.allTasks.unfinished[index];
                     if (element.title == this.activeTomato.title && element.isActive == true) {
                         element.isActive = false;
                         this.allTasks.unfinished = this.allTasks.unfinished.slice();
@@ -404,8 +404,8 @@ export class DashComponent{
         Piecon.reset();
     }
 
-    addTask = function (isActive: any) {
-        let task = this.newTask;
+    addTask(isActive: any) {
+        let task:any = this.newTask;
         // task.num = 1;
         task.isActive = isActive;
         // 创建任务

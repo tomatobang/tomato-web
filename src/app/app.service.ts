@@ -131,7 +131,6 @@ export class AppState {
     localStorage.setItem("token", value);
     // this.rebirthHttpProvider.headers({ Authorization: appstate.token });
     tokenSubject.next(value);
-    
   }
 
   get(prop?: any) {
